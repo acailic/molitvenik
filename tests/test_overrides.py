@@ -159,6 +159,20 @@ def test_the_rubric_flag_turns_the_replaced_words_red_or_black_or_leaves_them():
     assert [w["color"] for w in kept["lines"][0]["words"]] == ["black", "black", "black", "black"]
 
 
+def test_a_rubric_that_names_its_words_prints_only_those_red():
+    """A red „Ирмос:" stands before a black line, and the OCR did not read it at all."""
+    original = page(81, line(word("С", 321), word("правом", 360), word("те", 560)))
+    correction = {"page": 81, "line": "С правом те", "find": "С", "replace": "Ирмос: С", "rubric": "Ирмос:"}
+    fixed = apply_overrides(original, [correction])
+    fixed_words = fixed["lines"][0]["words"]
+    assert [w["text"] for w in fixed_words] == ["Ирмос:", "С", "правом", "те"]
+    assert [w["color"] for w in fixed_words] == ["red", "black", "black", "black"]
+    assert fixed["lines"][0]["text"] == "Ирмос: С правом те"
+    # the words it names must be words the correction writes
+    with pytest.raises(OverrideError, match="rubric names"):
+        apply_overrides(original, [{**correction, "rubric": "Ирмос"}])
+
+
 def test_a_line_that_is_missing_or_twice_there_is_an_error():
     single = page(110, line(word("иста"), word("иста")))
     twice = page(110, line(word("иста"), word("иста")), line(word("иста"), word("иста")))

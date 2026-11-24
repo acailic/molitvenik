@@ -4,9 +4,10 @@ A correction names a page, the exact text of one of its content lines and a
 substring of that line, and says what the print shows there instead. The
 corrections live in ``data/ocr-overrides.json``, so every change to the text is
 visible in git and the text can be regenerated at any time. A correction may
-add ``rubric`` (print the replaced words red or black) and ``left`` (the x of
-the replaced words in the half-resolution page, for a word lost at the start of
-a line).
+add ``rubric`` (print the replaced words red or black; a string names the words
+of the replacement that are printed red, for a red word that stands before black
+ones) and ``left`` (the x of the replaced words in the half-resolution page, for
+a word lost at the start of a line).
 """
 
 from __future__ import annotations
@@ -18,12 +19,23 @@ class OverrideError(ValueError):
     """A correction cannot be applied: its line or its ``find`` is not there."""
 
 
-def apply_spans(line: dict, spans: list[tuple[int, int, str, bool | None]]) -> None:
+def word_flag(flag: bool | str | None, token: str) -> bool | None:
+    """The colour flag of one word of a replaced passage: ``True`` red, ``False`` black,
+    ``None`` as it was. A string names the words of the replacement that are printed red,
+    as ``"Ирмос:"`` when a red word that the OCR did not read is put before a black line;
+    the other words of the replacement keep their colour."""
+    if isinstance(flag, str):
+        return True if token in flag.split() else None
+    return flag
+
+
+def apply_spans(line: dict, spans: list[tuple[int, int, str, bool | str | None]]) -> None:
     """Replace character spans of a line's text, in place.
 
     ``spans`` are ``(start, end, replacement, rubric)`` in the line text as it
     is now; they must not overlap. ``rubric`` is ``True`` to turn the replaced
-    words red, ``False`` to turn them black, ``None`` to keep their colour.
+    words red, ``False`` to turn them black, ``None`` to keep their colour, and
+    a string to turn only the words it names red (see ``word_flag``).
     The line is split into words again on spaces. A word keeps its box, colour
     and confidence when the number of words is unchanged; otherwise every new
     word inherits them from the first replaced word.
@@ -45,7 +57,7 @@ def apply_spans(line: dict, spans: list[tuple[int, int, str, bool | None]]) -> N
     base, limit = offsets[first][0], offsets[last][1]
 
     # Walk the touched part of the line and collect (text, rubric) pieces.
-    pieces: list[tuple[str, bool | None]] = []
+    pieces: list[tuple[str, bool | str | None]] = []
     cursor = base
     for start, end, replacement, rubric in spans:
         if start > cursor:
@@ -66,14 +78,14 @@ def apply_spans(line: dict, spans: list[tuple[int, int, str, bool | None]]) -> N
         for character in piece:
             if character == " ":
                 if current:
-                    tokens.append((current, current_rubric))
+                    tokens.append((current, word_flag(current_rubric, current)))
                 current, current_rubric = "", None
             else:
                 if not current:
                     current_rubric = rubric
                 current += character
     if current:
-        tokens.append((current, current_rubric))
+        tokens.append((current, word_flag(current_rubric, current)))
     if not tokens:
         new_words: list[dict] = []
     elif len(tokens) == last - first + 1:
@@ -132,6 +144,11 @@ def apply_overrides(page: dict, overrides: list[dict]) -> dict:
             find, replace = override.get("find"), override.get("replace")
             if not isinstance(find, str) or not find or not isinstance(replace, str):
                 raise OverrideError(f"page {page['page']}: correction needs 'find' and 'replace': {override}")
+            rubric = override.get("rubric")
+            if isinstance(rubric, str) and not set(rubric.split()) <= set(replace.split()):
+                raise OverrideError(
+                    f"page {page['page']}: rubric names words that the replacement does not write: {rubric!r}"
+                )
             positions, at = [], line["text"].find(find)
             while at != -1:
                 positions.append(at)
@@ -151,7 +168,7 @@ def apply_overrides(page: dict, overrides: list[dict]) -> dict:
                     f"; occurrence {occurrence!r} names none of them"
                 )
             starts.append(positions[occurrence - 1])
-            spans.append((starts[-1], starts[-1] + len(find), replace, override.get("rubric")))
+            spans.append((starts[-1], starts[-1] + len(find), replace, rubric))
         edges = [0]
         for word in line["words"]:
             edges.append(edges[-1] + len(word["text"]) + 1)
