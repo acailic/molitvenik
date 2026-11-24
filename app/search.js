@@ -34,7 +34,6 @@ export function buildIndex(units) {
     const body = unitText(unit);
     return {
       id: unit.id,
-      order: unit.order,
       titleKey: searchKey(title),
       authorKey: searchKey(author),
       bodyKey: searchKey(`${title} ${author} ${body}`),
@@ -45,24 +44,25 @@ export function buildIndex(units) {
 
 /**
  * Units whose folded text contains the key. Each unit appears once, with its
- * best field. Sorted by field (title, author, body), then by the unit's order.
+ * best field. Sorted by field (title, author, body), then by the unit's place
+ * in the book. `position` is where the key stands in the field's folded text.
  * An empty key finds nothing.
  */
 export function search(index, key) {
   if (!key) return [];
   const found = [];
-  index.forEach((entry, position) => {
+  index.forEach((entry, place) => {
     for (const field of FIELDS) {
       const at = entry[field.key].indexOf(key);
       if (at !== -1) {
-        found.push({ id: entry.id, field: field.name, position: at, rank: FIELD_RANK[field.name] });
+        found.push({ id: entry.id, field: field.name, position: at, rank: FIELD_RANK[field.name], place });
         return;
       }
     }
   });
   return found
-    .sort((a, b) => a.rank - b.rank || a.position - b.position)
-    .map(({ id, field, position: at }) => ({ id, field, position: at }));
+    .sort((a, b) => a.rank - b.rank || a.place - b.place)
+    .map(({ id, field, position }) => ({ id, field, position }));
 }
 
 /**

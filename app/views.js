@@ -89,8 +89,10 @@ function passageAround(unit, key, opening) {
     let first = chars.length - 1;
     while (first > 0 && starts[first] > at) first -= 1;
 
-    const before = chars.slice(Math.max(0, first - 50), first).join("");
-    const cutLead = before.indexOf(" ") + 1;
+    const start = Math.max(0, first - 50);
+    const before = chars.slice(start, first).join("");
+    // The opening word is dropped only where the cut left it incomplete.
+    const cutLead = start > 0 && chars[start - 1] !== " " ? before.indexOf(" ") + 1 : 0;
     const after = chars.slice(first, first + 120).join("");
     const cutTail = after.indexOf(" ", 100);
     const lead = cutLead ? "…" : "";

@@ -61,6 +61,37 @@ test("search ranks a title match first, then author, then body", () => {
   for (const hit of search(mixed, searchKey("прими"))) assert.equal(hit.field, "body");
 });
 
+test("search puts an author match before the body matches of units that come earlier", () => {
+  const RANK = { title: 0, author: 1, body: 2 };
+  // „небески" is the title of care-nebeski, deep in the body of primer-duga, and — given
+  // here — the author of the last unit, which comes after both.
+  const withAuthor = units.map((item) =>
+    item.id === "jela__kraj" ? { ...item, author: "св. Небески" } : item,
+  );
+  const found = search(buildIndex(withAuthor), searchKey("небески"));
+  const fields = found.map((hit) => hit.field);
+  assert.deepEqual(fields, [...fields].sort((a, b) => RANK[a] - RANK[b]));
+  assert.deepEqual([...new Set(fields)], ["title", "author", "body"]);
+  assert.equal(found[0].id, "jutarnje__care-nebeski");
+  assert.deepEqual(found[fields.indexOf("author")], {
+    id: "jela__kraj",
+    field: "author",
+    position: searchKey("св. Небески").indexOf("nebeski"),
+  });
+  assert.ok(fields.indexOf("author") < fields.lastIndexOf("body"));
+});
+
+test("search keeps the order of the book inside a field, wherever the word stands in the text", () => {
+  // „помилуј" comes late in the opening of the morning prayers and early in „Свети Боже",
+  // which the book prints after it.
+  assert.deepEqual(ids(search(index, searchKey("помилуј"))), [
+    "jutarnje__pocetak",
+    "jutarnje__sveti-boze",
+    "pred-pricesce__kada-se-slavni",
+    "pred-pricesce__primer-duga",
+  ]);
+});
+
 test("search keeps the order of the units inside a field and reports the position", () => {
   const found = search(index, searchKey("istine"));
   assert.deepEqual(ids(found), ["jutarnje__care-nebeski", "pred-pricesce__primer-duga"]);
