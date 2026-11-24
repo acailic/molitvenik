@@ -6,7 +6,6 @@ work on the base reading; the other two only mark the words they read
 differently, which is how a wrong word is found before anyone looks at the page.
 """
 
-import csv
 import difflib
 import json
 import os
@@ -46,22 +45,27 @@ def parse_tsv(path) -> list[dict]:
     """The words of the TSV that Tesseract wrote, in reading order.
 
     Only the rows of level 5 hold a word; the levels above them are the page,
-    the block, the paragraph and the line."""
+    the block, the paragraph and the line. The rows are split at their tabs and
+    not read as CSV: Tesseract prints a quote that it read as part of a word
+    without quoting the field, and a CSV reader takes such a quote for the
+    start of a field that ends many rows later, which silently dropped most of
+    the lower half of three pages of the book."""
     words = []
     with open(path, encoding="utf-8") as fh:
-        for row in csv.reader(fh, delimiter="\t"):
-            if len(row) == 12 and row[0] == "5" and row[11].strip():
+        for row in fh:
+            fields = row.rstrip("\r\n").split("\t")
+            if len(fields) >= 12 and fields[0] == "5" and fields[11].strip():
                 words.append(
                     {
-                        "text": row[11].strip(),
-                        "left": int(row[6]),
-                        "top": int(row[7]),
-                        "width": int(row[8]),
-                        "height": int(row[9]),
-                        "conf": float(row[10]),
-                        "block": int(row[2]),
-                        "par": int(row[3]),
-                        "line": int(row[4]),
+                        "text": "\t".join(fields[11:]).strip(),
+                        "left": int(fields[6]),
+                        "top": int(fields[7]),
+                        "width": int(fields[8]),
+                        "height": int(fields[9]),
+                        "conf": float(fields[10]),
+                        "block": int(fields[2]),
+                        "par": int(fields[3]),
+                        "line": int(fields[4]),
                     }
                 )
     return words

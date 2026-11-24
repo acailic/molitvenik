@@ -42,8 +42,17 @@ def tsv(*rows):
 
 def word(text, left, top, width=40, height=24, conf=96.0, block=1, par=1, line=1):
     """A word as Tesseract's TSV holds it."""
-    return {"text": text, "left": left, "top": top, "width": width, "height": height, "conf": conf,
-            "block": block, "par": par, "line": line}
+    return {
+        "text": text,
+        "left": left,
+        "top": top,
+        "width": width,
+        "height": height,
+        "conf": conf,
+        "block": block,
+        "par": par,
+        "line": line,
+    }
 
 
 def tokens(*texts):
@@ -67,9 +76,9 @@ def painted_page():
     return rgb
 
 
-RED_WORD = (1, 1, 1, "црвена", 8, 14, 8, 8, 96.0)      # inside the red block, in half-resolution pixels
-BLACK_WORD = (1, 1, 1, "црна", 26, 14, 8, 8, 90.0)     # inside the black block
-LATIN_E = "црв" + "e" + "на"                           # the first word with a Latin e read for Cyrillic е
+RED_WORD = (1, 1, 1, "црвена", 8, 14, 8, 8, 96.0)  # inside the red block, in half-resolution pixels
+BLACK_WORD = (1, 1, 1, "црна", 26, 14, 8, 8, 90.0)  # inside the black block
+LATIN_E = "црв" + "e" + "на"  # the first word with a Latin e read for Cyrillic е
 
 
 class FakeTesseract:
@@ -77,7 +86,7 @@ class FakeTesseract:
     segmentation mode and the size of the image it is given, and records every call."""
 
     def __init__(self, readings):
-        self.readings = readings          # {(page segmentation mode, (width, height)): TSV text}
+        self.readings = readings  # {(page segmentation mode, (width, height)): TSV text}
         self.calls = []
 
     def __call__(self, cmd, **options):
@@ -101,20 +110,59 @@ def test_parse_tsv_keeps_the_rows_that_hold_a_word(tmp_path):
     path = tmp_path / "base.tsv"
     path.write_text(
         TSV_HEADER + "\n"
-        "1\t1\t0\t0\t0\t0\t0\t0\t1055\t1639\t-1\t\n"       # the page
-        "4\t1\t1\t1\t1\t0\t135\t333\t390\t47\t-1\t\n"       # a line
+        "1\t1\t0\t0\t0\t0\t0\t0\t1055\t1639\t-1\t\n"  # the page
+        "4\t1\t1\t1\t1\t0\t135\t333\t390\t47\t-1\t\n"  # a line
         "5\t1\t1\t1\t1\t1\t135\t333\t139\t47\t96.5\tбедни\n"
         "5\t1\t1\t1\t1\t2\t300\t333\t225\t47\t91\tучествујем\n"
-        "5\t1\t2\t1\t1\t1\t20\t1500\t20\t20\t50\t\n",      # a row without a word
+        "5\t1\t2\t1\t1\t1\t20\t1500\t20\t20\t50\t\n",  # a row without a word
         encoding="utf-8",
     )
     words = ocr.parse_tsv(path)
     assert words == [
-        {"text": "бедни", "left": 135, "top": 333, "width": 139, "height": 47, "conf": 96.5,
-         "block": 1, "par": 1, "line": 1},
-        {"text": "учествујем", "left": 300, "top": 333, "width": 225, "height": 47, "conf": 91.0,
-         "block": 1, "par": 1, "line": 1},
+        {
+            "text": "бедни",
+            "left": 135,
+            "top": 333,
+            "width": 139,
+            "height": 47,
+            "conf": 96.5,
+            "block": 1,
+            "par": 1,
+            "line": 1,
+        },
+        {
+            "text": "учествујем",
+            "left": 300,
+            "top": 333,
+            "width": 225,
+            "height": 47,
+            "conf": 91.0,
+            "block": 1,
+            "par": 1,
+            "line": 1,
+        },
     ]
+
+
+def test_parse_tsv_does_not_take_a_quote_in_a_word_for_the_start_of_a_quoted_field(tmp_path):
+    """Tesseract prints a word it read as `"Ти` with that quote, and does not quote its
+    fields: a CSV reader would read the quote as the start of a field that only ends
+    twenty rows later (it happened on three pages of the book)."""
+    path = tmp_path / "base.tsv"
+    path.write_text(
+        TSV_HEADER + "\n"
+        "5\t1\t1\t1\t1\t1\t135\t333\t139\t47\t96.5\tси\n"
+        '5\t1\t1\t1\t1\t2\t300\t333\t63\t41\t71.6\t"Ти\n'
+        "5\t1\t1\t1\t1\t3\t380\t333\t214\t37\t82.6\tваистину\n"
+        "4\t1\t1\t1\t2\t0\t135\t400\t390\t47\t-1\t\n"
+        "5\t1\t1\t1\t2\t1\t135\t400\t98\t49\t96.7\tХристос,\n"
+        '5\t1\t1\t1\t2\t2\t260\t401\t99\t40\t96.6\tСин"\n',
+        encoding="utf-8",
+    )
+    words = ocr.parse_tsv(path)
+    assert [word["text"] for word in words] == ["си", '"Ти', "ваистину", "Христос,", 'Син"']
+    assert [word["left"] for word in words] == [135, 300, 380, 135, 260]
+    assert [word["line"] for word in words] == [1, 1, 1, 2, 2]
 
 
 def test_tesseract_is_called_as_the_design_says_and_leaves_no_file(tmp_path, monkeypatch):
@@ -124,8 +172,17 @@ def test_tesseract_is_called_as_the_design_says_and_leaves_no_file(tmp_path, mon
     words = ocr.run_tesseract(tmp_path / "page.png", tmp_path / "out", 3, None)
     ((_, cmd, options),) = fake.calls
     assert cmd == [
-        "tesseract", str(tmp_path / "page.png"), str(tmp_path / "out"), "-l", "srp", "--psm", "3",
-        "-c", "tessedit_load_sublangs=", "-c", "tessedit_create_tsv=1",
+        "tesseract",
+        str(tmp_path / "page.png"),
+        str(tmp_path / "out"),
+        "-l",
+        "srp",
+        "--psm",
+        "3",
+        "-c",
+        "tessedit_load_sublangs=",
+        "-c",
+        "tessedit_create_tsv=1",
     ]
     assert options["check"] is True
     assert options["env"]["OMP_THREAD_LIMIT"] == "1"
@@ -146,7 +203,7 @@ def test_tesseract_is_given_the_model_directory_when_there_is_one(tmp_path, monk
 
 def test_model_is_looked_up_in_the_given_directory_first(tmp_path):
     assert ocr.resolve_tessdata(None) is None
-    assert ocr.resolve_tessdata(tmp_path) is None            # no srp.traineddata there: Tesseract's own path
+    assert ocr.resolve_tessdata(tmp_path) is None  # no srp.traineddata there: Tesseract's own path
     (tmp_path / "srp.traineddata").write_bytes(b"")
     assert ocr.resolve_tessdata(tmp_path) == str(tmp_path)
 
@@ -209,7 +266,7 @@ def test_line_kinds():
 
 def test_disagreements_of_two_readings_that_agree():
     base = tokens("У", "име", "Оца")
-    assert ocr.disagreements(base, tokens("у", "име", "оца")) == set()      # letter case is no difference
+    assert ocr.disagreements(base, tokens("у", "име", "оца")) == set()  # letter case is no difference
 
 
 def test_word_read_differently_is_flagged():
@@ -248,8 +305,9 @@ def test_word_flags():
 
 def rebuilt(page):
     """The lines of a fixture page made again from its words by the step's own functions."""
-    words = [dict(w, block=1, par=1, line=index)
-             for index, line in enumerate(page["lines"]) for w in line["words"]]
+    words = [
+        dict(w, block=1, par=1, line=index) for index, line in enumerate(page["lines"]) for w in line["words"]
+    ]
     return [ocr.make_line(line, page["height"]) for line in ocr.group_lines(words)]
 
 
@@ -318,13 +376,36 @@ def test_read_page_makes_the_page_file_and_the_half_resolution_image(tmp_path, m
         "source_height": 100,
         "lines": [
             {
-                "kind": "content", "cy": 18.0, "top": 14, "bottom": 22, "left": 8, "right": 34,
+                "kind": "content",
+                "cy": 18.0,
+                "top": 14,
+                "bottom": 22,
+                "left": 8,
+                "right": 34,
                 "text": "црвена црна",
                 "words": [
-                    {"text": "црвена", "left": 8, "top": 14, "width": 8, "height": 8, "conf": 96.0,
-                     "red": 1.0, "color": "red", "flags": ["differs:psm6"]},
-                    {"text": "црна", "left": 26, "top": 14, "width": 8, "height": 8, "conf": 90.0,
-                     "red": 0.0, "color": "black", "flags": []},
+                    {
+                        "text": "црвена",
+                        "left": 8,
+                        "top": 14,
+                        "width": 8,
+                        "height": 8,
+                        "conf": 96.0,
+                        "red": 1.0,
+                        "color": "red",
+                        "flags": ["differs:psm6"],
+                    },
+                    {
+                        "text": "црна",
+                        "left": 26,
+                        "top": 14,
+                        "width": 8,
+                        "height": 8,
+                        "conf": 90.0,
+                        "red": 0.0,
+                        "color": "black",
+                        "flags": [],
+                    },
                 ],
             }
         ],
@@ -409,7 +490,7 @@ def test_run_without_fetched_pages_says_to_fetch(tmp_path, capsys):
 
 
 def test_run_names_the_pages_that_have_no_image(tmp_path, monkeypatch, capsys):
-    fetched(monkeypatch, tmp_path)        # the image of page 9 is missing
+    fetched(monkeypatch, tmp_path)  # the image of page 9 is missing
     assert ocr.run(step_args("--first", "8", "--last", "9"), tmp_path) == 1
     assert "9" in capsys.readouterr().err
 
