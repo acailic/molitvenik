@@ -4,22 +4,71 @@
 Текст је препис књиге *Православни молитвеник* (Штампарија Српске патријаршије, Београд 1998).
 
 * Сајт: https://acailic.github.io/molitvenik/
-* Дизајн и разлози одлука: [`docs/superpowers/specs/2026-11-24-molitvenik-design.md`](docs/superpowers/specs/2026-11-24-molitvenik-design.md)
+* 167 молитава у 12 одељака: случајна молитва, избор према поводу, коме је упућена и дужини,
+  претрага ћирилицом или латиницом (и без дијакритика: „oce nas“ налази „Оче наш“),
+  читање целог одељка редом, адреса која се може поделити.
+* Дизајн и разлози сваке одлуке: [`docs/superpowers/specs/2026-11-24-molitvenik-design.md`](docs/superpowers/specs/2026-11-24-molitvenik-design.md)
 * Статичан сајт без корака градње: `index.html`, `style.css`, `app/`, подаци у `data/prayers.json`.
 
 ## Алатке за текст
 
-Текст се добија из скенираних страница и проверава поређењем независних читалања (дизајн, поглавља 5 и 6).
+Текст се добија из скенираних страница и проверава поређењем независних читалања и
+прегледом на сликама (дизајн, поглавља 5 и 6). Слике страница преузимају се са Интернет
+архиве (ставка `pravoslavni-molitvenik`, скен истог издања); PDF и слике нису у репоу.
 
-Потребно: [uv](https://docs.astral.sh/uv/), Tesseract 5 са моделом `srp` из `tessdata_best`, Hunspell
-са српским речником (LibreOffice `sr`). PDF и слике страница нису у репоу.
+Потребно: [uv](https://docs.astral.sh/uv/), Tesseract 5 са моделом `srp` из `tessdata_best`,
+Hunspell са српским речником (LibreOffice `sr`).
 
 ```sh
-uv sync                                   # окружење и зависности
+uv sync
 uv run pytest                             # тестови алатки
 uv run ruff check tools tests             # линт
-uv run molitvenik --help                  # кораци канала (fetch, ocr, ia-ocr, clean, assemble, check, review)
+uv run molitvenik --help                  # кораци: fetch, ocr, ia-ocr, clean, assemble, check, review
+
+uv run molitvenik fetch                   # слике страница у build/pages/
+uv run molitvenik ocr --tessdata ДИР     # Tesseract; ДИР држи srp.traineddata
+uv run molitvenik ia-ocr                  # друго читање: OCR Интернет архиве
+uv run molitvenik clean                   # build/clean/book.json, уз data/ocr-overrides.json
+uv run molitvenik assemble                # data/prayers.json; стаје с грешком ако провере текста не прођу
+uv run molitvenik check
 ```
+
+Материјал за проверу OCR-а на сликама: `uv run molitvenik review hints|marked|strips` (означени
+редови и њихове траке), `review diff` (поређење с преписима начињеним само са слике) и
+`review collect` (провера исправки које рецензенти напишу). Свака исправка стоји у
+`data/ocr-overrides.json` са страном, редом и тачно оним шта штампа има, па се свака промена
+текста види у историји репоа.
+
+## Како је текст проверен
+
+Текст је прочитан четири пута: Tesseract-ом на половини резолуције (основно читање), на 40 %,
+у другом режиму сегментације странице, и посебним програмом на Интернет архиви. Сваки ред у ком
+се читања не слажу, или у коме реч носи знак сумње, проверен је на увећаној слици странице:
+
+* 3.695 садржајних редова; 1.488 је било означено, 455 са јаким знаком грешке — сви су пресуђени
+  на увећаним тракама (78 листова);
+* 175 црвених редова које ниједан знак није означио — прегледани ред по ред;
+* 70 цртица које је OCR видео између речи: 21 је штампана, 49 су привиђења у широким
+  размацима поравнатих редова и уклоњене су појединачно;
+* 1 штампани ред који OCR уопште није избацио (последњи ред акатиста, стр. 74);
+* 2 исправке са стране „Исправки" саме књиге.
+
+Укупно је унето 222 исправки. Затим је узорак од 31 стране (сваки одељак,
+насумично, фиксирано семе) преписан на слепо — само са слике, без OCR текста — и упоређен са
+готовим текстом: од 89 неслагања, 84 су биле грешке преписивача а 5 грешке нашег текста (три на редовима који су
+већ били означени, две на редовима без и једног знака — око 1 на 1.000 речи). То је на граници онога
+што овде прихватамо, па је покренут преглед сваког преосталог реда на скенима ставке: до ове
+верзије је тако прегледано 435 од 3.065 редова (71 од 501 листа) и нађена је 1 грешка коју су
+ранији прегледи пропустили („грешннога“ у првој јутарњој молитви); преглед се наставља и његове исправке се додају у каснијим
+верзијама.
+
+Готов текст упоређен је и с OCR текстом саме ставке на Интернет архиви, ред по ред: разликује се на
+91 реду, и сви су проверени на скену. Сваку исправку коју предложи читач (језички модел)
+координатор је прегледао на увећаном изрезу речи пре него што је примењена; од 144 предлога један је
+одбијен, јер је хтео да исправи грешку штампе у самој књизи.
+
+Штампа се репродукује како јесте, с грешкама штампе; само оно што је штампано великим словима
+или капителом стоји обичним реченичним словима („Господе помилуј!").
 
 ## Сајт
 
@@ -29,7 +78,7 @@ npm run check                             # синтаксна провера с
 python3 -m http.server                    # локални преглед: http://localhost:8000
 ```
 
-Сајт нема корак градње. За локални преглед послужите фасциклу (на пример наредбом изнад), јер
+Сајт нема корак градње ни спољне захтеве. За локални преглед послужите фасциклу, јер
 прегледач не учитава модуле директно из `file://`.
 
 ## Права
@@ -42,7 +91,8 @@ python3 -m http.server                    # локални преглед: http:
 
 *English.* An online Orthodox prayer book in Serbian Cyrillic: a random prayer, filters and
 search (typed in Cyrillic or Latin). The text is a transcription of *Православни молитвеник*
-(Belgrade 1998). Static site, no build step, no dependencies. The code is MIT-licensed; the
-rights to the text belong to their right holders. The `tools/` directory holds the transcription
-pipeline and its verification; the design and the reasons behind every decision are in
-`docs/superpowers/specs/`.
+(Belgrade 1998): 167 prayers in 12 sections. Static site, no build step, no dependencies. The
+code is MIT-licensed; the rights to the text belong to their right holders. The `tools/`
+directory holds the transcription pipeline and its verification, and every correction to the
+OCR is kept in `data/ocr-overrides.json`; the design and the reasons behind every decision are
+in `docs/superpowers/specs/`.

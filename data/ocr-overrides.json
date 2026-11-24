@@ -1,5 +1,12 @@
 [
  {
+  "page": 8,
+  "line": "грешнога.",
+  "find": "грешнога.",
+  "replace": "грешннога.",
+  "note": "print has double н"
+ },
+ {
   "page": 9,
   "line": "Затим Слава Теби Боже",
   "find": "Затим",
@@ -127,6 +134,13 @@
  },
  {
   "page": 25,
+  "line": "ни ме вишим од овога света.",
+  "find": "вишим",
+  "replace": "вишиим",
+  "note": "blind transcription of the sample, settled on the scan"
+ },
+ {
+  "page": 25,
   "line": "остарелог кроз — неосетљива",
   "find": "—",
   "replace": "",
@@ -166,6 +180,13 @@
   "find": "Оцу“",
   "replace": "Оцу?",
   "note": "coordinator, sheet 8 strip 04"
+ },
+ {
+  "page": 35,
+  "line": "грешнога; Исусе, услиши ме",
+  "find": "грешнога;",
+  "replace": "грешнага;",
+  "note": "the print has а (coordinator's check of the measurement)"
  },
  {
   "page": 36,
@@ -240,6 +261,13 @@
   "note": "coordinator, sheet 15 strip 04"
  },
  {
+  "page": 45,
+  "line": "брољубиву душу ~ цариника",
+  "find": "цариника",
+  "replace": "царинника",
+  "note": "blind transcription of the sample, settled on the scan"
+ },
+ {
   "page": 46,
   "line": "се, просвети моја њчувства,",
   "find": "њчувства,",
@@ -252,6 +280,13 @@
   "find": "скупонени",
   "replace": "скупоцени",
   "note": "coordinator, sheet 17 strip 05"
+ },
+ {
+  "page": 49,
+  "line": "О, преслатки и свежа-",
+  "find": "свежа-",
+  "replace": "свеха-",
+  "note": "the print has х and no hyphen inside the word (coordinator's check of the measurement)"
  },
  {
   "page": 49,
@@ -1359,6 +1394,13 @@
  {
   "page": 164,
   "line": "очита; Твоја утроба, ЉБогоро-",
+  "find": "очита;",
+  "replace": "очитај:",
+  "note": "blind transcription of the sample, settled on the scan"
+ },
+ {
+  "page": 164,
+  "line": "очита; Твоја утроба, ЉБогоро-",
   "find": "ЉБогоро-",
   "replace": "Богоро-",
   "note": "stray letter in front of the word"
@@ -1381,8 +1423,8 @@
   "page": 165,
   "line": "свога умножише се.“ У миру",
   "find": "се.“",
-  "replace": "се.",
-  "note": "stray quotation mark; only a tiny show-through speck after the period"
+  "replace": "се.*",
+  "note": "the sign of the footnote reference (an asterisk), read as a closing quotation mark"
  },
  {
   "page": 166,

@@ -40,7 +40,7 @@ last_page = 30
   [[sections.units]]
   slug = "tri-poklona"
   title = "Три поклона"
-  starts_with = "Господе Исусе Христе, Сине Божји, помилуј ме грешнога"
+  starts_with = "Господе Исусе Христе, Сине Божји, помилуј ме грешннога"
   tags = ["pokajanje"]
   addressees = ["gospod-isus-hrist"]
 
