@@ -1,0 +1,172 @@
+[
+ {
+  "page": 10,
+  "line": "Господе Помилуј)! (три пута)",
+  "find": "Помилуј)!",
+  "replace": "помилуј!",
+  "note": "„Господе помилуј! (три пута)«, bold black and red"
+ },
+ {
+  "page": 11,
+  "line": "Затим ове Тројичне тропаре, глас ]1:",
+  "find": "]1:",
+  "replace": "1:",
+  "note": "the print has „глас 1:«"
+ },
+ {
+  "page": 30,
+  "line": "се реч: блЛагОСЛОВИ. )",
+  "find": "блЛагОСЛОВИ. )",
+  "replace": "Благослови.)",
+  "note": "small capitals are printed in sentence case"
+ },
+ {
+  "page": 52,
+  "line": "Кондак ]",
+  "find": "]",
+  "replace": "1",
+  "note": "the first kontakion of the akathist"
+ },
+ {
+  "page": 67,
+  "line": "Кондак 1]",
+  "find": "1]",
+  "replace": "11",
+  "note": "the eleventh kontakion of the akathist"
+ },
+ {
+  "page": 75,
+  "line": "Песма 4",
+  "find": "Песма 4",
+  "replace": "Песма 4.",
+  "note": "the heading ends with a period"
+ },
+ {
+  "page": 84,
+  "line": "Господе ~ ПОМИЛУЈ)! = (дванаест",
+  "find": "~ ПОМИЛУЈ)! =",
+  "replace": "помилуј!",
+  "note": "„Господе помилуј! (дванаест«"
+ },
+ {
+  "page": 85,
+  "line": "| уга, светога Антиоха",
+  "find": "| уга,",
+  "replace": "Молитва друга,",
+  "note": "„Молитва друга, светога Антиоха«"
+ },
+ {
+  "page": 85,
+  "line": "у нашем Исусу Христу:",
+  "find": "у нашем",
+  "replace": "Господу нашем",
+  "note": "„Господу нашем Исусу Христу:«"
+ },
+ {
+  "page": 93,
+  "line": "евне:",
+  "find": "евне:",
+  "replace": "Дневне:",
+  "note": "the day prayers of the seventh prayer"
+ },
+ {
+  "page": 105,
+  "line": "Са сузама моли свог Творца да се",
+  "find": "Са сузама",
+  "replace": "Пето: Са сузама",
+  "left": 137,
+  "note": "the OCR lost „Пето:« at the start of the line"
+ },
+ {
+  "page": 105,
+  "line": "ве зе",
+  "find": "ве зе",
+  "replace": "",
+  "note": "a phantom read from the ornament at the end of the section"
+ },
+ {
+  "page": 105,
+  "line": "говог светог имена.",
+  "find": "говог",
+  "replace": "Његовог",
+  "left": 139,
+  "note": "„Његовог« lost its first letters"
+ },
+ {
+  "page": 106,
+  "line": "Псалам 50",
+  "find": "Псалам 50",
+  "replace": "Псалам 50.",
+  "note": "the heading ends with a period"
+ },
+ {
+  "page": 114,
+  "line": "Песма 8",
+  "find": "Песма 8",
+  "replace": "Песма 8.",
+  "note": "the heading ends with a period"
+ },
+ {
+  "page": 126,
+  "line": "Слага: Како ћу се ја недос-",
+  "find": "Слага:",
+  "replace": "Слава:",
+  "note": "the print has „Слава:«"
+ },
+ {
+  "page": 127,
+  "line": "Онда: ГосПОДе ПОМИЛУЈ! 40 пута",
+  "find": "ГосПОДе ПОМИЛУЈ!",
+  "replace": "Господе помилуј!",
+  "note": "bold capitals are printed in sentence case"
+ },
+ {
+  "page": 138,
+  "line": "Молитва чет:",
+  "find": "чет:",
+  "replace": "четврта,",
+  "note": "„Молитва четврта,«"
+ },
+ {
+  "page": 138,
+  "line": "светога Јована Д скина",
+  "find": "Д скина",
+  "replace": "Дамаскина:",
+  "note": "„светога Јована Дамаскина:«"
+ },
+ {
+  "page": 150,
+  "line": "ведам да си \"Ти ваистину",
+  "find": "\"Ти",
+  "replace": "Ти",
+  "note": "the print has no quote before „Ти«"
+ },
+ {
+  "page": 163,
+  "line": "После р учка",
+  "find": "р учка",
+  "replace": "ручка",
+  "note": "„После ручка«"
+ },
+ {
+  "page": 163,
+  "line": "дођи и нама и спаси нас. з-",
+  "find": "з-",
+  "replace": "За-",
+  "note": "the red „За-тим:« in small capitals"
+ },
+ {
+  "page": 163,
+  "line": "храни својом благодаћу и ч0-",
+  "find": "ч0-",
+  "replace": "чо-",
+  "note": "„човекољубљем«"
+ },
+ {
+  "page": 165,
+  "line": "дању. Слава ОЦУ... (Ако је прису-",
+  "find": "ОЦУ",
+  "replace": "Оцу",
+  "note": "„Слава Оцу...« in small capitals"
+ }
+]
