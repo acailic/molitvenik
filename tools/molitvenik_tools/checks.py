@@ -17,7 +17,7 @@ from molitvenik_tools.assemble import block_text, length_of
 WORD = re.compile(r"[^\W_]+", re.UNICODE)
 LATIN = re.compile(r"[A-Za-z]")
 SPACING_ONLY = re.compile(r"^[^\w\s]+$", re.UNICODE)
-DASH_ONLY = re.compile(r"^[—–]+$")  # a dash between words is print, not a spacing symbol
+DASH_ONLY = re.compile(r"^[—–]+[.,;:!?]*$")  # a dash between words is print, not a spacing symbol
 SPACING_SYMBOLS = "·~|=_•¬#"
 PAIRS = (("(", ")"), ("„", "“"))
 

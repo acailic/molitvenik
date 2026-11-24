@@ -829,7 +829,7 @@ last_page = 105
   [[sections.units]]
   slug = "prisnodjevo"
   title = "Преславна Приснодјево"
-  starts_with = "затим: Преславна"
+  starts_with = "Затим: Преславна"
   tags = ["zahvalnost", "miran-san"]
   addressees = ["presveta-bogorodica"]
 
@@ -858,7 +858,7 @@ last_page = 105
   [[sections.units]]
   slug = "dostojno-jest"
   title = "Достојно је"
-  starts_with = "затим: Достојно је"
+  starts_with = "Затим: Достојно је"
   tags = ["zahvalnost", "miran-san"]
   addressees = ["presveta-bogorodica"]
 

@@ -49,6 +49,55 @@
   "note": "coordinator, sheet 2 strip 02"
  },
  {
+  "page": 13,
+  "line": "промислом ~ удостојио – мене",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-01)"
+ },
+ {
+  "page": 17,
+  "line": "/ пода, Животворног, Који од",
+  "find": "/ пода,",
+  "replace": "пода,",
+  "note": "a mark of the border, not print"
+ },
+ {
+  "page": 17,
+  "line": ": И у Духа Светога, Гос-",
+  "find": ": И у Духа",
+  "replace": "И у Духа",
+  "note": "a mark of the border, not print"
+ },
+ {
+  "page": 17,
+  "line": "мртвима, Његовом – царству",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-01)"
+ },
+ {
+  "page": 19,
+  "line": "прибегавам ; Владару човеко-",
+  "find": "прибегавам ; Владару",
+  "replace": "прибегавам; Владару",
+  "note": "the semicolon belongs to the word before it"
+ },
+ {
+  "page": 20,
+  "line": "Молитва – пета, | светога — Василија",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-01)"
+ },
+ {
+  "page": 20,
+  "line": "Молитва – пета, | светога — Василија",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-01)"
+ },
+ {
   "page": 21,
   "line": "почетна вечна (Светлости, у",
   "find": "(Светлости",
@@ -77,6 +126,13 @@
   "note": "coordinator, sheet 5 strip 05"
  },
  {
+  "page": 25,
+  "line": "остарелог кроз — неосетљива",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-01)"
+ },
+ {
   "page": 27,
   "line": "што некада Љзаволех сами",
   "find": "Љзаволех",
@@ -91,11 +147,32 @@
   "note": "small capitals are printed in sentence case"
  },
  {
+  "page": 31,
+  "line": "неисказано, ~ ослободи – свих",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-01)"
+ },
+ {
+  "page": 32,
+  "line": "сти! ~ Исусе – свежалостиви,",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-01)"
+ },
+ {
   "page": 33,
   "line": "ни и ја у Оцу“ Стога, Неис-",
   "find": "Оцу“",
   "replace": "Оцу?",
   "note": "coordinator, sheet 8 strip 04"
+ },
+ {
+  "page": 36,
+  "line": "створитељу; ~ Исусе, – земаљ-",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-02)"
  },
  {
   "page": 38,
@@ -127,10 +204,33 @@
  },
  {
   "page": 43,
+  "line": "Сва – природа ~ анђелска",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-02)"
+ },
+ {
+  "page": 43,
   "line": "савршен човек7 Ми пак ди-",
   "find": "човек7",
   "replace": "човек?",
   "note": "coordinator, sheet 14 strip 03"
+ },
+ {
+  "page": 43,
+  "line": "се, — Господару — Господара;",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-02)",
+  "occurrence": 1
+ },
+ {
+  "page": 43,
+  "line": "се, — Господару — Господара;",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-02)",
+  "occurrence": 2
  },
  {
   "page": 45,
@@ -154,6 +254,20 @@
   "note": "coordinator, sheet 17 strip 05"
  },
  {
+  "page": 49,
+  "line": "говораше — клучићу – овако:",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-03)"
+ },
+ {
+  "page": 49,
+  "line": "говораше — клучићу – овако:",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-03)"
+ },
+ {
   "page": 52,
   "line": "Кондак ]",
   "find": "]",
@@ -166,6 +280,13 @@
   "find": "утробе7",
   "replace": "утробе?",
   "note": "coordinator, sheet 19 strip 05"
+ },
+ {
+  "page": 55,
+  "line": "Сила – Свевишњега ~ тада",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-03)"
  },
  {
   "page": 56,
@@ -182,6 +303,13 @@
   "note": "coordinator, sheet 20 strip 03"
  },
  {
+  "page": 61,
+  "line": "пређе из овог варљивог света, ;",
+  "find": "света, ;",
+  "replace": "света,",
+  "note": "a mark of the border, not print"
+ },
+ {
   "page": 62,
   "line": "опроштају многим о преступ-",
   "find": "многим о преступ-",
@@ -194,6 +322,13 @@
   "find": "Ђује!",
   "replace": "ђује!",
   "note": "coordinator, sheet 22 strip 03"
+ },
+ {
+  "page": 64,
+  "line": "се тобом преступ ) заглади;",
+  "find": "преступ )",
+  "replace": "преступ",
+  "note": "a mark of the border, not print"
  },
  {
   "page": 65,
@@ -215,6 +350,13 @@
   "find": "1]",
   "replace": "11",
   "note": "the eleventh kontakion of the akathist"
+ },
+ {
+  "page": 67,
+  "line": "се, — дароватељко ~ божанске",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-03)"
  },
  {
   "page": 71,
@@ -240,9 +382,23 @@
  {
   "page": 72,
   "line": "Припе:: Пресвета – Богоро-",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-04)"
+ },
+ {
+  "page": 72,
+  "line": "Припе:: Пресвета – Богоро-",
   "find": "Припе::",
   "replace": "Припев:",
   "note": "coordinator, sheet 27 strip 05"
+ },
+ {
+  "page": 72,
+  "line": "Припее: Пресвета – Богоро-",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-04)"
  },
  {
   "page": 72,
@@ -267,6 +423,13 @@
  },
  {
   "page": 73,
+  "line": "Узнемирују ~ ме — напади",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-04)"
+ },
+ {
+  "page": 73,
   "line": "да о прибегавам и ~ управљам",
   "find": "о прибегавам",
   "replace": "прибегавам",
@@ -287,11 +450,39 @@
   "note": "the heading ends with a period"
  },
  {
+  "page": 76,
+  "line": "Испуни ~ весељем – срце",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-04)"
+ },
+ {
   "page": 78,
   "line": "Као (бедем спасења и",
   "find": "(бедем",
   "replace": "бедем",
   "note": "coordinator, sheet 30 strip 05"
+ },
+ {
+  "page": 81,
+  "line": "Дост.",
+  "find": "Дост.",
+  "replace": "дост.",
+  "note": "the end of the word broken at the line above, in small capitals"
+ },
+ {
+  "page": 83,
+  "line": "Наш... Ако ниси свештеник: МОЛИТ- ||",
+  "find": "Наш...",
+  "replace": "наш...",
+  "note": "bold lowercase in print"
+ },
+ {
+  "page": 83,
+  "line": "Наш... Ако ниси свештеник: МОЛИТ- ||",
+  "find": "МОЛИТ-",
+  "replace": "Молит-",
+  "note": "small capitals, sentence case"
  },
  {
   "page": 83,
@@ -307,6 +498,13 @@
   "find": "наш",
   "replace": "наш:",
   "note": "the print has a colon"
+ },
+ {
+  "page": 83,
+  "line": "нас",
+  "find": "нас",
+  "replace": "нас.",
+  "note": "period in print"
  },
  {
   "page": 84,
@@ -330,11 +528,221 @@
   "note": "„Господу нашем Исусу Христу:«"
  },
  {
+  "page": 86,
+  "line": "Твојом (бестрасном страшћу,",
+  "find": "(бестрасном",
+  "replace": "бестрасном",
+  "note": "no parenthesis in print"
+ },
+ {
+  "page": 86,
+  "line": "постељи мојој, просвети ум",
+  "find": "мојој,",
+  "replace": "мојој;",
+  "note": "semicolon in print"
+ },
+ {
+  "page": 86,
+  "line": "сну ~ незалазном – светлошћу,",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-04)"
+ },
+ {
+  "page": 86,
+  "line": "тотом речи Твоје, Тело моје –",
+  "find": "Тело",
+  "replace": "тело",
+  "note": "lowercase in print"
+ },
+ {
+  "page": 87,
+  "line": "Утешитељу, ~ Душе – истине,",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-05)"
+ },
+ {
+  "page": 87,
+  "line": "н| јој, или кога укорих, или кога",
+  "find": "н",
+  "replace": "",
+  "note": "phantom letter; print line starts with јој, (сво-јој)"
+ },
+ {
+  "page": 88,
+  "line": "свога, '—– моји су греси без-",
+  "find": "'—–",
+  "replace": "—",
+  "note": "dash printed on the scan (sheet s-05)"
+ },
+ {
+  "page": 89,
+  "line": "прославићу ~ пречасно – име",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-05)"
+ },
+ {
+  "page": 89,
+  "line": "љубиви Господе“ Јер си #39",
+  "find": "Господе“",
+  "replace": "Господе?",
+  "note": "question mark in print"
+ },
+ {
+  "page": 89,
+  "line": "љубиви Господе“ Јер си #39",
+  "find": " #39",
+  "replace": "",
+  "note": "phantom: dark stain at line end, no letters in print"
+ },
+ {
+  "page": 91,
+  "line": "од мене Ђаволску мрзовољу,",
+  "find": "Ђаволску",
+  "replace": "ђаволску",
+  "note": "lowercase in print"
+ },
+ {
+  "page": 92,
+  "line": "(| Њеним — заступништвом, и",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-06)"
+ },
+ {
+  "page": 92,
+  "line": "(| Њеним — заступништвом, и",
+  "find": "(",
+  "replace": "",
+  "note": "phantom parenthesis; line starts with Њеним"
+ },
+ {
+  "page": 92,
+  "line": "(| ље и не престаје да се моли.",
+  "find": "(",
+  "replace": "",
+  "note": "phantom parenthesis; line starts with ље"
+ },
+ {
+  "page": 92,
+  "line": "знамењем њчаснога крста, и",
+  "find": "њчаснога",
+  "replace": "часнога",
+  "note": "phantom letter"
+ },
+ {
   "page": 93,
   "line": "евне:",
   "find": "евне:",
   "replace": "Дневне:",
   "note": "the day prayers of the seventh prayer"
+ },
+ {
+  "page": 94,
+  "line": "ме од сваког незања, и забо-",
+  "find": "незања",
+  "replace": "незнања",
+  "note": "letter н missing in A"
+ },
+ {
+  "page": 95,
+  "line": "исповедање ~ грехова — мојих!",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-06)"
+ },
+ {
+  "page": 96,
+  "line": "друге – неприличне ~ ствари!",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-06)"
+ },
+ {
+  "page": 96,
+  "line": "си о благословен у векове!",
+  "find": "си о благословен",
+  "replace": "си благословен",
+  "note": "extra word о; print has only a wide gap"
+ },
+ {
+  "page": 97,
+  "line": "бедном и недостојном, ОоТМИ",
+  "find": "ОоТМИ",
+  "replace": "отми",
+  "note": "bold lowercase in print"
+ },
+ {
+  "page": 98,
+  "line": "да о ме покажеш достојна",
+  "find": "да о ме",
+  "replace": "да ме",
+  "note": "extra word о; print has only a wide gap"
+ },
+ {
+  "page": 99,
+  "line": "затим: Преславна Приснод-",
+  "find": "затим:",
+  "replace": "Затим:",
+  "note": "red print, capital З"
+ },
+ {
+  "page": 100,
+  "line": "де, помилуј (три пут), благо-",
+  "find": "пут),",
+  "replace": "пута),",
+  "note": "red addition, пута in print"
+ },
+ {
+  "page": 100,
+  "line": "затим: Достојно = је, о ваис-",
+  "find": "затим:",
+  "replace": "Затим:",
+  "note": "red print, capital З"
+ },
+ {
+  "page": 100,
+  "line": "затим: Достојно = је, о ваис-",
+  "find": "је, о ваис",
+  "replace": "је, ваис",
+  "note": "extra word о; print has only a wide gap"
+ },
+ {
+  "page": 101,
+  "line": "бедну још обасјати даном“",
+  "find": "даном“",
+  "replace": "даном?",
+  "note": "question mark in print"
+ },
+ {
+  "page": 103,
+  "line": "Онда целивај „крст свој, и прекрсти",
+  "find": "„крст",
+  "replace": "крст",
+  "note": "red print, no quotation mark before крст"
+ },
+ {
+  "page": 104,
+  "line": "Ђђаволе силом распетог на",
+  "find": "Ђђаволе",
+  "replace": "ђаволе",
+  "note": "print has lowercase ђаволе"
+ },
+ {
+  "page": 104,
+  "line": "и сатро силу Ђђаволску, и који",
+  "find": "Ђђаволску,",
+  "replace": "ђаволску,",
+  "note": "print has lowercase ђаволску"
+ },
+ {
+  "page": 104,
+  "line": "изгину Ђаволи пред лицем",
+  "find": "Ђаволи",
+  "replace": "ђаволи",
+  "note": "lowercase in print"
  },
  {
   "page": 105,
@@ -343,6 +751,13 @@
   "replace": "Пето: Са сузама",
   "left": 137,
   "note": "the OCR lost „Пето:« at the start of the line"
+ },
+ {
+  "page": 105,
+  "line": "Треће: Ако си што добро учинио у уеку",
+  "find": "уеку",
+  "replace": "току",
+  "note": "red print, току (у току дана)"
  },
  {
   "page": 105,
@@ -360,11 +775,144 @@
   "note": "„Његовог« lost its first letters"
  },
  {
+  "page": 105,
+  "line": "да то у Зудуне нећеш више чинити.",
+  "find": "Зудуне",
+  "replace": "будуће",
+  "note": "bold print"
+ },
+ {
+  "page": 105,
+  "line": "уго: Питај себе, и испитај савест",
+  "find": "уго:",
+  "replace": "Друго:",
+  "note": "red print, letters Др missing in A"
+ },
+ {
+  "page": 106,
+  "line": "Боже о наш, помилуј нас.",
+  "find": "Боже о наш",
+  "replace": "Боже наш",
+  "note": "extra word о; print has only a wide gap"
+ },
+ {
   "page": 106,
   "line": "Псалам 50",
   "find": "Псалам 50",
   "replace": "Псалам 50.",
   "note": "the heading ends with a period"
+ },
+ {
+  "page": 106,
+  "line": "Ходите, поклонимо Се; три пута.",
+  "find": "Се;",
+  "replace": "се;",
+  "note": "bold lowercase се in print"
+ },
+ {
+  "page": 106,
+  "line": "наш, Господе, ПОмилуј! 12 пута.",
+  "find": "ПОмилуј!",
+  "replace": "помилуј!",
+  "note": "bold response, sentence case"
+ },
+ {
+  "page": 107,
+  "line": "Богородичан: Благословена ЉБо-",
+  "find": "ЉБо-",
+  "replace": "Бо-",
+  "note": "phantom letter Љ; bold response, large Б"
+ },
+ {
+  "page": 107,
+  "line": "Припе:: Не одбаци ме од",
+  "find": "Припе::",
+  "replace": "Припев:",
+  "note": "red heading"
+ },
+ {
+  "page": 107,
+  "line": "Припев: Слава Оцу И Сину И",
+  "find": "Оцу И",
+  "replace": "Оцу и",
+  "note": "lowercase и in print"
+ },
+ {
+  "page": 107,
+  "line": "Припев: Слава Оцу И Сину И",
+  "find": "Сину И",
+  "replace": "Сину и",
+  "note": "lowercase и in print"
+ },
+ {
+  "page": 107,
+  "line": "које о изведе о из египатског",
+  "find": "које о изведе о из",
+  "replace": "које изведе из",
+  "note": "two phantom letters о in wide gaps"
+ },
+ {
+  "page": 108,
+  "line": "чешћу ~ божанских – дарова",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-06)"
+ },
+ {
+  "page": 109,
+  "line": "нови живот свету, Њудостој",
+  "find": "Њудостој",
+  "replace": "удостој",
+  "note": "phantom letter Њ"
+ },
+ {
+  "page": 110,
+  "line": "Богородичан: УМИЛОСТИВИ, Вла-",
+  "find": "УМИЛОСТИВИ,",
+  "replace": "Умилостиви,",
+  "note": "small capitals, sentence case"
+ },
+ {
+  "page": 110,
+  "line": "ћао, јер ево једем – Твоје",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-07)"
+ },
+ {
+  "page": 111,
+  "line": "Богородичан: — Маријо, = Мати",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-07)"
+ },
+ {
+  "page": 111,
+  "line": "Ирмос Ваљајући се у гре-",
+  "find": "Ирмос",
+  "replace": "Ирмос:",
+  "note": "red heading, colon in print"
+ },
+ {
+  "page": 111,
+  "line": "миомира, ~ молитвама —– Твојим",
+  "find": "—–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-07)"
+ },
+ {
+  "page": 111,
+  "line": "ховном — понору, ~ призивам",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-07)"
+ },
+ {
+  "page": 113,
+  "line": "ШиИХ.",
+  "find": "ШиИХ.",
+  "replace": "ших.",
+  "note": "second half of hyphenated word set in small capitals, lowercase"
  },
  {
   "page": 114,
@@ -374,6 +922,126 @@
   "note": "the heading ends with a period"
  },
  {
+  "page": 115,
+  "line": "постајем непролазан“",
+  "find": "непролазан“",
+  "replace": "непролазан?",
+  "note": "question mark in print"
+ },
+ {
+  "page": 116,
+  "line": "(| просветим, да се спасем, да",
+  "find": "(",
+  "replace": "",
+  "note": "phantom parenthesis; line starts with просветим"
+ },
+ {
+  "page": 116,
+  "line": "Спаситељу ~ мој, — спаљујући",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-07)"
+ },
+ {
+  "page": 117,
+  "line": "Слава: Господе, — помилуј",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-07)"
+ },
+ {
+  "page": 118,
+  "line": "Господе помилуј)! (40 пута)",
+  "find": "помилуј)!",
+  "replace": "помилуј!",
+  "note": "bold response, no parenthesis in print"
+ },
+ {
+  "page": 118,
+  "line": "и сада: Отвори нам врата",
+  "find": "и сада:",
+  "replace": "И сада:",
+  "note": "red print, capital И"
+ },
+ {
+  "page": 119,
+  "line": "ним ~ вршиоцем – заповести",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-08)"
+ },
+ {
+  "page": 120,
+  "line": "заштитнице и помоћнице У",
+  "find": "помоћнице У",
+  "replace": "помоћнице у",
+  "note": "bold lowercase у in print"
+ },
+ {
+  "page": 121,
+  "line": "бодан од сваког Ђавољег",
+  "find": "Ђавољег",
+  "replace": "ђавољег",
+  "note": "print has lowercase ђавољег"
+ },
+ {
+  "page": 121,
+  "line": "вештаствено ~ умовање о наше",
+  "find": "умовање о наше",
+  "replace": "умовање наше",
+  "note": "extra word о; print has only a wide gap"
+ },
+ {
+  "page": 122,
+  "line": "Господе, помилу)! (12 пута) |",
+  "find": "помилу)!",
+  "replace": "помилуј!",
+  "note": "bold response, no parenthesis in print"
+ },
+ {
+  "page": 122,
+  "line": "нам о свеноћно о славословље,",
+  "find": "нам о свеноћно о славословље,",
+  "replace": "нам свеноћно славословље,",
+  "note": "two phantom letters о in wide gaps"
+ },
+ {
+  "page": 123,
+  "line": "вом7 У кога су чисте руке и",
+  "find": "вом7",
+  "replace": "вом?",
+  "note": "question mark read as 7"
+ },
+ {
+  "page": 123,
+  "line": "морима – основа, и посред",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-08)"
+ },
+ {
+  "page": 123,
+  "line": "на гору Господњу“ и ко ће",
+  "find": "Господњу“",
+  "replace": "Господњу?",
+  "note": "question mark in print"
+ },
+ {
+  "page": 124,
+  "line": "славе. Ко је тај цар славе“",
+  "find": "славе“",
+  "replace": "славе?",
+  "every": true,
+  "note": "a question; the line is printed twice on the page"
+ },
+ {
+  "page": 125,
+  "line": "дао7 Примићу чашу спасења,",
+  "find": "дао7",
+  "replace": "дао?",
+  "note": "question mark read as 7"
+ },
+ {
   "page": 126,
   "line": "Слага: Како ћу се ја недос-",
   "find": "Слага:",
@@ -381,11 +1049,130 @@
   "note": "the print has „Слава:«"
  },
  {
+  "page": 126,
+  "line": "городице, ~ моја – сагрешења;",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-08)"
+ },
+ {
+  "page": 126,
+  "line": "и с: Многобројна су, Бо-",
+  "find": "и с:",
+  "replace": "И сада:",
+  "note": "the red „И сада:«, whose first letters were lost"
+ },
+ {
+  "page": 126,
+  "line": "одгурни ме од Твога лица Ти.",
+  "find": "Ти.",
+  "replace": "Ти",
+  "note": "no period in print (sentence runs on: Ти који имаш...)"
+ },
+ {
+  "page": 126,
+  "line": "честим Светињама ~ Твојим“",
+  "find": "Твојим“",
+  "replace": "Твојим?",
+  "note": "question mark in print"
+ },
+ {
+  "page": 126,
+  "line": "чинећи га храмом – Твога",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-08)"
+ },
+ {
   "page": 127,
   "line": "Онда: ГосПОДе ПОМИЛУЈ! 40 пута",
   "find": "ГосПОДе ПОМИЛУЈ!",
   "replace": "Господе помилуј!",
   "note": "bold capitals are printed in sentence case"
+ },
+ {
+  "page": 128,
+  "line": "се помири са онима који су.",
+  "find": "су.",
+  "replace": "су",
+  "note": "no period in print; the sentence runs on to the next line (only a faint speck at the right margin)"
+ },
+ {
+  "page": 129,
+  "line": "захвалне и Њнеразборите, и",
+  "find": "Њнеразборите,",
+  "replace": "неразборите,",
+  "note": "phantom letter Њ"
+ },
+ {
+  "page": 129,
+  "line": "пропаднем ~ са — безакоњима ||",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-08)"
+ },
+ {
+  "page": 130,
+  "line": "као цариника, и као блудног'",
+  "find": "блудног'",
+  "replace": "блудног",
+  "note": "stray apostrophe; only a faint show-through mark after the word"
+ },
+ {
+  "page": 134,
+  "line": "ниподаштавањем, ~ већ – као",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-09)"
+ },
+ {
+  "page": 134,
+  "line": "утицаја Ђаволског, на укла-",
+  "find": "Ђаволског",
+  "replace": "ђаволског",
+  "note": "lowercase ђ in the print"
+ },
+ {
+  "page": 135,
+  "line": "„теља Твојих, и пречистих сила,",
+  "find": "„теља",
+  "replace": "теља",
+  "note": "stray quotation mark; only a faint show-through tick before the word"
+ },
+ {
+  "page": 136,
+  "line": "Духа и благовољењем (Оца,",
+  "find": "благовољењем (Оца,",
+  "replace": "благовољењем Оца,",
+  "note": "no opening parenthesis in the print"
+ },
+ {
+  "page": 136,
+  "line": "Христе — Исусе, = Мудрости",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-09)"
+ },
+ {
+  "page": 136,
+  "line": "душегубне страсти Њњтелесне.",
+  "find": "Њњтелесне.",
+  "replace": "телесне.",
+  "note": "stray letters in front of the word"
+ },
+ {
+  "page": 137,
+  "line": "вотворним — Твојим – Духом,",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-09)"
+ },
+ {
+  "page": 137,
+  "line": "вотворним — Твојим – Духом,",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-09)"
  },
  {
   "page": 138,
@@ -402,6 +1189,55 @@
   "note": "„светога Јована Дамаскина:«"
  },
  {
+  "page": 139,
+  "line": "рђавог поступања, и Ђђаволског",
+  "find": "Ђђаволског",
+  "replace": "ђаволског",
+  "note": "lowercase ђ in the print, stray capital in front"
+ },
+ {
+  "page": 141,
+  "line": "немој о згадити, ~ Спаситељу,",
+  "find": "немој о згадити,",
+  "replace": "немој згадити,",
+  "note": "stray о; the print has nothing between the words"
+ },
+ {
+  "page": 142,
+  "line": ")| је зацело реч Господара и Бо-",
+  "find": ")|",
+  "replace": "|",
+  "note": "stray parenthesis at the start of the line; the print has nothing before је"
+ },
+ {
+  "page": 143,
+  "line": "Ђђено причестим Твојим жи-",
+  "find": "Ђђено",
+  "replace": "ђено",
+  "note": "lowercase ђ in the print, stray capital in front"
+ },
+ {
+  "page": 145,
+  "line": "Боже, о отпусти, ~ остави,",
+  "find": "Боже, о отпусти,",
+  "replace": "Боже, отпусти,",
+  "note": "stray о; the print has nothing between the words"
+ },
+ {
+  "page": 147,
+  "line": "непотребном ои о недостојном",
+  "find": "непотребном ои о недостојном",
+  "replace": "непотребном и недостојном",
+  "note": "garbled conjunction"
+ },
+ {
+  "page": 148,
+  "line": "мртним, — животворним и",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-09)"
+ },
+ {
   "page": 150,
   "line": "ведам да си \"Ти ваистину",
   "find": "\"Ти",
@@ -409,11 +1245,81 @@
   "note": "the print has no quote before „Ти«"
  },
  {
+  "page": 152,
+  "line": "'| поде, не буде на суд или осу-",
+  "find": "'|",
+  "replace": "|",
+  "note": "stray apostrophe at the start of the line; the print has nothing before поде"
+ },
+ {
+  "page": 152,
+  "line": "и већ као разбојник ис-",
+  "find": "и већ",
+  "replace": "Јуда, већ",
+  "note": "„Јуда,« was lost at the start of the line"
+ },
+ {
+  "page": 153,
+  "line": "Човекољубиви – Владару,",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-10)"
+ },
+ {
+  "page": 153,
+  "line": "у сјај светих Твојих“ Јер ако ||",
+  "find": "Твојих“",
+  "replace": "Твојих?",
+  "note": "question mark in the print"
+ },
+ {
+  "page": 157,
+  "line": "и бескрајна сладост – оних",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-10)"
+ },
+ {
+  "page": 161,
+  "line": "ај,",
+  "find": "ај,",
+  "replace": "",
+  "note": "stray text; the strip holds only a printed ornament, no letters"
+ },
+ {
+  "page": 161,
+  "line": "примам светињу о пречистих",
+  "find": "светињу о пречистих",
+  "replace": "светињу пречистих",
+  "note": "stray о; the print has nothing between the words"
+ },
+ {
+  "page": 162,
+  "line": "МИЛуј, реши: Оче благослови! Ако",
+  "find": "МИЛуј,",
+  "replace": "милуј,",
+  "note": "second half of по-милуј set in small capitals, sentence case"
+ },
+ {
+  "page": 162,
+  "line": "ТИ благослови! А свештеник бла-",
+  "find": "ТИ",
+  "replace": "ти",
+  "note": "second half of све-ти set in small capitals, sentence case"
+ },
+ {
   "page": 163,
   "line": "После р учка",
   "find": "р учка",
   "replace": "ручка",
   "note": "„После ручка«"
+ },
+ {
+  "page": 163,
+  "line": "госиља: Христе Боже, Њблаго-",
+  "find": "Њблаго-",
+  "replace": "благо-",
+  "note": "stray letter in front of the word"
  },
  {
   "page": 163,
@@ -430,10 +1336,187 @@
   "note": "„човекољубљем«"
  },
  {
+  "page": 164,
+  "line": "Прекрстивши | се – очитај: Јешће",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-10)"
+ },
+ {
+  "page": 164,
+  "line": "Светлост лица \"Твога поста",
+  "find": "лица \"Твога",
+  "replace": "лица Твога",
+  "note": "stray quotation mark; the print has nothing between the words"
+ },
+ {
+  "page": 164,
+  "line": "небесним ~ хлебом, о Христом",
+  "find": "хлебом, о Христом",
+  "replace": "хлебом, Христом",
+  "note": "stray о; the print has nothing between the words"
+ },
+ {
+  "page": 164,
+  "line": "очита; Твоја утроба, ЉБогоро-",
+  "find": "ЉБогоро-",
+  "replace": "Богоро-",
+  "note": "stray letter in front of the word"
+ },
+ {
+  "page": 164,
+  "line": "убоги и о наситиће се, и",
+  "find": "убоги и о наситиће",
+  "replace": "убоги и наситиће",
+  "note": "stray о; the print has nothing between the words"
+ },
+ {
   "page": 165,
   "line": "дању. Слава ОЦУ... (Ако је прису-",
   "find": "ОЦУ",
   "replace": "Оцу",
   "note": "„Слава Оцу...« in small capitals"
+ },
+ {
+  "page": 165,
+  "line": "свога умножише се.“ У миру",
+  "find": "се.“",
+  "replace": "се.",
+  "note": "stray quotation mark; only a tiny show-through speck after the period"
+ },
+ {
+  "page": 166,
+  "line": "заповестима — Твојим, душе",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-11)"
+ },
+ {
+  "page": 166,
+  "line": "зовеш — спасењу — обећањем",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-11)",
+  "occurrence": 1
+ },
+ {
+  "page": 166,
+  "line": "зовеш — спасењу — обећањем",
+  "find": "—",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-11)",
+  "occurrence": 2
+ },
+ {
+  "page": 167,
+  "line": "о.",
+  "find": "о.",
+  "replace": "",
+  "note": "stray text; the strip holds only a printed ornament, no letters"
+ },
+ {
+  "page": 170,
+  "line": "НИМО Се... три пута; затим, псалам 50:",
+  "find": "НИМО",
+  "replace": "нимо",
+  "note": "second half of покло-нимо, set in bold capitals over the line break, lowercase"
+ },
+ {
+  "page": 170,
+  "line": "НИМО Се... три пута; затим, псалам 50:",
+  "find": "Се...",
+  "replace": "се...",
+  "note": "lowercase in the print"
+ },
+ {
+  "page": 170,
+  "line": "Онда – говори: Слава Теби,",
+  "find": "–",
+  "replace": "",
+  "note": "dash phantom on the scan (sheet s-11)"
+ },
+ {
+  "page": 170,
+  "line": "наш: Господе, помилу)! 12 пута.",
+  "find": "помилу)!",
+  "replace": "помилуј!",
+  "note": "ј read as )"
+ },
+ {
+  "page": 170,
+  "line": "небески; Трисвето; о Оче",
+  "find": "Трисвето; о Оче",
+  "replace": "Трисвето; по Оче",
+  "note": "red word по; п dropped"
+ },
+ {
+  "page": 171,
+  "line": "ЛИКОГ:",
+  "find": "ЛИКОГ:",
+  "replace": "Великог:",
+  "note": "red heading; first letters dropped"
+ },
+ {
+  "page": 171,
+  "line": "сам учинио“ Али, бојим се и",
+  "find": "учинио“",
+  "replace": "учинио?",
+  "note": "question mark in the print"
+ },
+ {
+  "page": 172,
+  "line": "Твој, Господе“ Но, познава-",
+  "find": "Господе“",
+  "replace": "Господе?",
+  "note": "question mark in the print"
+ },
+ {
+  "page": 172,
+  "line": "покри рана. Сам, дакле, ч0-",
+  "find": "ч0-",
+  "replace": "чо-",
+  "note": "о read as 0"
+ },
+ {
+  "page": 175,
+  "line": "МИЛУЈ! три оута. Благослови! » от",
+  "find": "» от",
+  "replace": "и от-",
+  "note": "the red „и от-«"
+ },
+ {
+  "page": 175,
+  "line": "МИЛУЈ! три оута. Благослови! » от",
+  "find": "МИЛУЈ!",
+  "replace": "милуј!",
+  "note": "second half of по-милуј set in small capitals, sentence case"
+ },
+ {
+  "page": 175,
+  "line": "МИЛУЈ! три оута. Благослови! » от",
+  "find": "оута.",
+  "replace": "пута.",
+  "note": "red words; п read as о"
+ },
+ {
+  "page": 175,
+  "line": "онда: Часнију од херувима",
+  "find": "онда:",
+  "replace": "Онда:",
+  "note": "red rubric, capital О in the print"
+ },
+ {
+  "page": 175,
+  "line": "с.",
+  "find": "с.",
+  "replace": "",
+  "note": "stray text; the strip holds only a printed ornament, no letters"
+ },
+ {
+  "page": 176,
+  "line": "гледање лица \"Твога весели",
+  "find": "лица \"Твога",
+  "replace": "лица Твога",
+  "note": "stray quotation mark; the print has nothing between the words"
  }
 ]

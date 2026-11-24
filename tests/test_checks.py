@@ -193,3 +193,6 @@ def test_the_sample_of_the_site_is_whole_even_though_its_text_is_raw(load_fixtur
 def test_a_dash_between_words_is_not_a_spacing_symbol():
     assert run_checks(*with_text("схвативши да је Он – Господ,")) == []
     assert run_checks(*with_text("мртвима, Његовом — царству")) == []
+    assert (
+        run_checks(*with_text("греси безбројни –, или бејах")) == []
+    )  # a dash followed by a comma, as printed
