@@ -245,12 +245,19 @@ def test_a_paragraph_continuing_over_a_page_break_is_one_block():
     assert run_text(block) == "мени обитавај, као што си обећао, јер ево"
 
 
-def test_a_page_break_ends_a_paragraph_when_no_word_is_broken():
-    pages = [
-        page(110, line(200, "Исцели,", "Господе,", indent=True), line(254, "ране", "душе", "моје.")),
-        page(111, line(200, "Ирмос:", "Даваоче")),
+def test_a_page_break_does_not_end_a_paragraph_an_indent_does():
+    carried = [
+        page(110, line(200, "Пресвета", "Тројице,", indent=True), line(254, "Господе,", "очисти", "грехе")),
+        page(111, line(200, "наше;", "Владару,")),
     ]
-    book = clean_book(pages, NO_FOOTNOTES)
+    book = clean_book(carried, NO_FOOTNOTES)
+    assert [(block["page_start"], block["page_end"]) for block in book["blocks"]] == [(110, 111)]
+    assert run_text(book["blocks"][0]) == "Пресвета Тројице, Господе, очисти грехе наше; Владару,"
+    started = [
+        page(110, line(200, "Исцели,", "Господе,", indent=True), line(254, "ране", "душе", "моје.")),
+        page(111, line(200, "Ирмос:", "Даваоче", indent=True)),
+    ]
+    book = clean_book(started, NO_FOOTNOTES)
     assert [(block["page_start"], block["page_end"]) for block in book["blocks"]] == [(110, 110), (111, 111)]
 
 
@@ -327,16 +334,20 @@ def test_an_indented_red_line_begins_a_new_rubric_block():
 def test_a_heading_printed_in_red_over_two_centred_lines_is_one_rubric_block():
     heading = page(
         149,
-        line(200, "реч", right=RIGHT),
+        line(200, "реч", indent=True, right=RIGHT),
         line(254, *red(["Молитва", "десета,"]), left=MARGIN + 239, right=RIGHT - 241),
         line(308, *red(["светога", "Јована", "Дамаскина:"]), left=MARGIN + 154, right=RIGHT - 158),
         line(362, "Пред", "дверима", indent=True, right=RIGHT),
     )
     book = clean_book([*reference_pages(), heading], NO_FOOTNOTES)
-    kinds = [(block["kind"], block["page_start"]) for block in book["blocks"]]
-    assert kinds[3:] == [("paragraph", 149), ("rubric", 149), ("paragraph", 149)]
-    assert book["blocks"][4]["text"] == "Молитва десета, светога Јована Дамаскина:"
-    assert book["blocks"][5]["runs"] == [{"text": "Пред дверима", "rubric": False}]
+    own = [block for block in book["blocks"] if block["page_start"] == 149]
+    assert [(block["kind"], block["page_start"]) for block in own] == [
+        ("paragraph", 149),
+        ("rubric", 149),
+        ("paragraph", 149),
+    ]
+    assert own[1]["text"] == "Молитва десета, светога Јована Дамаскина:"
+    assert own[2]["runs"] == [{"text": "Пред дверима", "rubric": False}]
 
 
 def test_an_inline_red_passage_gives_two_runs():

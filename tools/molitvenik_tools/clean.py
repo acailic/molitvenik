@@ -85,11 +85,7 @@ def join_hyphen(left: str, right: str) -> tuple[str, bool]:
 
 def line_pitch(lines: list[dict]) -> float:
     """The usual distance between two neighbouring lines of a page."""
-    gaps = [
-        b["cy"] - a["cy"]
-        for a, b in zip(lines, lines[1:], strict=False)
-        if 20 < b["cy"] - a["cy"] < 80
-    ]
+    gaps = [b["cy"] - a["cy"] for a, b in zip(lines, lines[1:], strict=False) if 20 < b["cy"] - a["cy"] < 80]
     return statistics.median(gaps) if gaps else 0.0
 
 
@@ -254,7 +250,6 @@ def clean_book(pages: list[dict], footnotes: list[dict]) -> dict:
             continue
         pitch = line_pitch(content)
         previous_cy = None
-        first_on_page = True
         right_edge = max(line["right"] for line in content)
         for index, line in enumerate(content):
             words = line_words(line)
@@ -272,31 +267,38 @@ def clean_book(pages: list[dict], footnotes: list[dict]) -> dict:
                 warnings.append(f"ornament: page {number}: dropped {text!r}")
                 continue
 
+            # A page break does not end a paragraph: every paragraph of the book begins
+            # with an indented line, so the indent alone tells a new paragraph, also on
+            # the first line of a page.
             open_word = paragraph["runs"][-1]["parts"][-1] if paragraph and paragraph["runs"] else None
-            if first_on_page:
-                first_on_page = False
-                if open_word is not None and not open_word.endswith("-"):
-                    close()  # the page ends a paragraph: nothing continues over the break
             # A line that continues a broken word never starts a paragraph: a second
             # half in lowercase cannot begin one, and a capital after an unindented
             # line makes a compound with a real hyphen. A capital after an indented
             # line begins a paragraph, and the open word loses its line-break hyphen.
+            # Nor does a line that starts in lowercase: no paragraph of the book does.
             left_gap = words[0]["left"] - margins.get(number, words[0]["left"])
             indented = left_gap >= INDENT_MIN
             broken = open_word is not None and open_word.endswith("-")
-            continues = broken and (words[0]["text"][:1].islower() or not indented)
+            lowercase = open_word is not None and words[0]["text"][:1].islower()
+            continues = lowercase or (broken and not indented)
             kind = "rubric" if all(w["color"] == "red" for w in words) else "paragraph"
             # A heading printed in red over two lines is centred on both of them: its
             # second line is indented like the start of a block, but it continues the first.
             centred = indented and abs(left_gap - (right_edge - line["right"])) <= CENTRED_TOLERANCE
             adjacent = paragraph is not None and paragraph.get("last") == index - 1
-            same_block = paragraph is not None and paragraph["kind"] == kind and (
-                not indented or (kind == "rubric" and adjacent and centred)
+            same_block = (
+                paragraph is not None
+                and paragraph["kind"] == kind
+                and (not indented or (kind == "rubric" and adjacent and centred))
             )
             if not (continues or same_block):
                 close()
                 paragraph = {
-                    "kind": kind, "page_start": number, "page_end": number, "runs": [], "last": index
+                    "kind": kind,
+                    "page_start": number,
+                    "page_end": number,
+                    "runs": [],
+                    "last": index,
                 }
             paragraph["last"] = index
             paragraph["page_end"] = number
