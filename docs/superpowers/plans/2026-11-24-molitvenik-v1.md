@@ -242,7 +242,7 @@ export function onRouteChange(callback)
 
 **Files:** create `tools/molitvenik_tools/images.py`, `fetch.py`, `ocr.py`, `iaocr.py`; tests `tests/test_images.py`, `tests/test_ocr.py`, `tests/test_iaocr.py`, `tests/test_fetch.py`.
 **Consumes:** C1, C2, C3, C8. **Produces:** C2 and C3 files; `images.red_share` for package 4.
-**Reference:** `/Users/aleksandarilic/ZCodeProject/scratch-prayer-book-scripts/ocr_pages_ia.py`, `fetch_ia_pages.sh`, `ia_ocr_lines.py` are working prototypes. Port them; do not copy blindly: they use ImageMagick through `subprocess` — do the image work with Pillow instead.
+**Reference:** `ZCodeProject/scratch-prayer-book-scripts/ocr_pages_ia.py`, `fetch_ia_pages.sh`, `ia_ocr_lines.py` are working prototypes. Port them; do not copy blindly: they use ImageMagick through `subprocess` — do the image work with Pillow instead.
 
 Requirements:
 
@@ -266,7 +266,7 @@ Run: `uv run pytest tests/test_images.py tests/test_ocr.py tests/test_iaocr.py t
 
 **Files:** create `tools/molitvenik_tools/overrides.py`, `clean.py`; tests `tests/test_overrides.py`, `tests/test_clean.py`.
 **Consumes:** C2, C4, C5, C6 (only `[[footnotes]]`), C8. **Produces:** `build/clean/book.json`; `apply_overrides` for package 4.
-**Reference:** `/Users/aleksandarilic/ZCodeProject/scratch-prayer-book-scripts/apply_corrections.py`.
+**Reference:** `ZCodeProject/scratch-prayer-book-scripts/apply_corrections.py`.
 
 Requirements:
 
@@ -313,7 +313,7 @@ Run: `uv run pytest tests/test_assemble.py tests/test_checks.py -q`, `uv run ruf
 
 **Files:** create `tools/molitvenik_tools/review.py`; tests `tests/test_review.py`.
 **Consumes:** C2, C3, C8, `images.py` from package 1 (import it; if it does not exist yet, write your tests against the documented `red_share` and keep your own private copy of the strip-cutting code inside `review.py`). **Produces:** reviewer material under `build/review/`.
-**Reference:** `/Users/aleksandarilic/ZCodeProject/scratch-prayer-book-scripts/`: `make_hints.py`, `prepare_adjudication.py`, `collect_corrections.py`.
+**Reference:** `ZCodeProject/scratch-prayer-book-scripts/`: `make_hints.py`, `prepare_adjudication.py`, `collect_corrections.py`.
 
 Requirements:
 
@@ -393,7 +393,7 @@ Run: `npm test`, `npm run check`; then serve the folder with `python3 -m http.se
 ## Package 8 — structure-1
 
 **Files:** create `data/structure-1.toml`. Nothing else.
-**Consumes:** C6; the page texts: `/Users/aleksandarilic/ZCodeProject/scratch-prayer-book/review2/txt/p-NNN.txt` (OCR lines, numbered; ignore the `Suspected words` part) for PDF pages 8–154; the list of red headings in `…/review2/adj-ia/diff.json` is **not** needed — use the page texts.
+**Consumes:** C6; the page texts: `ZCodeProject/scratch-prayer-book/review2/txt/p-NNN.txt` (OCR lines, numbered; ignore the `Suspected words` part) for PDF pages 8–154; the list of red headings in `…/review2/adj-ia/diff.json` is **not** needed — use the page texts.
 **Produces:** `[book]`, `[[footnotes]]`, and sections 1–6 of C6 with every unit.
 
 Requirements:
