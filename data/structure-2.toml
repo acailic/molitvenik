@@ -27,7 +27,7 @@ last_page = 161
   title = "Благодарим Ти, Господе, Боже мој"
   starts_with = "Благодарим Ти, Господе"
   tags = ["zahvalnost"]
-  addressees = ["bog-otac"]
+  addressees = ["gospod-isus-hrist"]
 
   [[sections.units]]
   slug = "molitva-vasilija"

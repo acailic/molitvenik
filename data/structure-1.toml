@@ -97,8 +97,8 @@ last_page = 30
   slug = "tropar-3"
   title = "Судија ће доћи изненада"
   starts_with = "И сада и увек и у векове векова. Амин. Судија"
-  tags = ["u-svako-doba"]
-  addressees = []
+  tags = ["zahvalnost", "u-svako-doba"]
+  addressees = ["bog-otac"]
 
   [[sections.units]]
   slug = "zahvalnica"
@@ -119,7 +119,7 @@ last_page = 30
   title = "Ходите, поклонимо се цару нашем Богу"
   starts_with = "Ходите, поклонимо се цару нашем Богу"
   tags = ["zahvalnost", "u-svako-doba"]
-  addressees = ["bog-otac"]
+  addressees = ["gospod-isus-hrist", "bog-otac"]
 
   [[sections.units]]
   slug = "psalam-50"
@@ -181,7 +181,7 @@ last_page = 30
   heading = "Молитва шеста"
   author = "св. Василије Велики"
   tags = ["zahvalnost", "u-svako-doba"]
-  addressees = ["bog-otac"]
+  addressees = ["bog-otac", "presveta-trojica"]
 
   [[sections.units]]
   slug = "molitva-7"
@@ -875,7 +875,7 @@ last_page = 105
   heading = "Молитва светог Јована Дамаскина"
   author = "св. Јован Дамаскин"
   tags = ["miran-san"]
-  addressees = ["gospod-isus-hrist"]
+  addressees = ["bog-otac"]
 
   [[sections.units]]
   slug = "prosveti-oci-moje"
@@ -1136,7 +1136,7 @@ last_page = 154
   heading = "Молитва седма"
   author = "св. Јован Златоуст"
   tags = ["pokajanje"]
-  addressees = ["bog-otac"]
+  addressees = ["gospod-isus-hrist"]
 
   [[sections.units]]
   slug = "molitva-8"
