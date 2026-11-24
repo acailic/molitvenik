@@ -1,0 +1,832 @@
+{
+ "page": 165,
+ "book_page": 168,
+ "width": 1040,
+ "height": 1652,
+ "lines": [
+  {
+   "kind": "header",
+   "cy": 93.0,
+   "top": 74,
+   "bottom": 111,
+   "left": 308,
+   "right": 724,
+   "text": "Молитве пре и после јела",
+   "words": [
+    {
+     "text": "Молитве",
+     "left": 308,
+     "top": 76,
+     "width": 145,
+     "height": 29,
+     "conf": 96.880615,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "пре",
+     "left": 464,
+     "top": 85,
+     "width": 56,
+     "height": 26,
+     "conf": 96.779671,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 532,
+     "top": 84,
+     "width": 17,
+     "height": 19,
+     "conf": 96.779671,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "после",
+     "left": 563,
+     "top": 83,
+     "width": 89,
+     "height": 20,
+     "conf": 96.77549,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "јела",
+     "left": 659,
+     "top": 74,
+     "width": 65,
+     "height": 37,
+     "conf": 96.898689,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 217.0,
+   "top": 200,
+   "bottom": 240,
+   "left": 144,
+   "right": 874,
+   "text": "плода пшенице, вина и уља",
+   "words": [
+    {
+     "text": "плода",
+     "left": 144,
+     "top": 200,
+     "width": 135,
+     "height": 34,
+     "conf": 96.527893,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "пшенице,",
+     "left": 313,
+     "top": 201,
+     "width": 229,
+     "height": 36,
+     "conf": 96.818665,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "вина",
+     "left": 579,
+     "top": 202,
+     "width": 111,
+     "height": 28,
+     "conf": 96.378632,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 725,
+     "top": 203,
+     "width": 28,
+     "height": 28,
+     "conf": 96.147408,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "уља",
+     "left": 788,
+     "top": 204,
+     "width": 86,
+     "height": 36,
+     "conf": 97.000435,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 269.5,
+   "top": 240,
+   "bottom": 296,
+   "left": 143,
+   "right": 875,
+   "text": "свога умножише се.“ У миру",
+   "words": [
+    {
+     "text": "свога",
+     "left": 143,
+     "top": 255,
+     "width": 125,
+     "height": 29,
+     "conf": 92.741936,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "умножише",
+     "left": 296,
+     "top": 256,
+     "width": 256,
+     "height": 37,
+     "conf": 91.695702,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "се.“",
+     "left": 583,
+     "top": 240,
+     "width": 75,
+     "height": 45,
+     "conf": 74.357574,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "У",
+     "left": 689,
+     "top": 245,
+     "width": 38,
+     "height": 40,
+     "conf": 96.452423,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "миру",
+     "left": 756,
+     "top": 258,
+     "width": 119,
+     "height": 38,
+     "conf": 96.712906,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 325.0,
+   "top": 300,
+   "bottom": 350,
+   "left": 141,
+   "right": 872,
+   "text": "ћу и лећи и заспати јер ме Ти",
+   "words": [
+    {
+     "text": "ћу",
+     "left": 141,
+     "top": 300,
+     "width": 56,
+     "height": 48,
+     "conf": 96.947105,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 217,
+     "top": 311,
+     "width": 27,
+     "height": 28,
+     "conf": 93.228333,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "лећи",
+     "left": 263,
+     "top": 300,
+     "width": 111,
+     "height": 39,
+     "conf": 93.137199,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 396,
+     "top": 312,
+     "width": 27,
+     "height": 27,
+     "conf": 96.673782,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "заспати",
+     "left": 445,
+     "top": 311,
+     "width": 178,
+     "height": 29,
+     "conf": 96.629219,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "јер",
+     "left": 639,
+     "top": 300,
+     "width": 69,
+     "height": 50,
+     "conf": 96.962914,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "ме",
+     "left": 731,
+     "top": 313,
+     "width": 57,
+     "height": 28,
+     "conf": 96.093719,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Ти",
+     "left": 809,
+     "top": 302,
+     "width": 63,
+     "height": 39,
+     "conf": 96.982895,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 383.5,
+   "top": 354,
+   "bottom": 406,
+   "left": 142,
+   "right": 871,
+   "text": "сам, Господе, настани у поуз-",
+   "words": [
+    {
+     "text": "сам,",
+     "left": 142,
+     "top": 365,
+     "width": 98,
+     "height": 37,
+     "conf": 96.923233,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Господе,",
+     "left": 264,
+     "top": 354,
+     "width": 205,
+     "height": 48,
+     "conf": 96.934853,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "настани",
+     "left": 492,
+     "top": 366,
+     "width": 189,
+     "height": 29,
+     "conf": 96.96991,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "у",
+     "left": 701,
+     "top": 368,
+     "width": 26,
+     "height": 37,
+     "conf": 93.305603,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "поуз-",
+     "left": 747,
+     "top": 367,
+     "width": 124,
+     "height": 39,
+     "conf": 92.390694,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 439.8,
+   "top": 406,
+   "bottom": 463,
+   "left": 136,
+   "right": 869,
+   "text": "дању. Слава Оцу... (Ако је прису-",
+   "words": [
+    {
+     "text": "дању.",
+     "left": 136,
+     "top": 417,
+     "width": 135,
+     "height": 46,
+     "conf": 95.853325,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Слава",
+     "left": 301,
+     "top": 406,
+     "width": 139,
+     "height": 55,
+     "conf": 96.136223,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Оцу...",
+     "left": 467,
+     "top": 406,
+     "width": 132,
+     "height": 57,
+     "conf": 95.846977,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "(Ако",
+     "left": 629,
+     "top": 425,
+     "width": 72,
+     "height": 32,
+     "conf": 96.805099,
+     "red": 1.0,
+     "color": "red",
+     "flags": [
+      "has-inner-caps"
+     ]
+    },
+    {
+     "text": "је",
+     "left": 716,
+     "top": 423,
+     "width": 28,
+     "height": 33,
+     "conf": 93.294708,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "прису-",
+     "left": 766,
+     "top": 433,
+     "width": 103,
+     "height": 24,
+     "conf": 92.82383,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 492.8,
+   "top": 463,
+   "bottom": 513,
+   "left": 141,
+   "right": 871,
+   "text": "тан свештеник завршава: С нама је",
+   "words": [
+    {
+     "text": "тан",
+     "left": 141,
+     "top": 488,
+     "width": 51,
+     "height": 18,
+     "conf": 92.974594,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "свештеник",
+     "left": 224,
+     "top": 488,
+     "width": 168,
+     "height": 24,
+     "conf": 96.088699,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "завршава:",
+     "left": 423,
+     "top": 487,
+     "width": 151,
+     "height": 25,
+     "conf": 96.013672,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "С",
+     "left": 608,
+     "top": 464,
+     "width": 36,
+     "height": 39,
+     "conf": 93.952354,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "нама",
+     "left": 682,
+     "top": 474,
+     "width": 118,
+     "height": 29,
+     "conf": 93.952354,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "је",
+     "left": 830,
+     "top": 463,
+     "width": 41,
+     "height": 50,
+     "conf": 96.113342,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 543.5,
+   "top": 518,
+   "bottom": 570,
+   "left": 143,
+   "right": 870,
+   "text": "Бог својом благодаћу и чо-",
+   "words": [
+    {
+     "text": "Бог",
+     "left": 143,
+     "top": 520,
+     "width": 83,
+     "height": 39,
+     "conf": 96.708282,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "својом",
+     "left": 263,
+     "top": 519,
+     "width": 155,
+     "height": 51,
+     "conf": 96.848526,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "благодаћу",
+     "left": 455,
+     "top": 518,
+     "width": 235,
+     "height": 48,
+     "conf": 96.833069,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 727,
+     "top": 530,
+     "width": 28,
+     "height": 28,
+     "conf": 90.73819,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "чо-",
+     "left": 794,
+     "top": 529,
+     "width": 76,
+     "height": 29,
+     "conf": 76.576729,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 599.8,
+   "top": 574,
+   "bottom": 623,
+   "left": 141,
+   "right": 870,
+   "text": "векољубљем свагда, сада и",
+   "words": [
+    {
+     "text": "векољубљем",
+     "left": 141,
+     "top": 574,
+     "width": 291,
+     "height": 49,
+     "conf": 92.480194,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "свагда,",
+     "left": 481,
+     "top": 583,
+     "width": 161,
+     "height": 37,
+     "conf": 81.641075,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "сада",
+     "left": 693,
+     "top": 584,
+     "width": 101,
+     "height": 34,
+     "conf": 95.860123,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 843,
+     "top": 585,
+     "width": 27,
+     "height": 27,
+     "conf": 95.326324,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 655.0,
+   "top": 638,
+   "bottom": 678,
+   "left": 141,
+   "right": 868,
+   "text": "увек, и у векове векова.",
+   "words": [
+    {
+     "text": "увек,",
+     "left": 141,
+     "top": 641,
+     "width": 116,
+     "height": 37,
+     "conf": 96.694794,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 317,
+     "top": 641,
+     "width": 30,
+     "height": 28,
+     "conf": 96.347679,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "у",
+     "left": 404,
+     "top": 641,
+     "width": 27,
+     "height": 36,
+     "conf": 93.871124,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "векове",
+     "left": 489,
+     "top": 638,
+     "width": 154,
+     "height": 29,
+     "conf": 90.236664,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "векова.",
+     "left": 702,
+     "top": 639,
+     "width": 166,
+     "height": 28,
+     "conf": 71.00898,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 708.5,
+   "top": 684,
+   "bottom": 733,
+   "left": 140,
+   "right": 306,
+   "text": "Амин.)",
+   "words": [
+    {
+     "text": "Амин.)",
+     "left": 140,
+     "top": 684,
+     "width": 166,
+     "height": 49,
+     "conf": 96.837196,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "ornament",
+   "cy": 1450.5,
+   "top": 1438,
+   "bottom": 1461,
+   "left": 142,
+   "right": 413,
+   "text": "• . •,",
+   "words": [
+    {
+     "text": "•",
+     "left": 142,
+     "top": 1438,
+     "width": 11,
+     "height": 12,
+     "conf": 7.224855,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": ".",
+     "left": 257,
+     "top": 1449,
+     "width": 4,
+     "height": 6,
+     "conf": 11.380177,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence",
+      "differs:scale50-p6"
+     ]
+    },
+    {
+     "text": "•,",
+     "left": 403,
+     "top": 1440,
+     "width": 10,
+     "height": 21,
+     "conf": 11.914768,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence",
+      "differs:scale40-p3",
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1467.5,
+   "top": 1454,
+   "bottom": 1481,
+   "left": 166,
+   "right": 438,
+   "text": "непријатељи моји.",
+   "words": [
+    {
+     "text": "непријатељи",
+     "left": 166,
+     "top": 1456,
+     "width": 191,
+     "height": 25,
+     "conf": 96.954353,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "моји.",
+     "left": 365,
+     "top": 1454,
+     "width": 73,
+     "height": 25,
+     "conf": 96.480591,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  }
+ ]
+}

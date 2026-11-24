@@ -1,0 +1,1423 @@
+{
+ "page": 127,
+ "book_page": 130,
+ "width": 1030,
+ "height": 1657,
+ "lines": [
+  {
+   "kind": "header",
+   "cy": 90.5,
+   "top": 70,
+   "bottom": 108,
+   "left": 161,
+   "right": 861,
+   "text": "Молитвено правило пред Свето причешће",
+   "words": [
+    {
+     "text": "Молитвено",
+     "left": 161,
+     "top": 70,
+     "width": 187,
+     "height": 29,
+     "conf": 91.112144,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "правило",
+     "left": 359,
+     "top": 80,
+     "width": 135,
+     "height": 27,
+     "conf": 96.714218,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "пред",
+     "left": 507,
+     "top": 80,
+     "width": 74,
+     "height": 27,
+     "conf": 96.957733,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Свето",
+     "left": 592,
+     "top": 72,
+     "width": 96,
+     "height": 28,
+     "conf": 96.61937,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "причешће",
+     "left": 701,
+     "top": 73,
+     "width": 160,
+     "height": 35,
+     "conf": 96.696693,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 208.0,
+   "top": 190,
+   "bottom": 224,
+   "left": 207,
+   "right": 810,
+   "text": "У току свете и велике Четрдесетнице,",
+   "words": [
+    {
+     "text": "У",
+     "left": 207,
+     "top": 191,
+     "width": 24,
+     "height": 26,
+     "conf": 96.471436,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "току",
+     "left": 243,
+     "top": 200,
+     "width": 69,
+     "height": 24,
+     "conf": 96.471436,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "свете",
+     "left": 326,
+     "top": 200,
+     "width": 78,
+     "height": 18,
+     "conf": 95.721199,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 418,
+     "top": 200,
+     "width": 18,
+     "height": 17,
+     "conf": 96.786873,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "велике",
+     "left": 451,
+     "top": 199,
+     "width": 104,
+     "height": 17,
+     "conf": 93.304146,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "Четрдесетнице,",
+     "left": 569,
+     "top": 190,
+     "width": 241,
+     "height": 32,
+     "conf": 92.868042,
+     "red": 0.97,
+     "color": "red",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 244.5,
+   "top": 225,
+   "bottom": 257,
+   "left": 355,
+   "right": 662,
+   "text": "говори овај тропар:",
+   "words": [
+    {
+     "text": "говори",
+     "left": 355,
+     "top": 233,
+     "width": 106,
+     "height": 24,
+     "conf": 96.791321,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "овај",
+     "left": 475,
+     "top": 225,
+     "width": 58,
+     "height": 32,
+     "conf": 93.245628,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "тропар:",
+     "left": 546,
+     "top": 232,
+     "width": 116,
+     "height": 25,
+     "conf": 91.74765,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 327.0,
+   "top": 302,
+   "bottom": 351,
+   "left": 232,
+   "right": 873,
+   "text": "Када се славни ученици",
+   "words": [
+    {
+     "text": "Када",
+     "left": 232,
+     "top": 302,
+     "width": 115,
+     "height": 45,
+     "conf": 95.716583,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "се",
+     "left": 386,
+     "top": 313,
+     "width": 46,
+     "height": 28,
+     "conf": 95.537018,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "славни",
+     "left": 472,
+     "top": 313,
+     "width": 163,
+     "height": 28,
+     "conf": 95.537018,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "ученици",
+     "left": 673,
+     "top": 313,
+     "width": 200,
+     "height": 38,
+     "conf": 96.553566,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 383.5,
+   "top": 356,
+   "bottom": 405,
+   "left": 142,
+   "right": 872,
+   "text": "за време Вечере умивањем",
+   "words": [
+    {
+     "text": "за",
+     "left": 142,
+     "top": 367,
+     "width": 46,
+     "height": 29,
+     "conf": 96.603737,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "време",
+     "left": 236,
+     "top": 367,
+     "width": 135,
+     "height": 37,
+     "conf": 93.20443,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Вечере",
+     "left": 422,
+     "top": 356,
+     "width": 160,
+     "height": 48,
+     "conf": 11.455631,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "умивањем",
+     "left": 630,
+     "top": 367,
+     "width": 242,
+     "height": 38,
+     "conf": 87.684845,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 435.2,
+   "top": 410,
+   "bottom": 460,
+   "left": 142,
+   "right": 872,
+   "text": "просвећиваху, тада се безбо-",
+   "words": [
+    {
+     "text": "просвећиваху,",
+     "left": 142,
+     "top": 411,
+     "width": 334,
+     "height": 49,
+     "conf": 92.015266,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "тада",
+     "left": 510,
+     "top": 421,
+     "width": 100,
+     "height": 34,
+     "conf": 96.865074,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "се",
+     "left": 643,
+     "top": 421,
+     "width": 47,
+     "height": 28,
+     "conf": 92.76989,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "безбо-",
+     "left": 724,
+     "top": 410,
+     "width": 148,
+     "height": 39,
+     "conf": 93.030685,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 490.5,
+   "top": 464,
+   "bottom": 514,
+   "left": 140,
+   "right": 872,
+   "text": "жни Јуда, болујући од сре-",
+   "words": [
+    {
+     "text": "жни",
+     "left": 140,
+     "top": 477,
+     "width": 101,
+     "height": 27,
+     "conf": 93.214417,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Јуда,",
+     "left": 281,
+     "top": 464,
+     "width": 111,
+     "height": 50,
+     "conf": 93.306229,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "болујући",
+     "left": 436,
+     "top": 464,
+     "width": 204,
+     "height": 49,
+     "conf": 92.941895,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "од",
+     "left": 682,
+     "top": 475,
+     "width": 54,
+     "height": 34,
+     "conf": 93.120323,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "сре-",
+     "left": 777,
+     "top": 475,
+     "width": 95,
+     "height": 36,
+     "conf": 93.120323,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 544.0,
+   "top": 518,
+   "bottom": 568,
+   "left": 142,
+   "right": 873,
+   "text": "брољубља, помрачиваше, и",
+   "words": [
+    {
+     "text": "брољубља,",
+     "left": 142,
+     "top": 518,
+     "width": 247,
+     "height": 50,
+     "conf": 91.837463,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "differs:scale40-p3"
+     ]
+    },
+    {
+     "text": "помрачиваше,",
+     "left": 448,
+     "top": 529,
+     "width": 338,
+     "height": 38,
+     "conf": 72.214371,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "и",
+     "left": 844,
+     "top": 531,
+     "width": 29,
+     "height": 26,
+     "conf": 96.164047,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 599.5,
+   "top": 573,
+   "bottom": 622,
+   "left": 141,
+   "right": 871,
+   "text": "Тебе, праведнога Судију, пре-",
+   "words": [
+    {
+     "text": "Тебе,",
+     "left": 141,
+     "top": 573,
+     "width": 122,
+     "height": 47,
+     "conf": 93.304314,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "праведнога",
+     "left": 288,
+     "top": 584,
+     "width": 266,
+     "height": 37,
+     "conf": 92.871025,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Судију,",
+     "left": 576,
+     "top": 573,
+     "width": 170,
+     "height": 49,
+     "conf": 92.057487,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "пре-",
+     "left": 771,
+     "top": 583,
+     "width": 100,
+     "height": 37,
+     "conf": 92.790291,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 651.5,
+   "top": 627,
+   "bottom": 676,
+   "left": 139,
+   "right": 870,
+   "text": "даје неправедним судијама.",
+   "words": [
+    {
+     "text": "даје",
+     "left": 139,
+     "top": 627,
+     "width": 89,
+     "height": 49,
+     "conf": 84.105591,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence",
+      "differs:scale40-p3"
+     ]
+    },
+    {
+     "text": "неправедним",
+     "left": 285,
+     "top": 638,
+     "width": 313,
+     "height": 36,
+     "conf": 31.724758,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence",
+      "differs:scale40-p3"
+     ]
+    },
+    {
+     "text": "судијама.",
+     "left": 655,
+     "top": 627,
+     "width": 215,
+     "height": 48,
+     "conf": 20.756031,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 705.0,
+   "top": 676,
+   "bottom": 734,
+   "left": 139,
+   "right": 872,
+   "text": "Љубитељу ~ новца, ~ погледај",
+   "words": [
+    {
+     "text": "Љубитељу",
+     "left": 139,
+     "top": 680,
+     "width": 246,
+     "height": 50,
+     "conf": 93.106018,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "~",
+     "left": 415,
+     "top": 676,
+     "width": 15,
+     "height": 58,
+     "conf": 62.161678,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "новца,",
+     "left": 452,
+     "top": 692,
+     "width": 154,
+     "height": 35,
+     "conf": 90.602257,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "~",
+     "left": 642,
+     "top": 676,
+     "width": 15,
+     "height": 58,
+     "conf": 52.427513,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "погледај",
+     "left": 679,
+     "top": 681,
+     "width": 193,
+     "height": 48,
+     "conf": 91.432907,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 759.8,
+   "top": 734,
+   "bottom": 784,
+   "left": 142,
+   "right": 871,
+   "text": "онога који се због тога обе-",
+   "words": [
+    {
+     "text": "онога",
+     "left": 142,
+     "top": 746,
+     "width": 133,
+     "height": 29,
+     "conf": 96.977654,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "који",
+     "left": 306,
+     "top": 735,
+     "width": 100,
+     "height": 49,
+     "conf": 96.814491,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "се",
+     "left": 437,
+     "top": 746,
+     "width": 47,
+     "height": 28,
+     "conf": 96.580673,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "због",
+     "left": 516,
+     "top": 734,
+     "width": 100,
+     "height": 40,
+     "conf": 96.463745,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "тога",
+     "left": 645,
+     "top": 746,
+     "width": 97,
+     "height": 28,
+     "conf": 93.272659,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "обе-",
+     "left": 773,
+     "top": 734,
+     "width": 98,
+     "height": 40,
+     "conf": 93.009331,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 816.5,
+   "top": 789,
+   "bottom": 837,
+   "left": 142,
+   "right": 872,
+   "text": "сио; бежи од ненасите душе",
+   "words": [
+    {
+     "text": "сио;",
+     "left": 142,
+     "top": 800,
+     "width": 96,
+     "height": 37,
+     "conf": 89.785278,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "бежи",
+     "left": 272,
+     "top": 789,
+     "width": 119,
+     "height": 39,
+     "conf": 96.661247,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "од",
+     "left": 423,
+     "top": 799,
+     "width": 54,
+     "height": 35,
+     "conf": 93.237717,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "ненасите",
+     "left": 510,
+     "top": 799,
+     "width": 212,
+     "height": 30,
+     "conf": 92.705147,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "душе",
+     "left": 753,
+     "top": 800,
+     "width": 119,
+     "height": 37,
+     "conf": 96.609161,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 868.2,
+   "top": 844,
+   "bottom": 892,
+   "left": 141,
+   "right": 871,
+   "text": "која се дрзнула да тако пос-",
+   "words": [
+    {
+     "text": "која",
+     "left": 141,
+     "top": 844,
+     "width": 94,
+     "height": 48,
+     "conf": 96.693848,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "се",
+     "left": 265,
+     "top": 854,
+     "width": 46,
+     "height": 29,
+     "conf": 93.304939,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "дрзнула",
+     "left": 339,
+     "top": 854,
+     "width": 187,
+     "height": 38,
+     "conf": 92.795944,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "да",
+     "left": 553,
+     "top": 854,
+     "width": 52,
+     "height": 33,
+     "conf": 96.501762,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "тако",
+     "left": 635,
+     "top": 854,
+     "width": 104,
+     "height": 28,
+     "conf": 93.295105,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "пос-",
+     "left": 770,
+     "top": 854,
+     "width": 101,
+     "height": 28,
+     "conf": 90.057938,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 921.8,
+   "top": 897,
+   "bottom": 947,
+   "left": 140,
+   "right": 873,
+   "text": "тупи са Учитељем. Према",
+   "words": [
+    {
+     "text": "тупи",
+     "left": 140,
+     "top": 910,
+     "width": 109,
+     "height": 37,
+     "conf": 91.597488,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "са",
+     "left": 307,
+     "top": 908,
+     "width": 47,
+     "height": 29,
+     "conf": 90.718933,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Учитељем.",
+     "left": 411,
+     "top": 897,
+     "width": 248,
+     "height": 40,
+     "conf": 84.878021,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "Према",
+     "left": 720,
+     "top": 897,
+     "width": 153,
+     "height": 48,
+     "conf": 89.050316,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 975.2,
+   "top": 951,
+   "bottom": 998,
+   "left": 142,
+   "right": 873,
+   "text": "свима добри, Господе, слава",
+   "words": [
+    {
+     "text": "свима",
+     "left": 142,
+     "top": 963,
+     "width": 141,
+     "height": 28,
+     "conf": 96.541519,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "добри,",
+     "left": 314,
+     "top": 951,
+     "width": 155,
+     "height": 47,
+     "conf": 96.493332,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Господе,",
+     "left": 507,
+     "top": 951,
+     "width": 204,
+     "height": 46,
+     "conf": 96.051437,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "слава",
+     "left": 747,
+     "top": 962,
+     "width": 126,
+     "height": 28,
+     "conf": 96.593269,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1025.0,
+   "top": 1005,
+   "bottom": 1045,
+   "left": 140,
+   "right": 216,
+   "text": "Ти.",
+   "words": [
+    {
+     "text": "Ти.",
+     "left": 140,
+     "top": 1005,
+     "width": 76,
+     "height": 40,
+     "conf": 96.719872,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1086.5,
+   "top": 1060,
+   "bottom": 1108,
+   "left": 233,
+   "right": 854,
+   "text": "Онда: ГосСПОДе ПОМИЛУЈ! 40 пута",
+   "words": [
+    {
+     "text": "Онда:",
+     "left": 233,
+     "top": 1072,
+     "width": 84,
+     "height": 29,
+     "conf": 93.301544,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "ГосСПОДе",
+     "left": 358,
+     "top": 1070,
+     "width": 155,
+     "height": 34,
+     "conf": 46.366421,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence",
+      "has-inner-caps",
+      "differs:scale40-p3"
+     ]
+    },
+    {
+     "text": "ПОМИЛУЈ!",
+     "left": 531,
+     "top": 1060,
+     "width": 193,
+     "height": 48,
+     "conf": 93.795013,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "has-inner-caps"
+     ]
+    },
+    {
+     "text": "40",
+     "left": 746,
+     "top": 1070,
+     "width": 31,
+     "height": 25,
+     "conf": 96.872726,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "пута",
+     "left": 791,
+     "top": 1078,
+     "width": 63,
+     "height": 23,
+     "conf": 96.814209,
+     "red": 1.0,
+     "color": "red",
+     "flags": [
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1144.0,
+   "top": 1125,
+   "bottom": 1154,
+   "left": 233,
+   "right": 642,
+   "text": "и поклона колико хоћеш.",
+   "words": [
+    {
+     "text": "и",
+     "left": 233,
+     "top": 1137,
+     "width": 18,
+     "height": 17,
+     "conf": 93.86116,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "поклона",
+     "left": 266,
+     "top": 1135,
+     "width": 130,
+     "height": 19,
+     "conf": 96.189987,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "колико",
+     "left": 411,
+     "top": 1135,
+     "width": 112,
+     "height": 17,
+     "conf": 93.661339,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "хоћеш.",
+     "left": 536,
+     "top": 1125,
+     "width": 106,
+     "height": 27,
+     "conf": 95.784637,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1197.5,
+   "top": 1182,
+   "bottom": 1210,
+   "left": 307,
+   "right": 710,
+   "text": "Затим одмах ове стихове:",
+   "words": [
+    {
+     "text": "Затим",
+     "left": 307,
+     "top": 1182,
+     "width": 93,
+     "height": 25,
+     "conf": 96.877388,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "одмах",
+     "left": 414,
+     "top": 1190,
+     "width": 92,
+     "height": 20,
+     "conf": 96.791786,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "ове",
+     "left": 519,
+     "top": 1190,
+     "width": 50,
+     "height": 16,
+     "conf": 96.939201,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "стихове:",
+     "left": 583,
+     "top": 1188,
+     "width": 127,
+     "height": 18,
+     "conf": 96.924881,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1288.5,
+   "top": 1265,
+   "bottom": 1313,
+   "left": 229,
+   "right": 873,
+   "text": "Човече, желећи да једеш",
+   "words": [
+    {
+     "text": "Човече,",
+     "left": 229,
+     "top": 1265,
+     "width": 174,
+     "height": 46,
+     "conf": 92.251434,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "желећи",
+     "left": 445,
+     "top": 1265,
+     "width": 168,
+     "height": 39,
+     "conf": 96.675446,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "да",
+     "left": 654,
+     "top": 1276,
+     "width": 52,
+     "height": 33,
+     "conf": 94.686989,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "једеш",
+     "left": 742,
+     "top": 1265,
+     "width": 131,
+     "height": 48,
+     "conf": 96.50135,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1345.2,
+   "top": 1321,
+   "bottom": 1370,
+   "left": 140,
+   "right": 873,
+   "text": "Тело Господње, приступи са",
+   "words": [
+    {
+     "text": "Тело",
+     "left": 140,
+     "top": 1322,
+     "width": 110,
+     "height": 38,
+     "conf": 96.904999,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Господње,",
+     "left": 290,
+     "top": 1321,
+     "width": 237,
+     "height": 47,
+     "conf": 93.610443,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "приступи",
+     "left": 571,
+     "top": 1332,
+     "width": 215,
+     "height": 38,
+     "conf": 96.82254,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "са",
+     "left": 827,
+     "top": 1332,
+     "width": 46,
+     "height": 28,
+     "conf": 96.341476,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1403.5,
+   "top": 1377,
+   "bottom": 1426,
+   "left": 141,
+   "right": 872,
+   "text": "страхом, да се не опечеш, јер",
+   "words": [
+    {
+     "text": "страхом,",
+     "left": 141,
+     "top": 1388,
+     "width": 194,
+     "height": 38,
+     "conf": 96.802658,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "да",
+     "left": 363,
+     "top": 1388,
+     "width": 52,
+     "height": 33,
+     "conf": 96.869461,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "се",
+     "left": 442,
+     "top": 1388,
+     "width": 46,
+     "height": 29,
+     "conf": 96.929535,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "не",
+     "left": 516,
+     "top": 1388,
+     "width": 52,
+     "height": 28,
+     "conf": 93.301987,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "опечеш,",
+     "left": 597,
+     "top": 1387,
+     "width": 184,
+     "height": 36,
+     "conf": 93.092552,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "јер",
+     "left": 805,
+     "top": 1377,
+     "width": 67,
+     "height": 49,
+     "conf": 96.889977,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1458.2,
+   "top": 1434,
+   "bottom": 1482,
+   "left": 135,
+   "right": 315,
+   "text": "је огањ.",
+   "words": [
+    {
+     "text": "је",
+     "left": 135,
+     "top": 1434,
+     "width": 39,
+     "height": 48,
+     "conf": 96.96759,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "огањ.",
+     "left": 193,
+     "top": 1444,
+     "width": 122,
+     "height": 29,
+     "conf": 96.76049,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  }
+ ]
+}

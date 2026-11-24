@@ -1,0 +1,11 @@
+{
+  "name": "molitvenik",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Православни молитвеник online: случајна молитва, филтери, претрага. Static site, no build step.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/site/*.test.js",
+    "check": "sh -c 'for f in app/*.js tests/site/*.js; do node --check \"$f\" || exit 1; done'"
+  }
+}

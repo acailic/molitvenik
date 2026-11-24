@@ -1,0 +1,1595 @@
+{
+ "page": 110,
+ "book_page": 113,
+ "width": 1055,
+ "height": 1639,
+ "lines": [
+  {
+   "kind": "header",
+   "cy": 82.0,
+   "top": 61,
+   "bottom": 102,
+   "left": 150,
+   "right": 845,
+   "text": "Молитвено правило пред Свето причешће",
+   "words": [
+    {
+     "text": "Молитвено",
+     "left": 150,
+     "top": 68,
+     "width": 183,
+     "height": 28,
+     "conf": 92.701065,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "правило",
+     "left": 346,
+     "top": 74,
+     "width": 135,
+     "height": 28,
+     "conf": 96.688965,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "пред",
+     "left": 493,
+     "top": 73,
+     "width": 74,
+     "height": 28,
+     "conf": 96.688965,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Свето",
+     "left": 577,
+     "top": 63,
+     "width": 96,
+     "height": 28,
+     "conf": 96.822067,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "причешће",
+     "left": 685,
+     "top": 61,
+     "width": 160,
+     "height": 37,
+     "conf": 96.905312,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 197.8,
+   "top": 172,
+   "bottom": 219,
+   "left": 220,
+   "right": 857,
+   "text": "Исцели, Господе, ране ду-",
+   "words": [
+    {
+     "text": "Исцели,",
+     "left": 220,
+     "top": 172,
+     "width": 191,
+     "height": 46,
+     "conf": 92.885727,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Господе,",
+     "left": 435,
+     "top": 172,
+     "width": 202,
+     "height": 45,
+     "conf": 96.904327,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "ране",
+     "left": 659,
+     "top": 182,
+     "width": 107,
+     "height": 37,
+     "conf": 93.209991,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "ду-",
+     "left": 784,
+     "top": 182,
+     "width": 73,
+     "height": 37,
+     "conf": 92.910416,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 246.5,
+   "top": 222,
+   "bottom": 271,
+   "left": 131,
+   "right": 859,
+   "text": "ше моје и освети ме целог; и",
+   "words": [
+    {
+     "text": "ше",
+     "left": 131,
+     "top": 234,
+     "width": 65,
+     "height": 28,
+     "conf": 93.26062,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "моје",
+     "left": 221,
+     "top": 222,
+     "width": 98,
+     "height": 49,
+     "conf": 96.617813,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 345,
+     "top": 233,
+     "width": 28,
+     "height": 28,
+     "conf": 96.367859,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "освети",
+     "left": 398,
+     "top": 232,
+     "width": 154,
+     "height": 28,
+     "conf": 96.638657,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "ме",
+     "left": 577,
+     "top": 232,
+     "width": 57,
+     "height": 28,
+     "conf": 96.642853,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "целог;",
+     "left": 659,
+     "top": 231,
+     "width": 143,
+     "height": 35,
+     "conf": 96.349709,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 829,
+     "top": 232,
+     "width": 30,
+     "height": 28,
+     "conf": 96.349709,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 295.8,
+   "top": 266,
+   "bottom": 325,
+   "left": 130,
+   "right": 859,
+   "text": "удостој ме, Господару, да и ја",
+   "words": [
+    {
+     "text": "удостој",
+     "left": 130,
+     "top": 272,
+     "width": 166,
+     "height": 48,
+     "conf": 92.066345,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "ме,",
+     "left": 320,
+     "top": 283,
+     "width": 71,
+     "height": 35,
+     "conf": 96.880493,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Господару,",
+     "left": 418,
+     "top": 271,
+     "width": 256,
+     "height": 48,
+     "conf": 96.395363,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "да",
+     "left": 696,
+     "top": 282,
+     "width": 53,
+     "height": 32,
+     "conf": 96.53215,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 760,
+     "top": 266,
+     "width": 25,
+     "height": 59,
+     "conf": 96.638557,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "ја",
+     "left": 817,
+     "top": 270,
+     "width": 42,
+     "height": 49,
+     "conf": 96.898819,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 344.5,
+   "top": 319,
+   "bottom": 370,
+   "left": 131,
+   "right": 857,
+   "text": "бедни учествујем у Твојој бо-",
+   "words": [
+    {
+     "text": "бедни",
+     "left": 131,
+     "top": 321,
+     "width": 140,
+     "height": 45,
+     "conf": 92.04583,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "учествујем",
+     "left": 296,
+     "top": 321,
+     "width": 246,
+     "height": 49,
+     "conf": 92.950279,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "у",
+     "left": 566,
+     "top": 332,
+     "width": 27,
+     "height": 36,
+     "conf": 96.989006,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Твојој",
+     "left": 617,
+     "top": 320,
+     "width": 138,
+     "height": 49,
+     "conf": 93.299103,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "бо-",
+     "left": 783,
+     "top": 319,
+     "width": 74,
+     "height": 39,
+     "conf": 78.368668,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 394.5,
+   "top": 370,
+   "bottom": 420,
+   "left": 130,
+   "right": 679,
+   "text": "жанској Вечери Тајној.",
+   "words": [
+    {
+     "text": "жанској",
+     "left": 130,
+     "top": 371,
+     "width": 187,
+     "height": 49,
+     "conf": 92.360748,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Вечери",
+     "left": 339,
+     "top": 370,
+     "width": 167,
+     "height": 49,
+     "conf": 96.991951,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Тајној.",
+     "left": 525,
+     "top": 370,
+     "width": 154,
+     "height": 49,
+     "conf": 96.822037,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 443.0,
+   "top": 416,
+   "bottom": 470,
+   "left": 219,
+   "right": 859,
+   "text": "Богородичан: Умилостиви, Вла-",
+   "words": [
+    {
+     "text": "Богородичан:",
+     "left": 219,
+     "top": 426,
+     "width": 215,
+     "height": 43,
+     "conf": 92.435455,
+     "red": 0.99,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "Умилостиви,",
+     "left": 452,
+     "top": 416,
+     "width": 283,
+     "height": 54,
+     "conf": 28.818531,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "Вла-",
+     "left": 760,
+     "top": 420,
+     "width": 99,
+     "height": 39,
+     "conf": 92.450371,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 496.5,
+   "top": 470,
+   "bottom": 519,
+   "left": 130,
+   "right": 860,
+   "text": "дарко, и према мени Онога",
+   "words": [
+    {
+     "text": "дарко,",
+     "left": 130,
+     "top": 482,
+     "width": 140,
+     "height": 37,
+     "conf": 92.052925,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 309,
+     "top": 483,
+     "width": 28,
+     "height": 27,
+     "conf": 96.962578,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "према",
+     "left": 376,
+     "top": 481,
+     "width": 139,
+     "height": 38,
+     "conf": 96.476753,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "мени",
+     "left": 554,
+     "top": 481,
+     "width": 120,
+     "height": 28,
+     "conf": 96.217705,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Онога",
+     "left": 717,
+     "top": 470,
+     "width": 143,
+     "height": 39,
+     "conf": 93.915054,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 544.8,
+   "top": 519,
+   "bottom": 569,
+   "left": 133,
+   "right": 859,
+   "text": "који је од утробе Твоје, и",
+   "words": [
+    {
+     "text": "који",
+     "left": 133,
+     "top": 521,
+     "width": 98,
+     "height": 48,
+     "conf": 96.126984,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "је",
+     "left": 268,
+     "top": 521,
+     "width": 41,
+     "height": 48,
+     "conf": 96.277817,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "од",
+     "left": 353,
+     "top": 531,
+     "width": 54,
+     "height": 34,
+     "conf": 96.916809,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "утробе",
+     "left": 450,
+     "top": 520,
+     "width": 154,
+     "height": 49,
+     "conf": 95.023422,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Твоје,",
+     "left": 647,
+     "top": 519,
+     "width": 135,
+     "height": 49,
+     "conf": 95.023422,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 831,
+     "top": 531,
+     "width": 28,
+     "height": 27,
+     "conf": 96.916183,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 595.0,
+   "top": 570,
+   "bottom": 619,
+   "left": 131,
+   "right": 858,
+   "text": "сачувај мене, слугу Твог, чис-",
+   "words": [
+    {
+     "text": "сачувај",
+     "left": 131,
+     "top": 571,
+     "width": 164,
+     "height": 48,
+     "conf": 96.792519,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "мене,",
+     "left": 318,
+     "top": 581,
+     "width": 127,
+     "height": 35,
+     "conf": 96.694313,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "слугу",
+     "left": 469,
+     "top": 582,
+     "width": 123,
+     "height": 36,
+     "conf": 93.189423,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Твог,",
+     "left": 611,
+     "top": 570,
+     "width": 121,
+     "height": 46,
+     "conf": 92.296417,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "чис-",
+     "left": 754,
+     "top": 580,
+     "width": 104,
+     "height": 28,
+     "conf": 67.204559,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 646.5,
+   "top": 619,
+   "bottom": 667,
+   "left": 131,
+   "right": 856,
+   "text": "тим и непорочним, да бих се,",
+   "words": [
+    {
+     "text": "тим",
+     "left": 131,
+     "top": 632,
+     "width": 89,
+     "height": 28,
+     "conf": 96.514305,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 241,
+     "top": 633,
+     "width": 28,
+     "height": 26,
+     "conf": 93.288635,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "непорочним,",
+     "left": 291,
+     "top": 631,
+     "width": 307,
+     "height": 36,
+     "conf": 92.134331,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "да",
+     "left": 620,
+     "top": 630,
+     "width": 53,
+     "height": 34,
+     "conf": 96.755051,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "бих",
+     "left": 694,
+     "top": 619,
+     "width": 81,
+     "height": 39,
+     "conf": 96.755051,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "се,",
+     "left": 797,
+     "top": 630,
+     "width": 59,
+     "height": 35,
+     "conf": 96.60334,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 693.0,
+   "top": 664,
+   "bottom": 722,
+   "left": 132,
+   "right": 857,
+   "text": "примивши ~ духовни ~ бисер,",
+   "words": [
+    {
+     "text": "примивши",
+     "left": 132,
+     "top": 681,
+     "width": 254,
+     "height": 37,
+     "conf": 96.32756,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "~",
+     "left": 413,
+     "top": 664,
+     "width": 20,
+     "height": 58,
+     "conf": 46.510735,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "духовни",
+     "left": 451,
+     "top": 681,
+     "width": 193,
+     "height": 37,
+     "conf": 72.40554,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "~",
+     "left": 669,
+     "top": 664,
+     "width": 15,
+     "height": 58,
+     "conf": 31.782036,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence",
+      "differs:scale50-p6"
+     ]
+    },
+    {
+     "text": "бисер,",
+     "left": 710,
+     "top": 668,
+     "width": 147,
+     "height": 48,
+     "conf": 89.223015,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 745.0,
+   "top": 731,
+   "bottom": 759,
+   "left": 133,
+   "right": 326,
+   "text": "осветио.",
+   "words": [
+    {
+     "text": "осветио.",
+     "left": 133,
+     "top": 731,
+     "width": 193,
+     "height": 28,
+     "conf": 96.790367,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 808.5,
+   "top": 795,
+   "bottom": 822,
+   "left": 429,
+   "right": 563,
+   "text": "Песма 5.",
+   "words": [
+    {
+     "text": "Песма",
+     "left": 429,
+     "top": 795,
+     "width": 96,
+     "height": 27,
+     "conf": 96.803688,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "5.",
+     "left": 539,
+     "top": 795,
+     "width": 24,
+     "height": 27,
+     "conf": 97.00563,
+     "red": 0.96,
+     "color": "red",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 885.2,
+   "top": 860,
+   "bottom": 906,
+   "left": 223,
+   "right": 860,
+   "text": "Ирмос: Даваоче светлости и",
+   "words": [
+    {
+     "text": "Ирмос:",
+     "left": 223,
+     "top": 870,
+     "width": 106,
+     "height": 33,
+     "conf": 85.752701,
+     "red": 1.0,
+     "color": "red",
+     "flags": []
+    },
+    {
+     "text": "Даваоче",
+     "left": 357,
+     "top": 860,
+     "width": 185,
+     "height": 46,
+     "conf": 90.838295,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "светлости",
+     "left": 578,
+     "top": 871,
+     "width": 218,
+     "height": 28,
+     "conf": 96.511414,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 832,
+     "top": 872,
+     "width": 28,
+     "height": 27,
+     "conf": 86.880554,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 935.8,
+   "top": 910,
+   "bottom": 958,
+   "left": 132,
+   "right": 860,
+   "text": "Творче векова, Господе, води",
+   "words": [
+    {
+     "text": "Творче",
+     "left": 132,
+     "top": 910,
+     "width": 160,
+     "height": 48,
+     "conf": 92.675453,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "векова,",
+     "left": 326,
+     "top": 921,
+     "width": 162,
+     "height": 35,
+     "conf": 96.670235,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Господе,",
+     "left": 523,
+     "top": 910,
+     "width": 196,
+     "height": 46,
+     "conf": 96.689842,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "води",
+     "left": 754,
+     "top": 921,
+     "width": 106,
+     "height": 33,
+     "conf": 95.670311,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 984.5,
+   "top": 960,
+   "bottom": 1009,
+   "left": 134,
+   "right": 859,
+   "text": "нас у светлости својих запо-",
+   "words": [
+    {
+     "text": "нас",
+     "left": 134,
+     "top": 970,
+     "width": 77,
+     "height": 28,
+     "conf": 95.315727,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "у",
+     "left": 246,
+     "top": 971,
+     "width": 27,
+     "height": 37,
+     "conf": 95.274277,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "светлости",
+     "left": 307,
+     "top": 970,
+     "width": 219,
+     "height": 29,
+     "conf": 96.692665,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "својих",
+     "left": 563,
+     "top": 960,
+     "width": 139,
+     "height": 49,
+     "conf": 93.245293,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "запо-",
+     "left": 739,
+     "top": 971,
+     "width": 120,
+     "height": 27,
+     "conf": 91.319885,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1034.5,
+   "top": 1009,
+   "bottom": 1058,
+   "left": 133,
+   "right": 860,
+   "text": "вести, јер сем Тебе другога",
+   "words": [
+    {
+     "text": "вести,",
+     "left": 133,
+     "top": 1021,
+     "width": 134,
+     "height": 35,
+     "conf": 96.824715,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "јер",
+     "left": 309,
+     "top": 1010,
+     "width": 66,
+     "height": 48,
+     "conf": 96.92495,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "сем",
+     "left": 419,
+     "top": 1021,
+     "width": 81,
+     "height": 27,
+     "conf": 94.443298,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Тебе",
+     "left": 543,
+     "top": 1009,
+     "width": 104,
+     "height": 40,
+     "conf": 68.282211,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "другога",
+     "left": 690,
+     "top": 1020,
+     "width": 170,
+     "height": 37,
+     "conf": 93.592209,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1084.5,
+   "top": 1060,
+   "bottom": 1099,
+   "left": 134,
+   "right": 471,
+   "text": "Бога не знамо.",
+   "words": [
+    {
+     "text": "Бога",
+     "left": 134,
+     "top": 1060,
+     "width": 105,
+     "height": 38,
+     "conf": 96.887497,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "не",
+     "left": 255,
+     "top": 1071,
+     "width": 52,
+     "height": 27,
+     "conf": 96.887497,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "знамо.",
+     "left": 325,
+     "top": 1070,
+     "width": 146,
+     "height": 29,
+     "conf": 96.802315,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1134.0,
+   "top": 1109,
+   "bottom": 1157,
+   "left": 223,
+   "right": 856,
+   "text": "Као што си предсказао,",
+   "words": [
+    {
+     "text": "Као",
+     "left": 223,
+     "top": 1109,
+     "width": 89,
+     "height": 39,
+     "conf": 95.916397,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "што",
+     "left": 358,
+     "top": 1120,
+     "width": 90,
+     "height": 28,
+     "conf": 95.916397,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "си",
+     "left": 495,
+     "top": 1120,
+     "width": 52,
+     "height": 28,
+     "conf": 95.197289,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "предсказао,",
+     "left": 595,
+     "top": 1120,
+     "width": 261,
+     "height": 37,
+     "conf": 94.546059,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1184.0,
+   "top": 1159,
+   "bottom": 1208,
+   "left": 132,
+   "right": 858,
+   "text": "Христе, нека, дакле, буде и",
+   "words": [
+    {
+     "text": "Христе,",
+     "left": 132,
+     "top": 1159,
+     "width": 174,
+     "height": 49,
+     "conf": 96.588013,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "нека,",
+     "left": 351,
+     "top": 1170,
+     "width": 116,
+     "height": 35,
+     "conf": 96.789398,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "дакле,",
+     "left": 508,
+     "top": 1170,
+     "width": 140,
+     "height": 36,
+     "conf": 96.56279,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "буде",
+     "left": 691,
+     "top": 1159,
+     "width": 97,
+     "height": 48,
+     "conf": 96.936806,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 830,
+     "top": 1171,
+     "width": 28,
+     "height": 26,
+     "conf": 96.936806,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1234.0,
+   "top": 1208,
+   "bottom": 1257,
+   "left": 135,
+   "right": 861,
+   "text": "ништавном слуги Твом! И у",
+   "words": [
+    {
+     "text": "ништавном",
+     "left": 135,
+     "top": 1220,
+     "width": 263,
+     "height": 28,
+     "conf": 93.230408,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "слуги",
+     "left": 433,
+     "top": 1219,
+     "width": 123,
+     "height": 38,
+     "conf": 93.072754,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Твом!",
+     "left": 591,
+     "top": 1209,
+     "width": 129,
+     "height": 39,
+     "conf": 92.273537,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "И",
+     "left": 760,
+     "top": 1208,
+     "width": 38,
+     "height": 39,
+     "conf": 96.079071,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "у",
+     "left": 835,
+     "top": 1220,
+     "width": 26,
+     "height": 37,
+     "conf": 96.32428,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1283.5,
+   "top": 1258,
+   "bottom": 1308,
+   "left": 134,
+   "right": 858,
+   "text": "мени обитавај, као што си обе-",
+   "words": [
+    {
+     "text": "мени",
+     "left": 134,
+     "top": 1269,
+     "width": 117,
+     "height": 29,
+     "conf": 93.306244,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "обитавај,",
+     "left": 269,
+     "top": 1259,
+     "width": 200,
+     "height": 49,
+     "conf": 92.732155,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "као",
+     "left": 489,
+     "top": 1270,
+     "width": 79,
+     "height": 27,
+     "conf": 96.641579,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "што",
+     "left": 584,
+     "top": 1269,
+     "width": 90,
+     "height": 29,
+     "conf": 96.632462,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "си",
+     "left": 693,
+     "top": 1269,
+     "width": 51,
+     "height": 29,
+     "conf": 93.291634,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "обе-",
+     "left": 764,
+     "top": 1258,
+     "width": 94,
+     "height": 39,
+     "conf": 92.467834,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1333.0,
+   "top": 1304,
+   "bottom": 1362,
+   "left": 133,
+   "right": 858,
+   "text": "ћао, јер ево једем – Твоје",
+   "words": [
+    {
+     "text": "ћао,",
+     "left": 133,
+     "top": 1308,
+     "width": 90,
+     "height": 47,
+     "conf": 92.897308,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "јер",
+     "left": 286,
+     "top": 1309,
+     "width": 66,
+     "height": 48,
+     "conf": 95.683716,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "ево",
+     "left": 419,
+     "top": 1319,
+     "width": 74,
+     "height": 29,
+     "conf": 76.929466,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "једем",
+     "left": 552,
+     "top": 1309,
+     "width": 122,
+     "height": 48,
+     "conf": 91.353981,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "–",
+     "left": 699,
+     "top": 1304,
+     "width": 20,
+     "height": 58,
+     "conf": 0.0,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "low-confidence"
+     ]
+    },
+    {
+     "text": "Твоје",
+     "left": 740,
+     "top": 1308,
+     "width": 118,
+     "height": 49,
+     "conf": 96.877388,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1382.5,
+   "top": 1358,
+   "bottom": 1407,
+   "left": 135,
+   "right": 861,
+   "text": "Божанско Тело и пијем Твоју",
+   "words": [
+    {
+     "text": "Божанско",
+     "left": 135,
+     "top": 1359,
+     "width": 229,
+     "height": 39,
+     "conf": 96.783279,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Тело",
+     "left": 390,
+     "top": 1359,
+     "width": 109,
+     "height": 39,
+     "conf": 96.918762,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "и",
+     "left": 526,
+     "top": 1371,
+     "width": 29,
+     "height": 26,
+     "conf": 96.733017,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "пијем",
+     "left": 584,
+     "top": 1359,
+     "width": 126,
+     "height": 48,
+     "conf": 96.846039,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    },
+    {
+     "text": "Твоју",
+     "left": 739,
+     "top": 1358,
+     "width": 122,
+     "height": 49,
+     "conf": 96.796768,
+     "red": 0.0,
+     "color": "black",
+     "flags": []
+    }
+   ]
+  },
+  {
+   "kind": "content",
+   "cy": 1432.0,
+   "top": 1408,
+   "bottom": 1456,
+   "left": 135,
+   "right": 234,
+   "text": "Крв.",
+   "words": [
+    {
+     "text": "Крв.",
+     "left": 135,
+     "top": 1408,
+     "width": 99,
+     "height": 48,
+     "conf": 96.583008,
+     "red": 0.0,
+     "color": "black",
+     "flags": [
+      "differs:scale50-p6"
+     ]
+    }
+   ]
+  }
+ ]
+}
