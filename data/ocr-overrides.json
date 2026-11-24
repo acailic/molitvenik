@@ -1,5 +1,19 @@
 [
  {
+  "page": 9,
+  "line": "Затим Слава Теби Боже",
+  "find": "Затим",
+  "replace": "Затим:",
+  "note": "coordinator, sheet 1 strip 03"
+ },
+ {
+  "page": 9,
+  "line": "Нас (три пута).",
+  "find": "Нас",
+  "replace": "нас",
+  "note": "coordinator, sheet 1 strip 05"
+ },
+ {
   "page": 10,
   "line": "Господе Помилуј)! (три пута)",
   "find": "Помилуј)!",
@@ -12,6 +26,34 @@
   "find": "]1:",
   "replace": "1:",
   "note": "the print has „глас 1:«"
+ },
+ {
+  "page": 11,
+  "line": "Света. Тројице: свет си, свет,",
+  "find": "Света.",
+  "replace": "Света",
+  "note": "coordinator, sheet 2 strip 01"
+ },
+ {
+  "page": 12,
+  "line": "ведању и славим њпресвето",
+  "find": "њпресвето",
+  "replace": "пресвето",
+  "note": "coordinator, sheet 2 strip 04"
+ },
+ {
+  "page": 12,
+  "line": "показала своје уобичајено ч0-",
+  "find": "ч0-",
+  "replace": "чо-",
+  "note": "coordinator, sheet 2 strip 02"
+ },
+ {
+  "page": 21,
+  "line": "почетна вечна (Светлости, у",
+  "find": "(Светлости",
+  "replace": "Светлости",
+  "note": "coordinator, sheet 5 strip 03"
  },
  {
   "page": 22,
@@ -28,6 +70,20 @@
   "note": "struck through in the book (corrections page): the end of a repeated passage"
  },
  {
+  "page": 23,
+  "line": "показао своје свагдашње ч0-",
+  "find": "ч0-",
+  "replace": "чо-",
+  "note": "coordinator, sheet 5 strip 05"
+ },
+ {
+  "page": 27,
+  "line": "што некада Љзаволех сами",
+  "find": "Љзаволех",
+  "replace": "заволех",
+  "note": "coordinator, sheet 6 strip 02"
+ },
+ {
   "page": 30,
   "line": "се реч: блЛагОСЛОВИ. )",
   "find": "блЛагОСЛОВИ. )",
@@ -35,11 +91,123 @@
   "note": "small capitals are printed in sentence case"
  },
  {
+  "page": 33,
+  "line": "ни и ја у Оцу“ Стога, Неис-",
+  "find": "Оцу“",
+  "replace": "Оцу?",
+  "note": "coordinator, sheet 8 strip 04"
+ },
+ {
+  "page": 38,
+  "line": "Давидов! Исусе, паре пресла-",
+  "find": "паре",
+  "replace": "царе",
+  "note": "coordinator, sheet 11 strip 05"
+ },
+ {
+  "page": 38,
+  "line": "расни; Исусе, хранитељу У",
+  "find": " У",
+  "replace": " у",
+  "note": "coordinator, sheet 11 strip 06"
+ },
+ {
+  "page": 38,
+  "line": "се, надо у смрти мојој, Исусе,",
+  "find": "смрти мојој,",
+  "replace": "смрти мојој;",
+  "note": "coordinator, sheet 12 strip 03"
+ },
+ {
+  "page": 42,
+  "line": "спомене о предвечни; Исусе,",
+  "find": "спомене о",
+  "replace": "спомене",
+  "note": "coordinator, sheet 14 strip 02"
+ },
+ {
+  "page": 43,
+  "line": "савршен човек7 Ми пак ди-",
+  "find": "човек7",
+  "replace": "човек?",
+  "note": "coordinator, sheet 14 strip 03"
+ },
+ {
+  "page": 45,
+  "line": "Исусе, одећо убогих;, Исусе,",
+  "find": "убогих;,",
+  "replace": "убогих;",
+  "note": "coordinator, sheet 15 strip 04"
+ },
+ {
+  "page": 46,
+  "line": "се, просвети моја њчувства,",
+  "find": "њчувства,",
+  "replace": "чувства,",
+  "note": "coordinator, sheet 16 strip 06"
+ },
+ {
+  "page": 48,
+  "line": "Исусе бисеру скупонени, об-",
+  "find": "скупонени",
+  "replace": "скупоцени",
+  "note": "coordinator, sheet 17 strip 05"
+ },
+ {
   "page": 52,
   "line": "Кондак ]",
   "find": "]",
   "replace": "1",
   "note": "the first kontakion of the akathist"
+ },
+ {
+  "page": 54,
+  "line": "из чисте утробе7 А он јој рече",
+  "find": "утробе7",
+  "replace": "утробе?",
+  "note": "coordinator, sheet 19 strip 05"
+ },
+ {
+  "page": 56,
+  "line": "чедо о ове, осетивши · одмах",
+  "find": "о ове,",
+  "replace": "ове,",
+  "note": "coordinator, sheet 20 strip 01"
+ },
+ {
+  "page": 57,
+  "line": "Мати јЈагњета и Пастира;",
+  "find": "јЈагњета",
+  "replace": "Јагњета",
+  "note": "coordinator, sheet 20 strip 03"
+ },
+ {
+  "page": 62,
+  "line": "опроштају многим о преступ-",
+  "find": "многим о преступ-",
+  "replace": "многим преступ-",
+  "note": "coordinator, sheet 22 strip 01"
+ },
+ {
+  "page": 63,
+  "line": "Ђује! Радуј се, Невесто Нене-",
+  "find": "Ђује!",
+  "replace": "ђује!",
+  "note": "coordinator, sheet 22 strip 03"
+ },
+ {
+  "page": 65,
+  "line": "мудраци онемудри; радуј се,",
+  "find": "онемудри;",
+  "replace": "немудри;",
+  "note": "coordinator, sheet 23 strip 01"
+ },
+ {
+  "page": 65,
+  "line": "јер доказујеш да су њкрас-",
+  "find": "њкрас-",
+  "replace": "крас-",
+  "note": "coordinator, sheet 23 strip 02"
  },
  {
   "page": 67,
@@ -63,11 +231,67 @@
   "note": "the last line of the page („кињи…«) was not read at all; it is joined to the word it completes"
  },
  {
+  "page": 71,
+  "line": "Овај се Кондак говори трипут",
+  "find": "трипут",
+  "replace": "трипут.",
+  "note": "coordinator, sheet 26 strip 06"
+ },
+ {
+  "page": 72,
+  "line": "Припе:: Пресвета – Богоро-",
+  "find": "Припе::",
+  "replace": "Припев:",
+  "note": "coordinator, sheet 27 strip 05"
+ },
+ {
+  "page": 72,
+  "line": "Припее: Пресвета – Богоро-",
+  "find": "Припее:",
+  "replace": "Припев:",
+  "note": "coordinator, sheet 27 strip 04"
+ },
+ {
+  "page": 73,
+  "line": "Припе: И сада и увек и у",
+  "find": "Припе:",
+  "replace": "Припев:",
+  "note": "coordinator, sheet 28 strip 02"
+ },
+ {
+  "page": 73,
+  "line": "Припе»: Слава Оцу и Сину и",
+  "find": "Припе»:",
+  "replace": "Припев:",
+  "note": "coordinator, sheet 27 strip 06"
+ },
+ {
+  "page": 73,
+  "line": "да о прибегавам и ~ управљам",
+  "find": "о прибегавам",
+  "replace": "прибегавам",
+  "note": "coordinator, sheet 28 strip 01"
+ },
+ {
+  "page": 74,
+  "line": "Господе, Ти мене утврди У",
+  "find": " У",
+  "replace": " у",
+  "note": "coordinator, sheet 28 strip 04"
+ },
+ {
   "page": 75,
   "line": "Песма 4",
   "find": "Песма 4",
   "replace": "Песма 4.",
   "note": "the heading ends with a period"
+ },
+ {
+  "page": 78,
+  "line": "Као (бедем спасења и",
+  "find": "(бедем",
+  "replace": "бедем",
+  "note": "coordinator, sheet 30 strip 05"
  },
  {
   "page": 83,

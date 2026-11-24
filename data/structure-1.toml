@@ -54,7 +54,7 @@ last_page = 30
   [[sections.units]]
   slug = "slava-tebi"
   title = "Слава Теби Боже наш"
-  starts_with = "Затим Слава Теби Боже"
+  starts_with = "Затим: Слава Теби Боже"
   tags = ["zahvalnost", "u-svako-doba"]
   addressees = ["bog-otac"]
 
