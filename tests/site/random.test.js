@@ -59,7 +59,6 @@ test("pickRandom calls rng once", () => {
 test("pickRandom draws from the whole pool with Math.random when no rng is given", () => {
   const drawn = new Set();
   for (let turn = 0; turn < 100; turn += 1) drawn.add(pickRandom(units).id);
-  assert.ok(ids(units).every((id) => drawn.has(id) || true));
   for (const id of drawn) assert.ok(ids(units).includes(id));
   assert.ok(drawn.size > 1);
 });
@@ -76,7 +75,7 @@ test("the random draw never shows the unit on screen twice", () => {
 });
 
 test("when the filters leave only the unit on screen, it is drawn again", () => {
-  const pool = randomPool(units, { odeljak: [], povod: [], kome: [], duzina: [], ...{ odeljak: ["jela"] } });
+  const pool = randomPool(units, { odeljak: ["jela"], povod: [], kome: [], duzina: [] });
   assert.deepEqual(ids(pool), ["jela__kraj"]);
   assert.equal(pickRandom(pool, "jela__kraj", () => 0.5), pool[0]);
 });

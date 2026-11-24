@@ -348,5 +348,8 @@ test("a repeated value is kept once", () => {
     parseFilterState("povod=zahvalnost&povod=pokajanje&povod=zahvalnost"),
     state({ povod: ["pokajanje", "zahvalnost"] }),
   );
-  assert.equal(formatFilterState(state({ povod: ["zahvalnost", "pokajanje", "zahvalnost"] })), "povod=pokajanje&povod=zahvalnost");
+  assert.equal(
+    formatFilterState(state({ povod: ["zahvalnost", "pokajanje", "zahvalnost"] })),
+    "povod=pokajanje&povod=zahvalnost",
+  );
 });
