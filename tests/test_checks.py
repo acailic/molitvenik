@@ -196,3 +196,59 @@ def test_a_dash_between_words_is_not_a_spacing_symbol():
     assert (
         run_checks(*with_text("греси безбројни –, или бејах")) == []
     )  # a dash followed by a comma, as printed
+
+
+def test_a_hyphen_between_two_lowercase_letters_is_a_problem():
+    problems = run_checks(*with_text("И Кондак 1: Теби, војвот-кињи…"))
+    assert problems == [f"{UID} (block 2): hyphen inside 'војвот-кињи…'"]
+
+
+def test_a_prayer_cut_off_where_a_line_looked_indented_is_a_problem():
+    """No prayer of the book breaks off without punctuation and goes on in lowercase in
+    the next block: that is one sentence cut in two."""
+    prayers, book = clean()
+    cut = [
+        {
+            "kind": "paragraph",
+            "page_start": 8,
+            "page_end": 8,
+            "runs": [{"text": "празнују и неисказана сладост оних који гледају", "rubric": False}],
+        },
+        {
+            "kind": "paragraph",
+            "page_start": 8,
+            "page_end": 8,
+            "runs": [{"text": "неизрециву лепоту лица Твога.", "rubric": False}],
+        },
+    ]
+    prayers["units"][0]["blocks"] += copy.deepcopy(cut)
+    book["blocks"] += [dict(block) for block in cut]
+    assert run_checks(prayers, book) == [f"{UID} (block 4): prayer text begins in lowercase in 'неизрециву…'"]
+
+
+def test_a_prayer_printed_line_by_line_is_no_problem():
+    """The Lord's Prayer is set one petition to a line, and every line after the first
+    begins in lowercase."""
+    prayers, book = clean()
+    lines = [
+        {
+            "kind": "paragraph",
+            "page_start": 8,
+            "page_end": 8,
+            "runs": [{"text": text, "rubric": False}],
+        }
+        for text in ("Оче наш који си на небесима,", "да се свети име Твоје,", "да дође царство Твоје,")
+    ]
+    prayers["units"][0]["blocks"] += copy.deepcopy(lines)
+    book["blocks"] += [dict(block) for block in lines]
+    assert run_checks(prayers, book) == []
+
+
+def test_a_prayer_may_begin_with_a_red_instruction_in_lowercase():
+    prayers, book = clean()
+    prayer = next(block for block in prayers["units"][0]["blocks"] if block["kind"] == "paragraph")
+    prayer["runs"].insert(0, {"text": "затим:", "rubric": True})
+    next(block for block in book["blocks"] if block["kind"] == "paragraph")["runs"].insert(
+        0, {"text": "затим:", "rubric": True}
+    )
+    assert run_checks(prayers, book) == []

@@ -57,6 +57,24 @@ def words_with_inner_capitals(text: str) -> list[str]:
     return found
 
 
+def words_with_inner_hyphen(text: str) -> list[str]:
+    """The words with a hyphen between two lowercase letters.
+
+    The line breaks of the print are joined before this (a second half in lowercase
+    takes the hyphen away), so a hyphen left there was put into the text: a line that
+    was not read joined to the word it completes with its hyphen still on.
+    """
+    found = []
+    for token in text.split():
+        inner = token[1:-1]
+        if any(
+            char == "-" and token[index].islower() and token[index + 2].islower()
+            for index, char in enumerate(inner)
+        ):
+            found.append(token)
+    return found
+
+
 def unbalanced(text: str) -> list[str]:
     """The brackets and quotation marks whose numbers differ in a text."""
     return [
@@ -89,8 +107,31 @@ def _check_unit(unit: dict, problems: list[str]) -> None:
                 problems.append(f"{uid} ({where}): spacing symbol left in {word!r}")
             elif word.endswith("-") or word.startswith("-"):
                 problems.append(f"{uid} ({where}): hyphen left at the edge of {word!r}")
+        for word in words_with_inner_hyphen(text):
+            problems.append(f"{uid} ({where}): hyphen inside {word!r}")
         for word in words_with_inner_capitals(text):
             problems.append(f"{uid} ({where}): capital letter inside {word!r}")
+    # No prayer of the book breaks off without punctuation and goes on in lowercase in
+    # the next block: that is one sentence cut in two, where a line looked indented. (A
+    # prayer that is set line by line goes on in lowercase after a comma or a semicolon.)
+    blocks = unit.get("blocks", [])
+    for index, block in enumerate(blocks):
+        runs = (
+            [run for run in block.get("runs", []) if not run.get("rubric")]
+            if block.get("kind") == "paragraph"
+            else []
+        )
+        words = " ".join(run.get("text", "") for run in runs).split()
+        before = blocks[index - 1] if index else None
+        if not words or not words[0][0].islower() or before is None:
+            if words and words[0][0].islower() and before is None:
+                shown = words[0] + ("…" if len(words) > 1 else "")
+                problems.append(f"{uid} (block {index + 1}): prayer text begins in lowercase in {shown!r}")
+            continue
+        last = before["text"] if before.get("kind") == "rubric" else before["runs"][-1].get("text", "")
+        if last.rstrip().endswith(("-", "—")) or (last.rstrip() and last.rstrip()[-1].isalpha()):
+            shown = words[0] + ("…" if len(words) > 1 else "")
+            problems.append(f"{uid} (block {index + 1}): prayer text begins in lowercase in {shown!r}")
     for counts in unbalanced(" ".join(whole)):
         problems.append(f"{uid}: {counts}")
 
