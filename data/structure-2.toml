@@ -6,6 +6,7 @@
 [[footnotes]]
 page = 165                    # PDF page
 starts_with = "непријатељи моји"
+marker = "*"                   # the sign the print puts after the word the note belongs to
 
 # ---------------------------------------------------------------- 7
 

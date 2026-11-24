@@ -616,3 +616,13 @@ def test_the_clean_step_fails_when_a_correction_names_a_page_without_ocr(tmp_pat
     )
     with pytest.raises(OverrideError, match=r"pages without OCR output: \[999\]"):
         run(Args(), tmp_path)
+
+
+def test_a_footnote_takes_its_marker_from_the_structure():
+    page_with_note = page(
+        165, line(200, "реч", right=RIGHT), line(254, "реч", indent=True), line(1500, "непријатељи", "моји.")
+    )
+    book = clean_book(
+        [*reference_pages(), page_with_note], [{"page": 165, "starts_with": "непријатељи", "marker": "*"}]
+    )
+    assert book["footnotes"] == [{"page": 165, "book_page": 168, "text": "непријатељи моји.", "marker": "*"}]

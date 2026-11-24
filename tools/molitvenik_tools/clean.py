@@ -206,7 +206,7 @@ def clean_book(pages: list[dict], footnotes: list[dict]) -> dict:
     notes: list[dict] = []
     kept_hyphens: list[dict] = []
     warnings: list[str] = []
-    specs = {(int(f["page"]), f["starts_with"]) for f in footnotes}
+    specs = {(int(f["page"]), f["starts_with"]): f.get("marker", "") for f in footnotes}
     margins, uncertain = page_edges(pages)
     paragraph: dict | None = None
 
@@ -275,9 +275,19 @@ def clean_book(pages: list[dict], footnotes: list[dict]) -> dict:
             gap = (line["cy"] - previous_cy) / pitch if previous_cy is not None and pitch else 0.0
             previous_cy = line["cy"]
 
-            if any(text.startswith(start) for page_no, start in specs if page_no == number):
+            marker = next(
+                (
+                    mark
+                    for (page_no, start), mark in specs.items()
+                    if page_no == number and text.startswith(start)
+                ),
+                None,
+            )
+            if marker is not None:
                 close()
                 notes.append({"page": number, "book_page": number + 3, "text": text})
+                if marker:
+                    notes[-1]["marker"] = marker  # the sign the print marks the reference with
                 continue
             if looks_like_ornament(words, gap, line["cy"] / page["height"]):
                 warnings.append(f"ornament: page {number}: dropped {text!r}")
