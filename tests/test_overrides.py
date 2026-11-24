@@ -101,6 +101,37 @@ def test_an_empty_replace_deletes_the_word():
     assert [w["left"] for w in fixed["lines"][0]["words"]] == [135, 400]
 
 
+def test_an_empty_replace_can_delete_every_word_of_a_line():
+    """A phantom read from the ornament at the end of a section."""
+    original = page(105, line(word("ве", 321)), line(word("светог", 135), word("имена.", 240)))
+    fixed = apply_overrides(original, [{"page": 105, "line": "ве", "find": "ве", "replace": ""}])
+    assert texts(fixed) == ["", "светог имена."]
+    assert fixed["lines"][0]["words"] == []
+
+
+def test_left_moves_the_first_replaced_word_to_where_the_print_shows_it():
+    """The OCR lost the first word of the line, so the word after it looked like an indent."""
+    original = page(105, line(word("сузама", 328), word("моли", 470)))
+    fixed = apply_overrides(
+        original,
+        [{"page": 105, "line": "сузама моли", "find": "сузама", "replace": "Пето: Са сузама", "left": 137}],
+    )
+    fixed_words = fixed["lines"][0]["words"]
+    assert [w["text"] for w in fixed_words] == ["Пето:", "Са", "сузама", "моли"]
+    assert [w["left"] for w in fixed_words] == [137, 328, 328, 470]
+    assert fixed["lines"][0]["left"] == 137
+
+
+def test_left_also_moves_a_word_whose_text_only_changes():
+    """„Његовог" lost its first letter, and its box begins where „говог" did."""
+    original = page(105, line(word("говог", 193), word("светог", 330), word("имена.", 470)))
+    fixed = apply_overrides(
+        original,
+        [{"page": 105, "line": "говог светог имена.", "find": "говог", "replace": "Његовог", "left": 137}],
+    )
+    assert [w["left"] for w in fixed["lines"][0]["words"]] == [137, 330, 470]
+
+
 def test_a_span_that_touches_two_words_keeps_the_box_of_the_first():
     original = page(9, line(word("Господе", 135), word("Исусе", 260), word("Христе,", 380)))
     fixed = apply_overrides(
