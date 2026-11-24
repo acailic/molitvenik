@@ -225,11 +225,11 @@ def test_a_hyphen_before_a_capital_letter_on_an_unindented_line_is_kept_and_reco
 def test_a_hyphen_at_the_end_of_a_paragraph_is_removed_and_reported():
     short = page(
         12,
-        line(200, "очисти", "нас", "од", "сваке", "нечистоте.", "Амин.-", indent=True),
+        line(200, "Очисти", "нас", "од", "сваке", "нечистоте.", "Амин.-", indent=True),
         line(254, "Затим:", indent=True),
     )
     book = clean_book([*reference_pages(), short], NO_FOOTNOTES)
-    assert own_texts(book) == ["очисти нас од сваке нечистоте. Амин.", "Затим:"]
+    assert own_texts(book) == ["Очисти нас од сваке нечистоте. Амин.", "Затим:"]
     assert book["warnings"] == ["hyphen: page 12: removed a hyphen at the end of a paragraph: 'Амин.-'"]
 
 
@@ -292,6 +292,24 @@ def test_a_phantom_word_to_the_left_of_a_line_does_not_cut_the_paragraph():
     assert own_texts(book) == ["реч реч реч реч реч реч њ реч реч"]
 
 
+def test_on_a_page_whose_edge_is_a_guess_a_lowercase_line_continues_the_paragraph():
+    pages = [
+        page(110, line(200, "Господе,", "очисти", "грехе", indent=True)),
+        # one short line only: nothing shows where the edge of this page is
+        page(111, line(200, "наше;", "Владару,")),
+    ]
+    book = clean_book([*reference_pages(), *pages], NO_FOOTNOTES)
+    assert own_texts(book) == ["Господе, очисти грехе наше; Владару,"]
+    assert [(b["page_start"], b["page_end"]) for b in book["blocks"]][-1] == (110, 111)
+
+
+def test_on_a_page_with_a_known_edge_the_indent_alone_decides_even_for_a_lowercase_line():
+    known = page(20, line(200, "реч", "реч", indent=True, right=RIGHT), line(254, "реч", right=RIGHT))
+    book = clean_book([*reference_pages(), known], NO_FOOTNOTES)
+    assert own_texts(book) == ["реч реч реч"]
+    assert [(b["page_start"], b["page_end"]) for b in book["blocks"]] == [(5, 7), (20, 20)]
+
+
 # ---- red lines and noise ------------------------------------------------------------------------------
 
 
@@ -334,7 +352,7 @@ def test_an_indented_red_line_begins_a_new_rubric_block():
 def test_a_heading_printed_in_red_over_two_centred_lines_is_one_rubric_block():
     heading = page(
         149,
-        line(200, "реч", indent=True, right=RIGHT),
+        line(200, "Реч", indent=True, right=RIGHT),
         line(254, *red(["Молитва", "десета,"]), left=MARGIN + 239, right=RIGHT - 241),
         line(308, *red(["светога", "Јована", "Дамаскина:"]), left=MARGIN + 154, right=RIGHT - 158),
         line(362, "Пред", "дверима", indent=True, right=RIGHT),

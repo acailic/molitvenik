@@ -116,17 +116,18 @@ def edge_groups(starts: list[dict]) -> list[tuple[float, int]]:
     return [(group[0], group[1]) for group in groups]
 
 
-def page_margins(pages: list[dict]) -> dict[int, float]:
-    """The left edge of the text block of every page, in half-resolution pixels.
+def page_edges(pages: list[dict]) -> tuple[dict[int, float], set[int]]:
+    """The left edge of the text block of every page, and the pages whose edge is a guess.
 
-    The first words of a page's lines start at a few left edges: the edge of
-    the text block, where continuation lines begin, and further right, where
-    paragraphs, centred headings and their lines begin. The text block has the
-    same width on every page, so the edge of the block is the one that lines up
-    with the right side of the page: a phantom word to the left of a line, or a
-    lone continuation line, cannot fool that. When no edge lines up, the page
-    has no full line at all: its lines are one-line prayers, and the edge is
-    one indent left of the leftmost.
+    The edge is in half-resolution pixels. The first words of a page's lines
+    start at a few left edges: the edge of the text block, where continuation
+    lines begin, and further right, where paragraphs, centred headings and their
+    lines begin. The text block has the same width on every page, so the edge
+    of the block is the one that lines up with the right side of the page: a
+    phantom word to the left of a line, or a lone continuation line, cannot
+    fool that. When no edge lines up, the page has no full line at all: its
+    lines are one-line prayers, the edge is one indent left of the leftmost,
+    and the page is reported as a guess.
     """
     measured: dict[int, tuple[float, list[tuple[float, int]]]] = {}
     for page in pages:
@@ -136,7 +137,7 @@ def page_margins(pages: list[dict]) -> dict[int, float]:
             continue
         measured[page["page"]] = (max(line["right"] for line in content), edge_groups(starts))
     if not measured:
-        return {}
+        return {}, set()
 
     def block_width(left_of: dict[int, float]) -> list[int]:
         return [
@@ -178,10 +179,20 @@ def page_margins(pages: list[dict]) -> dict[int, float]:
     indent = statistics.median(indents) if indents else DEFAULT_INDENT
 
     margins: dict[int, float] = {}
+    uncertain: set[int] = set()
     for number, (_, groups) in measured.items():
         score, left = chosen[number]
-        margins[number] = left if score <= WIDTH_TOLERANCE else groups[0][0] - indent
-    return margins
+        if score <= WIDTH_TOLERANCE:
+            margins[number] = left
+        else:
+            margins[number] = groups[0][0] - indent
+            uncertain.add(number)
+    return margins, uncertain
+
+
+def page_margins(pages: list[dict]) -> dict[int, float]:
+    """The left edge of the text block of every page, in half-resolution pixels."""
+    return page_edges(pages)[0]
 
 
 def clean_book(pages: list[dict], footnotes: list[dict]) -> dict:
@@ -191,7 +202,7 @@ def clean_book(pages: list[dict], footnotes: list[dict]) -> dict:
     kept_hyphens: list[dict] = []
     warnings: list[str] = []
     specs = {(int(f["page"]), f["starts_with"]) for f in footnotes}
-    margins = page_margins(pages)
+    margins, uncertain = page_edges(pages)
     paragraph: dict | None = None
 
     def close() -> None:
@@ -275,11 +286,12 @@ def clean_book(pages: list[dict], footnotes: list[dict]) -> dict:
             # half in lowercase cannot begin one, and a capital after an unindented
             # line makes a compound with a real hyphen. A capital after an indented
             # line begins a paragraph, and the open word loses its line-break hyphen.
-            # Nor does a line that starts in lowercase: no paragraph of the book does.
+            # Where the edge of the page is a guess, a line that starts in lowercase
+            # continues the paragraph: no paragraph of the book begins in lowercase.
             left_gap = words[0]["left"] - margins.get(number, words[0]["left"])
             indented = left_gap >= INDENT_MIN
             broken = open_word is not None and open_word.endswith("-")
-            lowercase = open_word is not None and words[0]["text"][:1].islower()
+            lowercase = number in uncertain and open_word is not None and words[0]["text"][:1].islower()
             continues = lowercase or (broken and not indented)
             kind = "rubric" if all(w["color"] == "red" for w in words) else "paragraph"
             # A heading printed in red over two lines is centred on both of them: its
