@@ -115,7 +115,7 @@ follow one another inside a rule (e.g. „Царе небески", „Свет�
 boundaries are set by hand. Expected size: about 75 titled prayers plus 59 parts of the
 akathists and the canon.
 
-Unit boundaries are curated, not inferred: `data/structure.toml` lists, for every section,
+Unit boundaries are curated, not inferred: `data/structure-1.toml` and `data/structure-2.toml` list, for every section,
 the units in order with the heading or the opening words that start each one. The assembler
 starts a new unit when it meets that anchor. An anchor that does not match exactly once is
 an error.
@@ -185,9 +185,11 @@ reproducible: the same images and the same curated files give the same `data/pra
    is removed when the next line continues with a lowercase letter or when the paragraph ends
    there; it is kept when the next line starts with a capital letter, and every kept hyphen
    is listed for review. Remove the spacing artefacts of justified setting (`·`, `~`, `|`,
-   `=`, `–` standing between words). Start a paragraph at a first-line indent; a centred
+   `=` standing between words). A dash between words is print and stays; the dashes the OCR
+   puts into the wide gaps of justified lines are removed one by one, by explicit corrections
+   checked on the scan. Start a paragraph at a first-line indent; a centred
    line is a rubric block. Apply the two corrections of the book's corrections page.
-8. **Assemble** units along the anchors in `data/structure.toml`, attach the curated
+8. **Assemble** units along the anchors in `data/structure-{1,2}.toml`, attach the curated
    metadata, and write `data/prayers.json`.
 
 Intermediate files go to `build/`, which is ignored by git.
@@ -301,7 +303,8 @@ keys. Its ordinary site search converts the query letter by letter into Cyrillic
 there „oce nas" fails to find „оче наш". Known limit, accepted: a folded „lj" also matches a
 „л" followed by a „ј".
 
-Results rank title matches first, then author, then text. Matches are highlighted. With about
+Results rank title matches first, then author, then text; inside each they follow the order
+of the book. Matches are highlighted. With about
 17,000 words no search library is needed.
 
 ### Small conveniences
@@ -340,7 +343,7 @@ pipeline, transcription and verification, site, publishing.
 | What | How |
 |---|---|
 | Pipeline rules | `uv run pytest` (line grouping, colour, overrides, line joining, anchors, checks) |
-| Site logic | `npm test`, which runs `node --test` on the pure modules (folding, search ranking, filters, random draw) |
+| Site logic | `npm test`, which runs `node --test` on the pure modules (folding, search ranking, filters, random draw) and on the HTML of every view |
 | JavaScript syntax | `node --check` on every module |
 | Python lint | `uv run ruff check` |
 | Text quality | the measurement of section 6, reported with numbers |
@@ -360,3 +363,4 @@ pipeline, transcription and verification, site, publishing.
 | Search folds both sides to plain Latin instead of converting the query to Cyrillic | Converting fails when the query is typed without diacritics. |
 | Footnote, stress mark and small-caps lines defined | Found while reading the pages; the first version did not know about them. |
 | Section 9 separates checks of the code from the measurement of the text | They answer different questions and were mixed before. |
+| A dash between words is print and stays in the text | The first version had the cleaner remove every dash between words as an artefact of justified setting. Checked on the scans, 21 of the 70 such dashes are printed (ordinary gaps, „Он – Господ“), so removing them changed the text. The 49 phantoms in wide gaps are removed by explicit corrections instead. |
