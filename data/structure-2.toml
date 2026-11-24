@@ -1,0 +1,179 @@
+# The structure of the prayer book, part 2 of 2: sections 7–12 and the footnote.
+# The conventions are at the top of structure-1.toml.
+
+# The only footnote of the book (book page 168): it stands at the foot of the
+# page and belongs to the prayer that is printed last on it.
+[[footnotes]]
+page = 165                    # PDF page
+starts_with = "непријатељи моји"
+
+# ---------------------------------------------------------------- 7
+
+[[sections]]
+id = "posle-pricesca"
+title = "Молитве после Светог Причешћа"
+first_page = 155
+last_page = 161
+
+  [[sections.units]]
+  slug = "slava-ti-boze"
+  title = "Слава Ти, Боже"
+  starts_with = "Слава Ти, Боже"
+  tags = ["zahvalnost"]
+  addressees = ["bog-otac"]
+
+  [[sections.units]]
+  slug = "blagodaranje"
+  title = "Благодарим Ти, Господе, Боже мој"
+  starts_with = "Благодарим Ти, Господе"
+  tags = ["zahvalnost"]
+  addressees = ["bog-otac"]
+
+  [[sections.units]]
+  slug = "molitva-vasilija"
+  title = "Молитва светога Василија Великог"
+  heading = "Молитва светога Василија Великог"
+  author = "св. Василије Велики"
+  tags = ["zahvalnost"]
+  addressees = ["gospod-isus-hrist"]
+
+  [[sections.units]]
+  slug = "molitva-metafrasta"
+  title = "Молитва Метафрастова"
+  heading = "Молитва Метафрастова"
+  author = "св. Симеон Метафраст"
+  tags = ["zahvalnost"]
+  addressees = ["gospod-isus-hrist"]
+
+  [[sections.units]]
+  slug = "molitva-4"
+  title = "Молитва четврта"
+  heading = "Молитва четврта"
+  tags = ["zahvalnost"]
+  addressees = ["gospod-isus-hrist"]
+
+  [[sections.units]]
+  slug = "molitva-bogorodici"
+  title = "Молитва Пресветој Богородици"
+  heading = "Молитва Пресветој Богородици"
+  tags = ["zahvalnost"]
+  addressees = ["presveta-bogorodica"]
+
+# ---------------------------------------------------------------- 8
+
+[[sections]]
+id = "jela"
+title = "Молитве пре и после јела"
+first_page = 162
+last_page = 165
+
+  [[sections.units]]
+  slug = "pre-rucka"
+  title = "Пре ручка"
+  heading = "Пре ручка"
+  tags = ["uz-obrok"]
+  addressees = ["bog-otac"]
+
+  [[sections.units]]
+  slug = "posle-rucka"
+  title = "После ручка"
+  heading = "После ручка"
+  tags = ["uz-obrok"]
+  addressees = ["gospod-isus-hrist"]
+
+  [[sections.units]]
+  slug = "pre-vecere"
+  title = "Пре вечере"
+  heading = "Пре вечере"
+  tags = ["uz-obrok"]
+  addressees = ["bog-otac"]
+
+  [[sections.units]]
+  slug = "po-veceri"
+  title = "По вечери"
+  heading = "По вечери"
+  tags = ["uz-obrok"]
+  addressees = ["presveta-bogorodica"]
+
+# ---------------------------------------------------------------- 9
+
+[[sections]]
+id = "svako-doba"
+title = "Молитва у свако доба"
+first_page = 166
+last_page = 167
+
+  [[sections.units]]
+  slug = "molitva"
+  title = "Христе Боже, коме се у свако време и сваког часа клањају"
+  starts_with = "Христе Боже, коме се у свако време"
+  tags = ["u-svako-doba"]
+  addressees = ["gospod-isus-hrist"]
+
+# ---------------------------------------------------------------- 10
+
+[[sections]]
+id = "ruzne-pomisli"
+title = "Молитва против ружних помисли"
+first_page = 168
+last_page = 169
+
+  [[sections.units]]
+  slug = "molitva"
+  title = "Владару Господе Боже мој"
+  starts_with = "Владару Господе Боже мој"
+  tags = ["zastita"]
+  addressees = ["bog-otac"]
+
+# ---------------------------------------------------------------- 11
+
+[[sections]]
+id = "oskvrnjenje"
+title = "Молитва против оскврњења"
+first_page = 170
+last_page = 175
+
+  [[sections.units]]
+  slug = "pocetak"
+  title = "Почетак"
+  starts_with = "Молитвама светих Отаца наших"
+  tags = ["zastita"]
+  addressees = ["gospod-isus-hrist"]
+
+  [[sections.units]]
+  slug = "molitva-1"
+  title = "Молитва прва"
+  heading = "молитва прва"
+  author = "св. Василије Велики"
+  tags = ["pokajanje", "zastita"]
+  addressees = ["gospod-isus-hrist"]
+
+  [[sections.units]]
+  slug = "molitva-2"
+  title = "Молитва друга"
+  heading = "Молитва друга"
+  author = "св. Василије Велики"
+  tags = ["pokajanje", "zastita"]
+  addressees = ["gospod-isus-hrist"]
+
+  [[sections.units]]
+  slug = "primi-gospode"
+  title = "Онда ово: Прими, Господе, молитву од мене грешнога"
+  starts_with = "Онда ово:"
+  tags = ["pokajanje", "zastita"]
+  addressees = ["gospod-isus-hrist"]
+
+# ---------------------------------------------------------------- 12
+
+[[sections]]
+id = "pokojni"
+title = "Молитва за покојне"
+first_page = 176
+last_page = 177
+
+  [[sections.units]]
+  slug = "molitva"
+  title = "Помени Господе, оце и браћу нашу"
+  starts_with = "Помени Господе, оце и браћу нашу"
+  tags = ["za-pokojne"]
+  addressees = ["gospod-isus-hrist"]
