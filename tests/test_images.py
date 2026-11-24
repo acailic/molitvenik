@@ -7,7 +7,7 @@ from PIL import Image
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-RED = (190, 40, 40)     # the red ink of the scan
+RED = (190, 40, 40)  # the red ink of the scan
 
 
 def blank(width=40, height=20):
@@ -17,7 +17,7 @@ def blank(width=40, height=20):
 
 def painted(rgb, left, top, width, height, colour):
     """`rgb` with a rectangle of one colour painted into it."""
-    rgb[top:top + height, left:left + width] = colour
+    rgb[top : top + height, left : left + width] = colour
     return rgb
 
 
@@ -97,10 +97,10 @@ def test_load_rgb_makes_three_channels_whatever_the_file_holds(tmp_path):
 @pytest.mark.parametrize(
     ("shape", "scale", "size"),
     [
-        ((21, 33), 0.5, (11, 17)),           # an odd number of pixels rounds half up
-        ((3301, 2019), 0.5, (1651, 1010)),   # half of an Archive page: the size of the page files
-        ((3301, 2019), 0.4, (1320, 808)),    # the reading at 40 %
-        ((1754, 1240), 2.0, (3508, 2480)),   # a page of the 150 DPI PDF, upscaled
+        ((21, 33), 0.5, (11, 17)),  # an odd number of pixels rounds half up
+        ((3301, 2019), 0.5, (1651, 1010)),  # half of an Archive page: the size of the page files
+        ((3301, 2019), 0.4, (1320, 808)),  # the reading at 40 %
+        ((1754, 1240), 2.0, (3508, 2480)),  # a page of the 150 DPI PDF, upscaled
         ((10, 25), 1.0, (10, 25)),
     ],
 )
@@ -112,7 +112,7 @@ def test_resize_scales_both_sides_and_rounds_half_up(shape, scale, size):
 
 
 def test_resize_resamples_instead_of_cropping():
-    rgb = painted(blank(4, 2), 2, 0, 2, 2, BLACK)     # the left half white, the right half black
-    out = images.resize(rgb, 0.25)                    # one pixel, about mid-grey
+    rgb = painted(blank(4, 2), 2, 0, 2, 2, BLACK)  # the left half white, the right half black
+    out = images.resize(rgb, 0.25)  # one pixel, about mid-grey
     assert out.shape == (1, 1, 3)
     assert 96 < int(out[0, 0, 0]) < 160

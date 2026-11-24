@@ -56,12 +56,24 @@ def apply_spans(line: dict, spans: list[tuple[int, int, str, bool | None]]) -> N
     if cursor < limit:
         pieces.append((text[cursor:limit], None))
 
-    # Split the pieces into words; a word takes the rubric flag of its piece.
+    # Split the touched text into words. The pieces are joined first: a correction often
+    # touches the beginning or the end of a word ("скупонени," read for „скупоцени,",
+    # a bracket before „Светлости,"), and the rest of that word must stay attached to it.
+    # A word takes the rubric flag of the piece its first letter comes from.
     tokens: list[tuple[str, bool | None]] = []
+    current, current_rubric = "", None
     for piece, rubric in pieces:
-        for token in piece.split(" "):
-            if token:
-                tokens.append((token, rubric))
+        for character in piece:
+            if character == " ":
+                if current:
+                    tokens.append((current, current_rubric))
+                current, current_rubric = "", None
+            else:
+                if not current:
+                    current_rubric = rubric
+                current += character
+    if current:
+        tokens.append((current, current_rubric))
     if not tokens:
         new_words: list[dict] = []
     elif len(tokens) == last - first + 1:

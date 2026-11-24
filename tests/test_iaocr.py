@@ -28,10 +28,14 @@ def step_args(*argv):
 
 def line(*words):
     """A LINE of WORDs at descending heights, as the Archive's XML holds them."""
-    return "<LINE>" + "".join(
-        f'<WORD coords="{400 + 90 * i},700,{480 + 90 * i},640" x-confidence="96">{w}</WORD>'
-        for i, w in enumerate(words)
-    ) + "</LINE>"
+    return (
+        "<LINE>"
+        + "".join(
+            f'<WORD coords="{400 + 90 * i},700,{480 + 90 * i},640" x-confidence="96">{w}</WORD>'
+            for i, w in enumerate(words)
+        )
+        + "</LINE>"
+    )
 
 
 def line_of(text):
@@ -116,9 +120,7 @@ def test_words_are_joined_with_one_space_and_empty_ones_are_left_out():
 
 
 @pytest.mark.parametrize("name", ["p-110", "p-127", "p-137"])
-def test_fixture_page_comes_out_of_a_djvu_page_shaped_like_it(
-    tmp_path, load_fixture, in_process_pool, name
-):
+def test_fixture_page_comes_out_of_a_djvu_page_shaped_like_it(tmp_path, load_fixture, in_process_pool, name):
     expected = load_fixture("ia-ocr", name)
     page = expected["page"]
     running_title, *text = expected["lines"]

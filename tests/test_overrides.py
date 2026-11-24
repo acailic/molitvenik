@@ -204,3 +204,28 @@ def test_a_correction_on_the_real_fixture_page(load_fixture):
     after = [line_["text"] for line_ in fixed["lines"]]
     assert "ћао, јер ево једем Твоје" in after
     assert [line_["text"] for line_ in page_110["lines"]] == before
+
+
+def test_the_rest_of_a_word_stays_attached_when_its_beginning_is_corrected():
+    """„скупонени," was read for „скупоцени,": the comma belongs to the word and must not
+    become a word of its own."""
+    original = page(48, line(word("Исусе", 135), word("скупонени,", 300), word("об-", 520)))
+    fixed = apply_overrides(
+        original,
+        [{"page": 48, "line": "Исусе скупонени, об-", "find": "скупонени", "replace": "скупоцени"}],
+    )
+    fixed_words = fixed["lines"][0]["words"]
+    assert [w["text"] for w in fixed_words] == ["Исусе", "скупоцени,", "об-"]
+    assert [w["left"] for w in fixed_words] == [135, 300, 520]
+
+
+def test_a_replacement_that_begins_inside_a_word_joins_what_precedes_it():
+    """The bracket before „Светлости," is an artefact of the border: only the word may remain."""
+    original = page(
+        21, line(word("почетна", 135), word("вечна", 260), word("(Светлости,", 380), word("у", 560))
+    )
+    fixed = apply_overrides(
+        original,
+        [{"page": 21, "line": "почетна вечна (Светлости, у", "find": "(Светлости", "replace": "Светлости"}],
+    )
+    assert [w["text"] for w in fixed["lines"][0]["words"]] == ["почетна", "вечна", "Светлости,", "у"]

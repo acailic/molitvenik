@@ -132,7 +132,7 @@ def test_failed_download_is_retried_three_times_and_then_raises(tmp_path, monkey
     dest = tmp_path / "n008_w2000.jpg"
     with pytest.raises(FetchError, match="could not download"):
         fetch.download(f"{ITEM}/n8_w2000.jpg", dest)
-    assert attempts == [f"{ITEM}/n8_w2000.jpg"] * 4      # the first try and three retries
+    assert attempts == [f"{ITEM}/n8_w2000.jpg"] * 4  # the first try and three retries
     assert not dest.exists()
     assert not (tmp_path / "n008_w2000.jpg.part").exists()
 
