@@ -211,7 +211,7 @@ def test_pages_and_footnotes_follow_the_blocks():
     assert third["footnotes"] == [{"marker": "", "text": "друга белешка."}]
 
 
-def test_what_stands_before_a_heading_on_its_line_stays_as_an_instruction():
+def test_what_stands_before_a_heading_on_its_line_goes_to_the_end_of_the_previous_unit():
     source = book(
         rubric(8, MORNING_TITLE),
         paragraph(8, ("Господе.", False)),
@@ -224,9 +224,92 @@ def test_what_stands_before_a_heading_on_its_line_stays_as_an_instruction():
         unit("jutarnje", "prva", title="Прва", starts_with="Господе.", tags=["pokajanje"]),
         unit("jutarnje", "druga", title="Молитва друга", heading="Молитва друга", tags=["pokajanje"]),
     )
-    prayers = assemble(source, structure(morning, (UNHEADED,)))
-    assert prayers["units"][1]["bookHeading"] == "Молитва друга, истог светитеља:"
-    assert prayers["units"][1]["blocks"] == [rubric(8, "Затим,"), paragraph(8, ("Боже.", False))]
+    first, second, _ = assemble(source, structure(morning, (UNHEADED,)))["units"]
+    assert second["bookHeading"] == "Молитва друга, истог светитеља:"
+    assert second["blocks"] == [paragraph(8, ("Боже.", False))]
+    assert first["blocks"] == [paragraph(8, ("Господе. Затим,", False))]
+
+
+def test_what_stands_between_the_title_and_the_first_heading_stays_as_a_subtitle():
+    source = book(
+        rubric(8, f"{MORNING_TITLE} Глас 8. Псалам 50."),
+        paragraph(8, ("Помилуј ме, Боже.", False)),
+        rubric(9, EVENING_TITLE),
+        paragraph(9, ("Господе Исусе Христе, Боже наш.", False)),
+    )
+    morning = (unit("jutarnje", "psalam", title="Псалам 50", heading="Псалам 50", tags=["pokajanje"]),)
+    first = assemble(source, structure(morning, (UNHEADED,)))["units"][0]
+    assert first["bookHeading"] == "Псалам 50."
+    assert first["blocks"] == [rubric(8, "Глас 8."), paragraph(8, ("Помилуј ме, Боже.", False))]
+
+
+def test_a_red_line_right_before_a_prayer_is_its_instruction():
+    source = book(
+        rubric(8, MORNING_TITLE),
+        paragraph(8, ("Прва.", False)),
+        rubric(8, "Затим ове тропаре:"),
+        paragraph(8, ("Уставши од сна.", False)),
+        rubric(9, EVENING_TITLE),
+        paragraph(9, ("Господе Исусе Христе, Боже наш.", False)),
+    )
+    morning = (
+        unit("jutarnje", "prva", title="Прва", starts_with="Прва.", tags=["pokajanje"]),
+        unit(
+            "jutarnje",
+            "tropar",
+            title="Уставши од сна",
+            starts_with="Уставши од сна",
+            tags=["pokajanje"],
+        ),
+    )
+    first, second, _ = assemble(source, structure(morning, (UNHEADED,)))["units"]
+    assert first["blocks"] == [paragraph(8, ("Прва.", False))]
+    assert second["blocks"] == [rubric(8, "Затим ове тропаре:"), paragraph(8, ("Уставши од сна.", False))]
+
+
+def test_a_prayer_that_is_printed_in_red_is_found_by_its_own_words():
+    source = book(
+        rubric(8, MORNING_TITLE),
+        rubric(8, "затим: Достојно јест заиста блажена Тебе Богородицу."),
+        rubric(9, EVENING_TITLE),
+        paragraph(9, ("Господе Исусе Христе, Боже наш.", False)),
+    )
+    morning = (
+        unit(
+            "jutarnje",
+            "dostojno",
+            title="Достојно јест",
+            starts_with="затим: Достојно јест",
+            tags=["zahvalnost"],
+        ),
+    )
+    first = assemble(source, structure(morning, (UNHEADED,)))["units"][0]
+    assert first["blocks"] == [rubric(8, "затим: Достојно јест заиста блажена Тебе Богородицу.")]
+
+
+def test_an_anchor_that_occurs_twice_needs_the_unit_to_say_which_one_is_meant():
+    source = book(
+        rubric(8, MORNING_TITLE),
+        rubric(8, "Кондак 1"),
+        paragraph(8, ("Први.", False)),
+        rubric(8, "И опет се чита Икос 1:"),
+        rubric(8, "Кондак 1"),
+        paragraph(8, ("Први, поново.", False)),
+        rubric(9, EVENING_TITLE),
+        paragraph(9, ("Господе Исусе Христе, Боже наш.", False)),
+    )
+    plain = (unit("jutarnje", "kondak-1", title="Кондак 1", heading="Кондак 1", tags=["zahvalnost"]),)
+    with pytest.raises(StructureError, match=r"anchor 'Кондак 1' matched 2 blocks"):
+        assemble(source, structure(plain, (UNHEADED,)))
+    with pytest.raises(StructureError, match="nth = 3, which does not pick"):
+        assemble(source, structure(({**plain[0], "nth": 3},), (UNHEADED,)))
+    first = assemble(source, structure(({**plain[0], "nth": 2},), (UNHEADED,)))["units"][0]
+    assert first["blocks"] == [
+        rubric(8, "Кондак 1"),
+        paragraph(8, ("Први.", False)),
+        rubric(8, "И опет се чита Икос 1:"),
+        paragraph(8, ("Први, поново.", False)),
+    ]
 
 
 def test_the_input_is_left_as_it_was_even_when_the_result_is_changed():

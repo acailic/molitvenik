@@ -111,6 +111,9 @@ def validate_structure(structure: dict) -> None:
             heading, starts = unit.get("heading", ""), unit.get("starts_with", "")
             if bool(heading) == bool(starts):
                 raise StructureError(f"{uid}: set exactly one of heading / starts_with")
+            nth = unit.get("nth", 1)
+            if not isinstance(nth, int) or isinstance(nth, bool) or nth < 1:
+                raise StructureError(f"{uid}: nth must be a positive whole number")
             if not unit.get("title"):
                 raise StructureError(f"{uid}: no title")
             tags = unit.get("tags", [])
@@ -161,26 +164,38 @@ def without_title(text: str, title: str, sid: str) -> str:
     return " ".join(words[len(title_words) :])
 
 
-def find_anchor(blocks: list[dict], unit: dict, uid: str) -> int:
-    """The index of the one block where a unit starts."""
+def heading_pattern(heading: str) -> re.Pattern[str]:
+    """A heading as a whole phrase inside the text of a red line."""
+    return re.compile(rf"(?<!\w){re.escape(heading)}(?!\w)")
+
+
+def find_anchor(blocks: list[dict], unit: dict, uid: str, nth: int | None = None) -> int:
+    """The index of the block where a unit starts.
+
+    A ``heading`` anchor is looked for in the red lines, a ``starts_with`` anchor
+    at the beginning of any block. It must occur once; when it occurs more than
+    once, the unit has to say with ``nth`` which occurrence is meant (an akathist
+    ends by repeating its first kontakion and ikos).
+    """
     heading, starts = unit.get("heading", ""), unit.get("starts_with", "")
     if heading:
+        pattern = heading_pattern(heading)
         hits = [
             index
             for index, block in enumerate(blocks)
-            if block["kind"] == "rubric" and re.search(rf"(?<!\w){re.escape(heading)}(?!\w)", block["text"])
+            if block["kind"] == "rubric" and pattern.search(block["text"])
         ]
     else:
-        hits = [
-            index
-            for index, block in enumerate(blocks)
-            if block["kind"] == "paragraph" and block_text(block).startswith(starts)
-        ]
-    if len(hits) != 1:
-        raise StructureError(
-            f"{uid}: anchor {(heading or starts)!r} matched {len(hits)} blocks, expected exactly one"
-        )
-    return hits[0]
+        hits = [index for index, block in enumerate(blocks) if block_text(block).startswith(starts)]
+    anchor = heading or starts
+    if len(hits) == 1:
+        return hits[0]
+    if len(hits) > 1 and nth is not None and 1 <= nth <= len(hits):
+        return hits[nth - 1]
+    raise StructureError(
+        f"{uid}: anchor {anchor!r} matched {len(hits)} blocks, expected exactly one"
+        + (f"; the unit says nth = {nth}, which does not pick one of them" if nth is not None else "")
+    )
 
 
 def make_unit(section: dict, order: int, spec: dict, blocks: list[dict]) -> dict:
@@ -239,29 +254,47 @@ def assemble(book: dict, structure: dict) -> dict:
         specs = section.get("units", [])
         if not specs:
             raise StructureError(f"section {sid}: no units")
-        starts = [find_anchor(own, spec, f"{sid}__{spec.get('slug', '')}") for spec in specs]
+        starts = [find_anchor(own, spec, f"{sid}__{spec.get('slug', '')}", spec.get("nth")) for spec in specs]
         if any(later < sooner for sooner, later in zip(starts, starts[1:], strict=False)):
             raise StructureError(f"section {sid}: the units are not in book order")
-        # Unit n owns the blocks from its anchor up to the anchor of unit n + 1.
-        # The first unit also owns what stands before its anchor on the title page.
-        bounds = [0, *starts[1:], len(own)]
+
+        # A unit owns the blocks from its anchor up to the anchor of the next unit,
+        # except that a red line right before its anchor is the instruction that
+        # introduces it, so the unit begins there. The first unit owns the title
+        # page from the title on.
+        begins = list(starts)
+        begins[0] = 0
+        for index in range(1, len(specs)):
+            before = starts[index] - 1
+            if own[before]["kind"] == "rubric" and before > starts[index - 1]:
+                begins[index] = before
+        bounds = [*begins[1:], len(own)]
 
         section_units = []
         for index, spec in enumerate(specs):
             # Deep copies: the units must not share their runs with the cleaned text.
-            piece = [copy.deepcopy(block) for block in own[bounds[index] : bounds[index + 1]]]
+            piece = [copy.deepcopy(block) for block in own[begins[index] : bounds[index]]]
             spec = dict(spec)
             if spec.get("heading"):
-                anchor_index = starts[index] - bounds[index]
+                anchor_index = starts[index] - begins[index]
                 carrier = piece[anchor_index]
-                before, _, after = carrier["text"].partition(spec["heading"])
-                spec["_book_heading"] = spec["heading"] + after
+                match = heading_pattern(spec["heading"]).search(carrier["text"])
+                before, after = carrier["text"][: match.start()], carrier["text"][match.start() :]
+                spec["_book_heading"] = after
+                del piece[anchor_index]
                 if before.strip():
-                    # What stood before the heading on its line is an instruction that
-                    # belongs in front of the prayer.
-                    piece[anchor_index] = {**carrier, "text": before.strip()}
-                else:
-                    del piece[anchor_index]
+                    tail = before.strip()
+                    if not section_units:
+                        # On the title page it is the subtitle of the section.
+                        piece.insert(0, {**carrier, "text": tail})
+                    else:
+                        # Else it is the end of what comes before: "… (дванаест
+                        # пута) Молитва прва…". It goes to the end of the previous unit.
+                        last_block = section_units[-1]["blocks"][-1]
+                        if last_block["kind"] == "rubric":
+                            last_block["text"] = f"{last_block['text']} {tail}"
+                        else:
+                            last_block["runs"][-1]["text"] = f"{last_block['runs'][-1]['text']} {tail}"
             if not piece:
                 raise StructureError(f"{sid}__{spec.get('slug')}: the unit has no text")
             section_units.append(make_unit(section, index + 1, spec, piece))
