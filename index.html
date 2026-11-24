@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="sr" data-font="m">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Православни молитвеник</title>
+  <meta name="description" content="Православни молитвеник на српском језику: случајна молитва, претрага у оба писма, избор према поводу, примаоцу и дужини.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f9f5ea" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1916" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d3f8f'/%3E%3Crect x='10.5' y='10.5' width='11' height='11' fill='%23b08a2e' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // The text size is read before the first paint, so the page never flashes at the wrong size.
+    (function () {
+      try {
+        var step = localStorage.getItem("molitvenik.font");
+        if (step === "s" || step === "l") document.documentElement.setAttribute("data-font", step);
+      } catch (error) {
+        // Storage can be refused; the middle size stays.
+      }
+    })();
+
+    // When the script or the data never arrive on a weak connection, say so instead of loading forever.
+    setTimeout(function () {
+      var loading = document.querySelector(".loading");
+      if (loading) loading.innerHTML = "Текст није учитан. <a href=\"\">Покушајте поново</a>.";
+    }, 12000);
+  </script>
+</head>
+<body>
+  <a class="skip" href="#sadrzaj">Прескочи на текст</a>
+
+  <header class="masthead">
+    <a class="brand" href="#/">Молитвеник</a>
+    <div class="font-size" role="group" aria-label="Величина текста">
+      <button type="button" data-font-step="s" aria-pressed="false" aria-label="Мали текст">А</button>
+      <button type="button" data-font-step="m" aria-pressed="true" aria-label="Средњи текст">А</button>
+      <button type="button" data-font-step="l" aria-pressed="false" aria-label="Велики текст">А</button>
+    </div>
+  </header>
+
+  <main id="sadrzaj" tabindex="-1">
+    <p class="loading">Текст се учитава…</p>
+    <noscript>
+      <style>.loading { display: none; }</style>
+      <div class="notice">
+        <p>Молитвеник се учитава из једне датотеке и приказује помоћу JavaScript-а. Укључите JavaScript и поново учитајте страницу.</p>
+      </div>
+    </noscript>
+  </main>
+
+  <footer class="footer"></footer>
+
+  <script type="module" src="app/main.js"></script>
+</body>
+</html>
