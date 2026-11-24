@@ -294,6 +294,23 @@ def clean_book(pages: list[dict], footnotes: list[dict]) -> dict:
             lowercase = number in uncertain and open_word is not None and words[0]["text"][:1].islower()
             continues = lowercase or (broken and not indented)
             kind = "rubric" if all(w["color"] == "red" for w in words) else "paragraph"
+            # An instruction in red that runs over the end of its line goes on in the next
+            # one: „Господе, помилуј! (дванаест" — „пута)". The next line is red
+            # throughout, so it would be taken for a rubric of its own; but it begins in
+            # lowercase right after a red passage that no punctuation closes, so it
+            # finishes that passage.
+            runs = paragraph["runs"] if paragraph is not None else []
+            tail = runs[-1] if runs else None
+            goes_on = (
+                kind == "rubric"
+                and tail is not None
+                and paragraph["kind"] == "paragraph"
+                and paragraph.get("last") == index - 1
+                and tail["rubric"]
+                and not tail["parts"][-1].endswith((".", "!", "?", ":", ";", ")", "”", "»"))
+                and words[0]["text"][:1].islower()
+            )
+            continues = lowercase or (broken and not indented) or goes_on
             # A heading printed in red over two lines is centred on both of them: its
             # second line is indented like the start of a block, but it continues the first.
             centred = indented and abs(left_gap - (right_edge - line["right"])) <= CENTRED_TOLERANCE

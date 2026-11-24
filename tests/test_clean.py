@@ -379,6 +379,107 @@ def test_an_inline_red_passage_gives_two_runs():
     ]
 
 
+def test_a_red_line_that_goes_on_from_the_red_end_of_a_line_joins_its_paragraph():
+    """„Господе, помилуј!" is printed black, „(дванаест" red, and the red „пута)" of the
+    next line finishes the instruction. The first line of the page is full, so the
+    margin is known and the lowercase start alone would not join anything."""
+    lines = page(
+        11,
+        line(146, "реч", right=RIGHT),
+        line(200, "Богородицом."),
+        line(254, "Господе,", "помилуј!", ("(дванаест", "red"), indent=True),
+        line(308, *red(["пута)"])),
+    )
+    book = clean_book([*reference_pages(), lines], NO_FOOTNOTES)
+    assert [
+        (block["kind"], block["page_start"]) for block in book["blocks"] if block["page_start"] == 11
+    ] == [("paragraph", 11)]
+    assert book["blocks"][-1]["runs"] == [
+        {"text": "Господе, помилуј!", "rubric": False},
+        {"text": "(дванаест пута)", "rubric": True},
+    ]
+
+
+def test_a_red_line_that_begins_with_a_capital_after_the_same_line_is_a_rubric_of_its_own():
+    lines = page(
+        84,
+        line(146, "реч", right=RIGHT),
+        line(200, "ханскога."),
+        line(254, "Господе,", "помилуј!", ("(дванаест", "red"), indent=True),
+        line(308, *red(["Молитва", "прва,", "светога", "Макарија", "Великог"])),
+    )
+    book = clean_book([*reference_pages(), lines], NO_FOOTNOTES)
+    assert [
+        (block["kind"], block["page_start"]) for block in book["blocks"] if block["page_start"] == 84
+    ] == [
+        ("paragraph", 84),
+        ("rubric", 84),
+    ]
+    assert book["blocks"][-2]["runs"][-1] == {"text": "(дванаест", "rubric": True}
+    assert book["blocks"][-1]["text"] == "Молитва прва, светога Макарија Великог"
+
+
+def test_a_red_line_after_a_red_run_that_ends_a_sentence_is_a_rubric_of_its_own():
+    lines = page(
+        125,
+        line(146, "реч", right=RIGHT),
+        line(200, "Господе,", "помилуј!", ("(три", "red"), ("пута).", "red"), indent=True),
+        line(254, *red(["И", "ови", "тропари,", "глас", "8:"])),
+    )
+    book = clean_book([*reference_pages(), lines], NO_FOOTNOTES)
+    assert [
+        (block["kind"], block["page_start"]) for block in book["blocks"] if block["page_start"] == 125
+    ] == [
+        ("paragraph", 125),
+        ("rubric", 125),
+    ]
+    assert book["blocks"][-1]["text"] == "И ови тропари, глас 8:"
+
+
+def test_a_red_line_in_lowercase_after_a_black_end_of_a_line_is_a_rubric_of_its_own():
+    lines = page(
+        126,
+        line(146, "реч", right=RIGHT),
+        line(200, "недостојни", "смам", indent=True),
+        line(254, *red(["и", "с", "Многобројна"])),
+    )
+    book = clean_book([*reference_pages(), lines], NO_FOOTNOTES)
+    assert [
+        (block["kind"], block["page_start"]) for block in book["blocks"] if block["page_start"] == 126
+    ] == [
+        ("paragraph", 126),
+        ("rubric", 126),
+    ]
+    assert book["blocks"][-1]["text"] == "и с Многобројна"
+
+
+def test_an_instruction_in_red_that_runs_over_two_line_ends_is_one_paragraph():
+    lines = page(
+        127,
+        line(146, "реч", right=RIGHT),
+        line(200, "Христа", "Бога", indent=True, right=RIGHT),
+        line(254, ("Онда:", "red"), "Господе", "помилуј!", ("40", "red"), ("пута", "red")),
+        line(308, *red(["и", "поклона", "колико", "хођеш."])),
+        line(362, *red(["Затим", "одмах", "ове", "стихове:"])),
+    )
+    book = clean_book([*reference_pages(), lines], NO_FOOTNOTES)
+    assert [
+        (block["kind"], block["page_start"]) for block in book["blocks"] if block["page_start"] == 127
+    ] == [
+        ("paragraph", 127),
+        ("rubric", 127),
+    ]
+    # „хођеш." closes the sentence, so the next red line, which begins with a capital,
+    # is an instruction of its own.
+    assert book["blocks"][-2]["runs"] == [
+        {"text": "Христа Бога", "rubric": False},
+        {"text": "Онда:", "rubric": True},
+        {"text": "Господе помилуј!", "rubric": False},
+        {"text": "40 пута и поклона колико хођеш.", "rubric": True},
+    ]
+    assert book["blocks"][-1]["text"] == "Затим одмах ове стихове:"
+
+
 def test_an_ornament_read_as_a_word_is_dropped_with_a_warning():
     lines = [line(600 + 54 * index, "реч", "реч", "реч", indent=(index == 0)) for index in range(8)]
     lines.append(line(1200, "у"))
