@@ -14,6 +14,20 @@
   "note": "the print has „глас 1:«"
  },
  {
+  "page": 22,
+  "line": "#55. неизрециву лепоту лица",
+  "find": "#55. неизрециву",
+  "replace": "неизрециву",
+  "note": "the struck first word (corrections page); the rest of the line keeps its place at the margin"
+ },
+ {
+  "page": 22,
+  "line": "дост оних који гледају шиише",
+  "find": "шиише",
+  "replace": "",
+  "note": "struck through in the book (corrections page): the end of a repeated passage"
+ },
+ {
   "page": 30,
   "line": "се реч: блЛагОСЛОВИ. )",
   "find": "блЛагОСЛОВИ. )",
@@ -35,11 +49,40 @@
   "note": "the eleventh kontakion of the akathist"
  },
  {
+  "page": 71,
+  "line": "И Кондак !: Теби, војвот-",
+  "find": "!:",
+  "replace": "1:",
+  "note": "„И Кондак 1:« at the end of the akathist"
+ },
+ {
+  "page": 71,
+  "line": "И Кондак !: Теби, војвот-",
+  "find": "војвот-",
+  "replace": "војвот-кињи…",
+  "note": "the last line of the page („кињи…«) was not read at all; it is joined to the word it completes"
+ },
+ {
   "page": 75,
   "line": "Песма 4",
   "find": "Песма 4",
   "replace": "Песма 4.",
   "note": "the heading ends with a period"
+ },
+ {
+  "page": 83,
+  "line": "Свети Боже; и по Оче наш",
+  "find": " и ",
+  "replace": " и ",
+  "rubric": true,
+  "note": "corrections page: the word и in „Свети Боже; и по Оче наш:« is a rubric"
+ },
+ {
+  "page": 83,
+  "line": "Свети Боже; и по Оче наш",
+  "find": "наш",
+  "replace": "наш:",
+  "note": "the print has a colon"
  },
  {
   "page": 84,
