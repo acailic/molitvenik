@@ -202,7 +202,8 @@ test("applyFilters: a length chip selects by the length stored with the unit", (
 
 test("applyFilters: every chip selects the units that carry its value", () => {
   // The sample has no unit for most values of the vocabulary, so each one gets a carrier.
-  const plain = { id: "plain", section: "jutarnje", tags: [], addressees: [], length: "kratka" };
+  // The plain unit carries no value of any facet.
+  const plain = { id: "plain", section: "bez", tags: [], addressees: [], length: "nepoznata" };
   for (const facet of facets) {
     for (const value of facet.values) {
       const carrier = {
@@ -291,7 +292,8 @@ test("parseFilterState keeps section ids: they come from the data, not from a fi
 });
 
 test("parseFilterState decodes the address before it checks the ids", () => {
-  assert.deepEqual(parseFilterState("povod=pokaja%6Eanje"), state({ povod: ["pokajanje"] }));
+  // %6E is the letter n of "pokajanje".
+  assert.deepEqual(parseFilterState("povod=pokaja%6Eje"), state({ povod: ["pokajanje"] }));
   assert.deepEqual(parseFilterState("povod=pokajanje%26duzina%3Dduga"), state());
 });
 
