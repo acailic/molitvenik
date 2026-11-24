@@ -188,3 +188,8 @@ def test_the_sample_of_the_site_is_whole_even_though_its_text_is_raw(load_fixtur
     assert structural == []
     # The sample was cut from raw OCR, so the text checks have something to say about it.
     assert any("capital letter inside" in p for p in problems)
+
+
+def test_a_dash_between_words_is_not_a_spacing_symbol():
+    assert run_checks(*with_text("схвативши да је Он – Господ,")) == []
+    assert run_checks(*with_text("мртвима, Његовом — царству")) == []

@@ -31,9 +31,11 @@ ORNAMENT_GAP = 2.5  # a line this many line pitches below the text …
 ORNAMENT_MAX_LETTERS = 2  # … with at most this many letters …
 ORNAMENT_MAX_TOKENS = 3  # … in at most this many words …
 ORNAMENT_LOWEST = 0.5  # … in the lower half of the page is an ornament, not text
-ARTEFACT_CHARS = "·~|=—–_•¬#"  # spacing symbols of justified setting
+ARTEFACT_CHARS = "·~|=_•¬#"  # spacing symbols of justified setting
+DASHES = "—–"  # printed punctuation, not spacing symbols: a dash between words stays
 
 ARTEFACT = re.compile(rf"[{re.escape(ARTEFACT_CHARS)}]+")
+DASH = re.compile(f"[{DASHES}]")
 LETTER_OR_DIGIT = re.compile(r"\w", re.UNICODE)
 LETTER = re.compile(r"[^\W\d_]", re.UNICODE)
 
@@ -42,13 +44,16 @@ def strip_artefacts(token: str) -> list[str]:
     """The token split into words, without its spacing symbols.
 
     A token that never had an artefact character is kept as it is, even when it
-    is only punctuation: a bracket set apart by a wide space is real. A token
-    made only of artefacts and punctuation vanishes.
+    is only punctuation: a bracket set apart by a wide space is real, and so is a
+    dash. A token made only of artefacts and punctuation vanishes. Dashes are not
+    artefacts: the book prints them in ordinary gaps („Он – Господ“), and the
+    dashes the OCR puts into the wide gaps of justified lines are removed one by
+    one, by corrections that were checked against the scans.
     """
     if not ARTEFACT.search(token):
         return [token]
     rest = ARTEFACT.sub(" ", token).split()
-    return rest if any(LETTER_OR_DIGIT.search(part) for part in rest) else []
+    return rest if any(LETTER_OR_DIGIT.search(part) or DASH.search(part) for part in rest) else []
 
 
 def is_artefact(token: str) -> bool:

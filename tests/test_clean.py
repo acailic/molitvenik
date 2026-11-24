@@ -106,10 +106,19 @@ def texts(book):
 
 
 def test_is_artefact_is_true_only_for_tokens_of_spacing_symbols():
-    for token in ("·", "~", "|", "=", "–", "—", "_—", "|;", "!|"):
+    for token in ("·", "~", "|", "=", "_", "•", "|;", "!|"):
         assert is_artefact(token), token
-    for token in ("Господе", "50", "(", ")", "бо-", "..."):
+    for token in ("Господе", "50", "(", ")", "бо-", "...", "–", "—", "_—"):
         assert not is_artefact(token), token
+
+
+def test_a_dash_between_words_is_printed_and_stays():
+    """„схвативши да је Он – Господ“: the book prints dashes, in ordinary gaps. The dashes the
+    OCR puts into the wide gaps of justified lines are phantoms; each of them is removed by
+    a correction that was checked against the scan, not by the cleaner."""
+    page_with_dash = page(37, line(200, "схвативши", "да", "је", "Он", "–", "Господ,", right=RIGHT))
+    assert texts(clean_book([*reference_pages(), page_with_dash], NO_FOOTNOTES))[-1].endswith("Он – Господ,")
+    assert [w["text"] for w in line_words({"words": [word("—–", 10)]})] == ["—–"]
 
 
 def test_spacing_symbols_are_stripped_and_a_rest_without_letters_vanishes():
@@ -117,7 +126,7 @@ def test_spacing_symbols_are_stripped_and_a_rest_without_letters_vanishes():
         word("реч", 10),
         word("реч", 130),
     ]
-    vanished = line_words({"words": [word("|", 10), word("|;", 70), word("_—", 130)]})
+    vanished = line_words({"words": [word("|", 10), word("|;", 70), word("_", 130)]})
     assert vanished == []
     apart = line_words({"words": [word(")", 10), word("...", 70)]})
     assert [w["text"] for w in apart] == [")", "..."]

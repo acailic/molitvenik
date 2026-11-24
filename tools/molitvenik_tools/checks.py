@@ -17,6 +17,7 @@ from molitvenik_tools.assemble import block_text, length_of
 WORD = re.compile(r"[^\W_]+", re.UNICODE)
 LATIN = re.compile(r"[A-Za-z]")
 SPACING_ONLY = re.compile(r"^[^\w\s]+$", re.UNICODE)
+DASH_ONLY = re.compile(r"^[—–]+$")  # a dash between words is print, not a spacing symbol
 SPACING_SYMBOLS = "·~|=_•¬#"
 PAIRS = (("(", ")"), ("„", "“"))
 
@@ -82,7 +83,9 @@ def _check_unit(unit: dict, problems: list[str]) -> None:
         for word in latin_inside_words(text):
             problems.append(f"{uid} ({where}): Latin letters in {word!r}")
         for word in text.split():
-            if SPACING_ONLY.match(word) or any(symbol in word for symbol in SPACING_SYMBOLS):
+            if (SPACING_ONLY.match(word) and not DASH_ONLY.match(word)) or any(
+                symbol in word for symbol in SPACING_SYMBOLS
+            ):
                 problems.append(f"{uid} ({where}): spacing symbol left in {word!r}")
             elif word.endswith("-") or word.startswith("-"):
                 problems.append(f"{uid} ({where}): hyphen left at the edge of {word!r}")

@@ -229,3 +229,47 @@ def test_a_replacement_that_begins_inside_a_word_joins_what_precedes_it():
         [{"page": 21, "line": "почетна вечна (Светлости, у", "find": "(Светлости", "replace": "Светлости"}],
     )
     assert [w["text"] for w in fixed["lines"][0]["words"]] == ["почетна", "вечна", "Светлости,", "у"]
+
+
+def test_a_correction_may_reach_every_line_with_that_text():
+    """A refrain that is printed twice on one page gets the same correction on both lines."""
+    twice = page(
+        124,
+        line(word("славе.", 135), word("Ко", 260), word("славе“", 380)),
+        line(word("славе.", 135), word("Ко", 260), word("славе“", 380)),
+    )
+    correction = {"page": 124, "line": "славе. Ко славе“", "find": "славе“", "replace": "славе?"}
+    with pytest.raises(OverrideError, match="occurs 2 times"):
+        apply_overrides(twice, [correction])
+    fixed = apply_overrides(twice, [correction | {"every": True}])
+    assert texts(fixed) == ["славе. Ко славе?", "славе. Ко славе?"]
+
+
+def test_a_correction_may_name_which_of_several_identical_marks_it_removes():
+    """Two phantom dashes in one line: each correction removes its own, and the words
+    around keep their boxes and colours."""
+    original = page(
+        43,
+        line(
+            word("се,", 135, "red"),
+            word("—", 200, "red"),
+            word("Господару", 260, "red"),
+            word("—", 420, "red"),
+            word("Господара;", 480, "red"),
+        ),
+    )
+    with pytest.raises(OverrideError, match="occurs 2 times in line"):
+        apply_overrides(
+            original, [{"page": 43, "line": "се, — Господару — Господара;", "find": "—", "replace": ""}]
+        )
+    fixed = apply_overrides(
+        original,
+        [
+            {"page": 43, "line": "се, — Господару — Господара;", "find": "—", "replace": "", "occurrence": 1},
+            {"page": 43, "line": "се, — Господару — Господара;", "find": "—", "replace": "", "occurrence": 2},
+        ],
+    )
+    fixed_words = fixed["lines"][0]["words"]
+    assert [w["text"] for w in fixed_words] == ["се,", "Господару", "Господара;"]
+    assert [w["left"] for w in fixed_words] == [135, 260, 480]
+    assert all(w["color"] == "red" for w in fixed_words)

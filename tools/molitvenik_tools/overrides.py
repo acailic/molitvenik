@@ -81,7 +81,20 @@ def apply_spans(line: dict, spans: list[tuple[int, int, str, bool | None]]) -> N
             {**words[i], "text": token} for i, (token, _) in zip(range(first, last + 1), tokens, strict=True)
         ]
     else:
-        new_words = [{**words[first], "text": token} for token, _ in tokens]
+        # The number of words changed: one was deleted or added. A word that still reads
+        # like one of the touched words keeps that word's box, colour and confidence; the
+        # others take those of the first replaced word.
+        taken: set[int] = set()
+        new_words = []
+        for token, _ in tokens:
+            same = next(
+                (i for i in range(first, last + 1) if words[i]["text"] == token and i not in taken), None
+            )
+            if same is None:
+                new_words.append({**words[first], "text": token})
+            else:
+                taken.add(same)
+                new_words.append({**words[same], "text": token})
     for word, (_, rubric) in zip(new_words, tokens, strict=True):
         if rubric is True:
             word["color"], word["red"] = "red", 1.0
@@ -107,7 +120,9 @@ def apply_overrides(page: dict, overrides: list[dict]) -> dict:
 
     for line_text, group in by_line.items():
         matches = [line for line in content if line["text"] == line_text]
-        if len(matches) != 1:
+        # ``every`` on a correction says that the line is printed more than once on the
+        # page (a refrain) and that all its occurrences get the correction.
+        if len(matches) != 1 and not (matches and all(override.get("every") for override in group)):
             raise OverrideError(
                 f"page {page['page']}: line {line_text!r} occurs {len(matches)} times, expected exactly once"
             )
@@ -117,12 +132,25 @@ def apply_overrides(page: dict, overrides: list[dict]) -> dict:
             find, replace = override.get("find"), override.get("replace")
             if not isinstance(find, str) or not find or not isinstance(replace, str):
                 raise OverrideError(f"page {page['page']}: correction needs 'find' and 'replace': {override}")
-            occurrences = line["text"].count(find)
-            if occurrences != 1:
+            positions, at = [], line["text"].find(find)
+            while at != -1:
+                positions.append(at)
+                at = line["text"].find(find, at + 1)
+            # ``occurrence`` says which of several identical passages of the line is meant
+            # (counting from 1): two phantom dashes in one line, a word that stands twice.
+            occurrence = override.get("occurrence")
+            if occurrence is None:
+                if len(positions) != 1:
+                    raise OverrideError(
+                        f"page {page['page']}: {find!r} occurs {len(positions)} times in line {line_text!r}"
+                    )
+                occurrence = 1
+            elif not (isinstance(occurrence, int) and 1 <= occurrence <= len(positions)):
                 raise OverrideError(
-                    f"page {page['page']}: {find!r} occurs {occurrences} times in line {line_text!r}"
+                    f"page {page['page']}: {find!r} occurs {len(positions)} times in line {line_text!r}"
+                    f"; occurrence {occurrence!r} names none of them"
                 )
-            starts.append(line["text"].index(find))
+            starts.append(positions[occurrence - 1])
             spans.append((starts[-1], starts[-1] + len(find), replace, override.get("rubric")))
         edges = [0]
         for word in line["words"]:
@@ -138,4 +166,7 @@ def apply_overrides(page: dict, overrides: list[dict]) -> dict:
             first = sum(1 for edge in edges[1:] if edge <= start)
             line["words"][first]["left"] = left
             line["left"] = min(word["left"] for word in line["words"])
+        for other in matches[1:]:
+            corrected_line = apply_overrides({"page": page["page"], "lines": [copy.deepcopy(other)]}, group)
+            other.update(corrected_line["lines"][0])
     return corrected
