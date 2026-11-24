@@ -47,6 +47,10 @@ test("parseHash: an unknown route falls back to home", () => {
   for (const hash of ["#/nesto", "#/molitva", "#/molitva/a/b", "#/odeljak/", "#sadrzaj"]) {
     assert.equal(parseHash(hash).view, "home", hash);
   }
+  // names every object has: they must not pass for a view
+  for (const hash of ["#/constructor/x", "#/__proto__/x", "#/valueOf/x", "#/toString/x", "#/hasOwn/x"]) {
+    assert.deepEqual(parseHash(hash), { view: "home", id: null, query: "", state: NO_FILTERS }, hash);
+  }
   assert.deepEqual(parseHash("#/nesto?q=x"), { view: "home", id: null, query: "q=x", state: NO_FILTERS });
 });
 

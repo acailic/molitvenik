@@ -33,7 +33,8 @@ export function parseHash(hash) {
   if (!path.startsWith("/")) path = `/${path}`;
 
   const [head, id, extra] = path.split("/").filter(Boolean);
-  const view = VIEWS[head];
+  // Only the views themselves: a plain lookup would also find „constructor" and the like.
+  const view = Object.hasOwn(VIEWS, head) ? VIEWS[head] : undefined;
   if (view && id !== undefined && extra === undefined) {
     route.view = view;
     route.id = decode(id);
