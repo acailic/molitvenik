@@ -288,7 +288,8 @@ def test_at_most_45_hints_are_listed(tmp_path, capsys):
 
 
 def test_tokens_with_fewer_than_two_letters_are_not_listed(tmp_path):
-    # … unless a digit stands next to the letter: „ч0-" is a word whose „о" was read as a digit.
+    # … unless a digit stands next to the letter: „ч0-" is a word whose „о" was read as a
+    # digit; and a number on which another reading differs is listed too.
     page = make_page(
         ["исцели господе ране ч0-", "ше моје 60- и освети ме целог"],
         flags={"60-": ["differs:scale50-p6"], "и": ["latin-letters"]},
@@ -297,7 +298,7 @@ def test_tokens_with_fewer_than_two_letters_are_not_listed(tmp_path):
 
     (path,) = review.write_hints(tmp_path, set(), None, unknown={"и", "60-", "ше"})
 
-    assert suspected(path) == [f'01 "ч0-" ({DIGIT})']
+    assert suspected(path) == [f'01 "ч0-" ({DIGIT})', f'02 "60-" ({ONE_READING})']
 
 
 @pytest.mark.parametrize("indented, expected", [(True, []), (False, [f'02 "Нова" ({RARE_CAPITAL})'])])
@@ -470,13 +471,89 @@ def test_a_second_reading_with_one_changed_word_marks_that_line():
     ]
 
 
-@pytest.mark.parametrize("extra", ["молитвено правило пред свето причешће", "амин."])
-def test_an_extra_line_of_the_second_reading_marks_nothing_on_its_own(extra):
-    page = make_page(["исцели господе ране ду-", "ше моје и освети ме целог"])
-    same = ["исцели господе ране ду-", "ше моје и освети ме целог"]
+def test_the_running_title_and_the_page_number_of_the_second_reading_are_not_its_extra_lines():
+    page = make_page(
+        ["исцели господе ране ду-", "ше моје и освети ме целог"],
+        header="Молитвено правило пред Свето причешће",
+    )
+    second = [
+        "молитвено правило пред свето причешће",
+        "исцели господе ране ду-",
+        "ше моје и освети ме целог",
+        "113",
+    ]
 
-    assert review.marked_lines(page, [extra, *same], set()) == []
-    assert review.marked_lines(page, [same[0], extra, same[1]], set()) == []
+    assert review.diff_against(page, second) == []
+    assert review.marked_lines(page, second, set()) == []
+
+
+def test_the_page_number_read_into_a_line_of_marks_is_not_an_extra_line():
+    """The Archive's OCR often glues the page number to marks and stray letters."""
+    page = make_page(["исцели господе ране ду-", "Кондак 1"], header="Молитвено правило пред Свето причешће")
+    last = page["lines"][-1]
+    page["lines"].append(
+        {
+            **last,
+            "kind": "footer",
+            "cy": 295,
+            "top": 285,
+            "bottom": 315,
+            "text": "113",
+            "words": [{**last["words"][0], "text": "113", "left": 30, "width": 24, "top": 290}],
+        }
+    )
+    second = [
+        "Молитвено правило пред Свето причешће",
+        "исцели господе ране ду-",
+        "Кондак 1",
+        "113 сы пп аат ====",
+    ]
+
+    assert review.diff_against(page, second) == []
+    assert review.diff_against(page, second[:-1] + ["амин."])[-1]["only_other"] is True
+    # „Кондак 1" is a line with a number in it, not a page number
+    assert review.marked_lines(page, second[:-1], set()) == []
+    assert review.marked_lines(page, second[:-2] + ["Кондак 11"], set()) == [2]
+
+
+def test_a_line_that_only_the_other_reading_has_is_reported_against_our_line_before_it():
+    """A printed line that our OCR does not have at all is the worst error there is, and it
+    shows only in the other reading."""
+    page = make_page(["исцели господе ране ду-", "ше моје и освети ме целог"])
+    in_the_middle = ["исцели господе ране ду-", "о милосрђу божјем", "ше моје и освети ме целог"]
+
+    assert review.diff_against(page, in_the_middle) == [
+        {
+            "page": 110,
+            "line_index": 0,
+            "line": "исцели господе ране ду-",
+            "other": "о милосрђу божјем",
+            "diffs": [{"ours": [], "theirs": ["о", "милосрђу", "божјем"]}],
+            "only_other": True,
+        }
+    ]
+    at_the_end = ["исцели господе ране ду-", "ше моје и освети ме целог", "амин."]
+    assert [entry["line_index"] for entry in review.diff_against(page, at_the_end)] == [1]
+    assert review.marked_lines(page, at_the_end, set()) == [1]
+
+
+def test_a_number_that_differs_is_a_disagreement():
+    page = make_page(["Кондак 1", "Теби војводо који се бориш"])
+
+    assert review.marked_lines(page, ["Кондак 11", "Теби војводо који се бориш"], set()) == [0]
+    assert review.marked_lines(page, ["Кондак 1", "Теби војводо који се бориш"], set()) == []
+    # punctuation counts, as with any other word
+    assert review.marked_lines(page, ["Кондак 1:", "Теби војводо који се бориш"], set()) == [0]
+
+
+def test_a_number_on_which_another_reading_differs_is_hinted():
+    page = make_page(
+        ["Кондак 1", "Теби војводо"], flags={"1": ["differs:psm6"], "војводо": []}, line_left={1}
+    )
+
+    assert [(hint.word, hint.reason) for hint in review.suspected_words([page], set(), set())] == [
+        ("1", "one reading differs")
+    ]
 
 
 @pytest.mark.parametrize(
@@ -545,7 +622,7 @@ def test_the_real_second_reading_disagrees_on_three_lines_of_page_110(fixtures):
 
     # „бо-" against „60-", and small capitals read in sentence case
     assert [(entry["line_index"], entry["diffs"]) for entry in entries] == [
-        (4, [{"ours": ["бо-"], "theirs": []}]),
+        (4, [{"ours": ["бо-"], "theirs": ["60-"]}]),
         (6, [{"ours": ["Умилостиви,"], "theirs": ["УМИЛОСТИВИ,"]}]),
         (15, [{"ours": ["води"], "theirs": ["ВОДИ"]}]),
     ]
@@ -563,8 +640,12 @@ def test_the_real_readings_that_agree_with_the_ocr(fixtures, kind, name):
 
 
 def test_marked_command_writes_marked_json(tmp_path, capsys):
-    put_json(tmp_path / "build/ocr/p-110.json", make_page(["пасха господња"], page=110))
-    put_json(tmp_path / "build/ia-ocr/p-110.json", {"page": 110, "lines": ["пасха господња", "Дођи"]})
+    put_json(
+        tmp_path / "build/ocr/p-110.json", make_page(["пасха господња"], page=110, header="Молитвено правило")
+    )
+    put_json(
+        tmp_path / "build/ia-ocr/p-110.json", {"page": 110, "lines": ["молитвено правило", "пасха господња"]}
+    )
     put_json(
         tmp_path / "build/ocr/p-127.json",
         make_page(["пасха господња"], page=127, flags={"пасха": ["latin-letters"]}),
@@ -870,6 +951,20 @@ def test_collect_keeps_two_corrections_of_one_line_and_sorts_by_page_and_line(tm
         },
         {"page": 110, "line": "Песма 5.", "find": "Песма", "replace": "Ирмос", "note": ""},
         {"page": 127, "line": "свидбени судијама.", "find": "свидбени", "replace": "свидебени", "note": ""},
+    ]
+
+
+def test_collect_refuses_a_file_without_its_corrections_list(tmp_path):
+    """A misspelt key would otherwise pass for „nothing to correct", and a reviewer's work
+    would vanish without a word."""
+    out = corrections_root(tmp_path)
+    put_json(out / "p-110.json", {"page": 110, "corections": [{"line": "реч", "find": "а", "replace": "б"}]})
+
+    result = review.collect(tmp_path, out)
+
+    assert result["valid"] == []
+    assert [(entry["file"], entry["reason"]) for entry in result["invalid"]] == [
+        ("p-110.json", "no 'corrections' list in the file")
     ]
 
 

@@ -223,13 +223,15 @@ def word_hint(token: Token, unknown: set[str], allowlist: set[str], capitals: Co
     """Why a word is suspected (its strongest reason), or None when it is not."""
     bare = token.text.strip(PUNCT)
     if len(LETTER.findall(bare)) < 2:
-        # A single letter or a symbol is not worth a hint, with one exception: a digit next to
-        # a letter is a misread however short the word is (the print's „ч0-" and „утробе7").
-        return (
-            Hint(token.page, token.line, token.text, DIGIT_IN_WORD)
-            if (LETTER.search(bare) and DIGIT.search(bare))
-            else None
-        )
+        # A single letter or a symbol is not worth a hint, with two exceptions: a digit next
+        # to a letter is a misread however short the word is (the print's „ч0-" and „утробе7"),
+        # and a number on which another reading differs may be a wrong digit in a heading
+        # („Кондак !" for „Кондак 1").
+        if LETTER.search(bare) and DIGIT.search(bare):
+            return Hint(token.page, token.line, token.text, DIGIT_IN_WORD)
+        if DIGIT.search(bare) and any(flag.startswith("differs:") for flag in token.flags):
+            return Hint(token.page, token.line, token.text, ONE_READING)
+        return None
     word = bare.lower()
     forms = dictionary_forms(token)
     differing = sum(flag.startswith("differs:") for flag in token.flags)
@@ -338,9 +340,10 @@ def write_hints(
 
 def norm(text: str) -> str:
     """A token as two readings are compared: punctuation cut from both ends, Latin look-alikes
-    read as Cyrillic, lower-case. "" for a token without a letter (spacing artefacts, numbers)."""
+    read as Cyrillic, lower-case. "" for a token with neither a letter nor a digit (spacing
+    artefacts). A number counts: „Кондак 1" and „Кондак 11" are not the same heading."""
     token = text.strip(PUNCT).translate(LOOKALIKE).lower()
-    return token if LETTER.search(token) else ""
+    return token if LETTER.search(token) or DIGIT.search(token) else ""
 
 
 def normalised(tokens: list[str]) -> list[str]:
@@ -348,8 +351,38 @@ def normalised(tokens: list[str]) -> list[str]:
 
 
 def kept(tokens: list[str]) -> list[str]:
-    """The tokens that have a letter, as they were read."""
+    """The tokens that have a letter or a digit, as they were read."""
     return [text for text in tokens if norm(text)]
+
+
+def page_furniture(lines: list[str], page: dict) -> set[int]:
+    """The indexes of the lines of another reading that say nothing about our text: its running
+    title (which the OCR sets apart as a header), with or without stray marks, and its page
+    number, also when the number was read into a line of marks and stray letters (the Archive's
+    „22 сы пп аат"). A line with a real word besides the number is not page furniture: it may
+    be „Кондак 1"."""
+    titles = {line_shapes(line["text"])[1] for line in page["lines"] if line["kind"] == "header"}
+    numbers = {
+        norm(token) for line in page["lines"] if line["kind"] == "footer" for token in line["text"].split()
+    }
+    numbers.add(str(page.get("book_page", page["page"] + 3)))  # the number the page carries in print
+    numbers.discard("")
+    furniture = set()
+    for index, text in enumerate(lines):
+        joined, letters = line_shapes(text)
+        words = [token for token in text.split() if len(LETTER.findall(norm(token))) >= 3]
+        if not joined or joined.isdigit() or letters in titles:
+            furniture.add(index)
+        elif any(norm(token) in numbers for token in text.split()) and len(words) < 2:
+            furniture.add(index)
+    return furniture
+
+
+def line_shapes(text: str) -> tuple[str, str]:
+    """A line as two strings that survive small misreadings: its words normalised and joined,
+    and its letters alone."""
+    joined = "".join(norm(token) for token in text.split())
+    return joined, "".join(char for char in joined if char.isalpha())
 
 
 def disagreements(a: list[Word], b: list[Word]) -> list[tuple[int, int, int, int]]:
@@ -382,30 +415,49 @@ def diff_against(page: dict, lines: list[str]) -> list[dict]:
     """The OCR lines of `page` on which another reading of the page (`lines`) disagrees with
     ours, in line order. An entry names the line (`line_index` is its index among the lines of
     the page, `line` its text), gives the other reading of it (`other`) and the tokens that
-    differ (`diffs`: pairs of [ours, theirs])."""
+    differ (`diffs`: pairs of [ours, theirs]).
+
+    A line that only the other reading has is reported against our line before it (or our
+    first line) with `only_other` true and nothing on our side: a printed line that our OCR
+    does not have at all. The running title and the page number of the other reading do not
+    count."""
     content = content_lines(page)
     ours = [[word["text"] for word in line["words"]] for _, line in content]
-    theirs = [line.split() for line in lines]
+    furniture = page_furniture(lines, page)
+    their_lines = [line for index, line in enumerate(lines) if index not in furniture]
+    theirs = [line.split() for line in their_lines]
     our_text = [" ".join(normalised(tokens)) for tokens in ours]
     their_text = [" ".join(normalised(tokens)) for tokens in theirs]
     found: dict[int, dict] = {}
 
-    def note(index: int, other: str, diff: dict) -> None:
-        found.setdefault(index, {"other": other, "diffs": []})["diffs"].append(diff)
+    def note(index: int, other: str, diff: dict, *, only_other: bool = False) -> None:
+        entry = found.setdefault(index, {"other": other, "diffs": []})
+        entry["diffs"].append(diff)
+        if only_other:
+            entry["only_other"] = True
 
-    # The lines are put side by side first: a line that only the other reading has (the running
-    # title, a phantom) is not a disagreement. The lines of a block that does not line up are
-    # then compared word by word, so that different line breaks do not count either.
+    # The lines are put side by side first. The lines of a block that does not line up are
+    # then compared word by word, so that different line breaks do not count.
     blocks = SequenceMatcher(None, our_text, their_text, autojunk=False).get_opcodes()
     for _, i1, i2, j1, j2 in blocks:
         if i1 == i2:
+            if j2 > j1:
+                extra = [Word(j, text) for j in range(j1, j2) for text in kept(theirs[j])]
+                other = " ".join(their_lines[number] for number in dict.fromkeys(w.line for w in extra))
+                if extra:
+                    note(
+                        max(0, i1 - 1),
+                        other,
+                        {"ours": [], "theirs": [w.text for w in extra]},
+                        only_other=True,
+                    )
             continue
         a = [Word(k, text) for k in range(i1, i2) for text in kept(ours[k])]
         b = [Word(j, text) for j in range(j1, j2) for text in kept(theirs[j])]
         for p1, p2, q1, q2 in disagreements(a, b):
             ours_here, theirs_here = beside(a, p1, p2), beside(b, q1, q2)
             diff = {"ours": [w.text for w in a[p1:p2]], "theirs": [w.text for w in b[q1:q2]]}
-            other = " ".join(lines[j] for j in dict.fromkeys(w.line for w in theirs_here))
+            other = " ".join(their_lines[j] for j in dict.fromkeys(w.line for w in theirs_here))
             for index in dict.fromkeys(w.line for w in ours_here):
                 note(index, other, diff)
     return [
@@ -721,7 +773,11 @@ def read_corrections(path: Path) -> tuple[list, int]:
     number = page_number(data, path)
     if number is None:
         raise _Rejected("no page number in the file or its name")
-    corrections = data.get("corrections", [])
+    # A file without the list is refused, not taken for „nothing to correct": a misspelt key
+    # would otherwise make a reviewer's work vanish without a word.
+    if not isinstance(data, dict) or "corrections" not in data:
+        raise _Rejected("no 'corrections' list in the file")
+    corrections = data["corrections"]
     if not isinstance(corrections, list):
         raise _Rejected("corrections is not a list")
     return corrections, number
