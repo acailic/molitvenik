@@ -138,7 +138,8 @@ last_page = 30
   [[sections.units]]
   slug = "molitva-1"
   title = "Молитва прва"
-  heading = "Молитва прва"
+  # the heading line begins with „Затим,": it all belongs to this prayer, not to the Creed
+  heading = "Затим, Молитва прва"
   author = "св. Макарије Велики"
   tags = ["pokajanje"]
   addressees = ["bog-otac"]
@@ -1173,7 +1174,7 @@ last_page = 154
   [[sections.units]]
   slug = "stihovi-metafrastovi"
   title = "Стихови Метафрастови: Ево приступам божанском причешћу"
-  heading = "стихове Метафрастове"
+  heading = "Приступајући да се причестиш"     # the whole instruction is the heading
   tags = ["pokajanje"]
   addressees = ["gospod-isus-hrist"]
 

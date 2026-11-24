@@ -116,7 +116,8 @@
   "line": "#55. неизрециву лепоту лица",
   "find": "#55. неизрециву",
   "replace": "неизрециву",
-  "note": "the struck first word (corrections page); the rest of the line keeps its place at the margin"
+  "left": 143,
+  "note": "the struck first word (corrections page); the line begins at the margin, left = 143"
  },
  {
   "page": 22,
@@ -404,7 +405,7 @@
   "page": 71,
   "line": "И Кондак !: Теби, војвот-",
   "find": "војвот-",
-  "replace": "војвот-кињи…",
+  "replace": "војвоткињи…",
   "note": "the last line of the page („кињи…«) was not read at all; it is joined to the word it completes"
  },
  {

@@ -144,7 +144,7 @@ last_page = 175
   [[sections.units]]
   slug = "molitva-1"
   title = "Молитва прва"
-  heading = "молитва прва"
+  heading = "Онда, молитва прва"     # the heading line begins with „Онда,"
   author = "св. Василије Велики"
   tags = ["pokajanje", "zastita"]
   addressees = ["gospod-isus-hrist"]

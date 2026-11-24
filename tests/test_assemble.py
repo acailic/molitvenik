@@ -211,7 +211,9 @@ def test_pages_and_footnotes_follow_the_blocks():
     assert third["footnotes"] == [{"marker": "", "text": "друга белешка."}]
 
 
-def test_what_stands_before_a_heading_on_its_line_goes_to_the_end_of_the_previous_unit():
+def test_what_stands_before_a_heading_on_its_line_goes_to_the_end_of_the_previous_unit_in_red():
+    """„Затим," is printed red like the heading it introduces. It is the end of what comes
+    before it, but it is an instruction: never prayer text."""
     source = book(
         rubric(8, MORNING_TITLE),
         paragraph(8, ("Господе.", False)),
@@ -227,7 +229,35 @@ def test_what_stands_before_a_heading_on_its_line_goes_to_the_end_of_the_previou
     first, second, _ = assemble(source, structure(morning, (UNHEADED,)))["units"]
     assert second["bookHeading"] == "Молитва друга, истог светитеља:"
     assert second["blocks"] == [paragraph(8, ("Боже.", False))]
-    assert first["blocks"] == [paragraph(8, ("Господе. Затим,", False))]
+    assert first["blocks"] == [paragraph(8, ("Господе.", False)), rubric(8, "Затим,")]
+
+
+def test_a_tail_that_goes_on_from_a_red_passage_joins_that_passage():
+    """„(дванаест" ends a line in red and „пута)" stands before the heading of the next
+    line: it closes the instruction it belongs to."""
+    source = book(
+        rubric(8, MORNING_TITLE),
+        paragraph(8, ("Господе помилуј!", False), ("(дванаест", True)),
+        rubric(8, "пута) Молитва друга, истог светитеља:"),
+        paragraph(8, ("Боже.", False)),
+        rubric(9, EVENING_TITLE),
+        paragraph(9, ("Господе Исусе Христе, Боже наш.", False)),
+    )
+    morning = (
+        unit("jutarnje", "prva", title="Прва", starts_with="Господе помилуј!", tags=["pokajanje"]),
+        unit("jutarnje", "druga", title="Молитва друга", heading="Молитва друга", tags=["pokajanje"]),
+    )
+    first, _, _ = assemble(source, structure(morning, (UNHEADED,)))["units"]
+    assert first["blocks"] == [paragraph(8, ("Господе помилуј!", False), ("(дванаест пута)", True))]
+
+
+def test_two_units_on_one_anchor_are_a_structure_error():
+    twice = (
+        NUMBERED,
+        unit("jutarnje", "opet", title="Молитва прва", heading="Молитва прва", tags=["pokajanje"]),
+    )
+    with pytest.raises(StructureError, match="section jutarnje: the units are not in book order"):
+        assemble(BOOK, structure(twice))
 
 
 def test_what_stands_between_the_title_and_the_first_heading_stays_as_a_subtitle():

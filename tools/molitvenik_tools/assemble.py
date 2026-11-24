@@ -255,7 +255,7 @@ def assemble(book: dict, structure: dict) -> dict:
         if not specs:
             raise StructureError(f"section {sid}: no units")
         starts = [find_anchor(own, spec, f"{sid}__{spec.get('slug', '')}", spec.get("nth")) for spec in specs]
-        if any(later < sooner for sooner, later in zip(starts, starts[1:], strict=False)):
+        if any(later <= sooner for sooner, later in zip(starts, starts[1:], strict=False)):
             raise StructureError(f"section {sid}: the units are not in book order")
 
         # A unit owns the blocks from its anchor up to the anchor of the next unit,
@@ -288,13 +288,25 @@ def assemble(book: dict, structure: dict) -> dict:
                         # On the title page it is the subtitle of the section.
                         piece.insert(0, {**carrier, "text": tail})
                     else:
-                        # Else it is the end of what comes before: "… (дванаест
-                        # пута) Молитва прва…". It goes to the end of the previous unit.
+                        # Else it is the end of what comes before, and it is red like the
+                        # line it stands in: "… (дванаест пута) Молитва прва…", or
+                        # "Затим," before the heading of the next prayer. It goes to the
+                        # end of the previous unit and stays an instruction there: joined
+                        # to the red passage it goes on from, or a rubric of its own.
                         last_block = section_units[-1]["blocks"][-1]
                         if last_block["kind"] == "rubric":
                             last_block["text"] = f"{last_block['text']} {tail}"
-                        else:
+                        elif last_block["runs"][-1]["rubric"]:
                             last_block["runs"][-1]["text"] = f"{last_block['runs'][-1]['text']} {tail}"
+                        else:
+                            section_units[-1]["blocks"].append(
+                                {
+                                    "kind": "rubric",
+                                    "page_start": last_block["page_end"],
+                                    "page_end": last_block["page_end"],
+                                    "text": tail,
+                                }
+                            )
             if not piece:
                 raise StructureError(f"{sid}__{spec.get('slug')}: the unit has no text")
             section_units.append(make_unit(section, index + 1, spec, piece))
