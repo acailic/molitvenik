@@ -179,8 +179,8 @@
   "page": 30,
   "line": "се реч: блЛагОСЛОВИ. )",
   "find": "блЛагОСЛОВИ. )",
-  "replace": "Благослови.)",
-  "note": "small capitals are printed in sentence case"
+  "replace": "благослови.)",
+  "note": "the print has the word in bold lowercase type, not in small capitals; an earlier correction of the coordinator had made it a capital, and the blind transcription showed the mistake"
  },
  {
   "page": 31,
@@ -254,6 +254,13 @@
  },
  {
   "page": 38,
+  "line": "вару у младости мојој, Исусе,",
+  "find": "мојој,",
+  "replace": "мојој;",
+  "note": "the print has a semicolon after „мојој« (as in „у смрти мојој;« on the same page); found by the blind transcription"
+ },
+ {
+  "page": 38,
   "line": "расни; Исусе, хранитељу У",
   "find": " У",
   "replace": " у",
@@ -323,6 +330,13 @@
   "find": "цариника",
   "replace": "царинника",
   "note": "blind transcription of the sample, settled on the scan"
+ },
+ {
+  "page": 46,
+  "line": "своју душу. Тако просвети И",
+  "find": "И",
+  "replace": "и",
+  "note": "the print has a lowercase и at the end of the line; found by the blind transcription. Every capitalised word in mid-sentence in the book was then looked at: the others are the pronouns the book writes with a capital, or capitals the print has"
  },
  {
   "page": 46,
@@ -849,6 +863,13 @@
   "find": "„крст",
   "replace": "крст",
   "note": "red print, no quotation mark before крст"
+ },
+ {
+  "page": 103,
+  "line": "часноме Крсту:",
+  "find": "часноме",
+  "replace": "Часноме",
+  "note": "the print begins the word with a capital Ч in mixed case („молитву Часноме Крсту:«); found by the blind transcription, missed at its first settling"
  },
  {
   "page": 104,
