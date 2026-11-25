@@ -130,7 +130,8 @@
     "kanon-bogorodici__pesma-5",
     "kanon-bogorodici__pesma-6",
     "kanon-bogorodici__pesma-7",
-    "kanon-bogorodici__pesma-8"
+    "kanon-bogorodici__pesma-8",
+    "kanon-bogorodici__pesma-9"
    ]
   },
   {
@@ -3983,7 +3984,7 @@
    "author": null,
    "pages": [
     83,
-    85
+    83
    ],
    "addressees": [
     "presveta-bogorodica"
@@ -3992,8 +3993,8 @@
     "u-nevolji",
     "u-svako-doba"
    ],
-   "words": 158,
-   "length": "srednja",
+   "words": 70,
+   "length": "kratka",
    "blocks": [
     {
      "kind": "paragraph",
@@ -4053,7 +4054,32 @@
        "rubric": false
       }
      ]
-    },
+    }
+   ],
+   "footnotes": []
+  },
+  {
+   "id": "kanon-bogorodici__pesma-9",
+   "section": "kanon-bogorodici",
+   "order": 8,
+   "title": "Песма 9",
+   "bookHeading": "Песма 9.",
+   "part": "Песма 9",
+   "author": null,
+   "pages": [
+    84,
+    85
+   ],
+   "addressees": [
+    "presveta-bogorodica"
+   ],
+   "tags": [
+    "u-nevolji",
+    "u-svako-doba"
+   ],
+   "words": 88,
+   "length": "kratka",
+   "blocks": [
     {
      "kind": "paragraph",
      "page_start": 81,

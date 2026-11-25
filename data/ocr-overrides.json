@@ -578,6 +578,19 @@
   "note": "the red „Ирмос:« before the line was not read at all; full review, sheet 219"
  },
  {
+  "page": 81,
+  "line": "С правом те приз-",
+  "missing": "Песма 9.",
+  "rubric": true,
+  "box": [
+   463,
+   180,
+   122,
+   32
+  ],
+  "note": "the red heading „Песма 9.« is printed on a line of its own above the irmos and the OCR did not read the line at all; the Archive's reading has it"
+ },
+ {
   "page": 83,
   "line": "Наш... Ако ниси свештеник: МОЛИТ- ||",
   "find": "Наш...",

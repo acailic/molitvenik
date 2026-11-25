@@ -703,6 +703,14 @@ last_page = 82
   tags = ["u-nevolji", "u-svako-doba"]
   addressees = ["presveta-bogorodica"]
 
+  [[sections.units]]
+  slug = "pesma-9"
+  title = "Песма 9"
+  part = "Песма 9"
+  heading = "Песма 9"
+  tags = ["u-nevolji", "u-svako-doba"]
+  addressees = ["presveta-bogorodica"]
+
 # ---------------------------------------------------------------- 5
 
 [[sections]]

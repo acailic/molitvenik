@@ -178,8 +178,10 @@ reproducible: the same images and the same curated files give the same `data/pra
 6. **Corrections.** Apply `data/ocr-overrides.json`: per page, exact `find` / `replace` pairs
    that name the line they belong to. All pairs of one line are located in the line as it was
    read and applied together; the line is then split into words again and each word keeps its
-   box and colour. A pair whose line or `find` cannot be found stops the pipeline. Every
-   correction stays visible in git history.
+   box and colour. A pair whose line or `find` cannot be found stops the pipeline. A
+   correction may say which replaced words are red (`rubric` as a string) and may insert a
+   printed line that the OCR did not output at all (`missing`, with `rubric` and `box` where
+   the print shows it). Every correction stays visible in git history.
 7. **Clean.** Join the lines of a paragraph, including across a page break (the running
    title and page number sit between the two halves of a word). A hyphen at the end of a line
    is removed when the next line continues with a lowercase letter or when the paragraph ends
@@ -363,4 +365,5 @@ pipeline, transcription and verification, site, publishing.
 | Search folds both sides to plain Latin instead of converting the query to Cyrillic | Converting fails when the query is typed without diacritics. |
 | Footnote, stress mark and small-caps lines defined | Found while reading the pages; the first version did not know about them. |
 | Section 9 separates checks of the code from the measurement of the text | They answer different questions and were mixed before. |
+| A correction may insert a printed line that the OCR did not output | Two faint red words were read by no reading of ours: „Ирмос:" and „Песма 9." above the irmos of the ninth ode of the Canon of the Theotokos. The Archive's reading has both. No flag could show them: a word that no reading has disagrees with nothing, and the comparison with the Archive's reading lost the line because it stood beside one of ours that differs. |
 | A dash between words is print and stays in the text | The first version had the cleaner remove every dash between words as an artefact of justified setting. Checked on the scans, 21 of the 70 such dashes are printed (ordinary gaps, „Он – Господ“), so removing them changed the text. The 49 phantoms in wide gaps are removed by explicit corrections instead. |
