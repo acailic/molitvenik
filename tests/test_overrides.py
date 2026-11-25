@@ -173,6 +173,53 @@ def test_a_rubric_that_names_its_words_prints_only_those_red():
         apply_overrides(original, [{**correction, "rubric": "Ирмос"}])
 
 
+def test_a_correction_may_insert_a_printed_line_that_the_ocr_did_not_output():
+    """„Песма 9." is printed in red on a line of its own above the irmos; no reading gave
+    the line, so it has no box and the correction says where the print shows it."""
+    original = page(81, line(word("С", 321), word("правом", 360), word("те", 560), word("приз-", 640)))
+    correction = {"page": 81, "line": "С правом те приз-", "missing": "Песма 9.", "rubric": True}
+    fixed = apply_overrides(
+        original,
+        [
+            {**correction, "box": [463, 180, 122, 32]},
+            {"page": 81, "line": "С правом те приз-", "find": "С", "replace": "Ирмос: С", "rubric": "Ирмос:"},
+        ],
+    )
+    assert texts(fixed) == ["Песма 9.", "Ирмос: С правом те приз-"]
+    heading, irmos = fixed["lines"]
+    assert [(w["text"], w["color"], w["flags"]) for w in heading["words"]] == [
+        ("Песма", "red", ["inserted"]),
+        ("9.", "red", ["inserted"]),
+    ]
+    assert (heading["kind"], heading["left"], heading["right"]) == ("content", 463, 585)
+    assert (heading["top"], heading["bottom"], heading["cy"]) == (180, 212, 196.0)
+    # the correction of the line itself still finds it
+    assert [w["color"] for w in irmos["words"]] == ["red", "black", "black", "black", "black"]
+    assert texts(original) == ["С правом те приз-"]  # the original page is left as it was
+
+    # without a box the line stands one pitch above and in the middle of the text of the page
+    plain = apply_overrides(original, [{key: value for key, value in correction.items() if key != "rubric"}])[
+        "lines"
+    ][0]
+    assert (plain["top"], plain["bottom"]) == (48, 88)
+    assert plain["left"] == 321 + (700 - 321 - 8 * 17) // 2
+    assert [w["color"] for w in plain["words"]] == ["black", "black"]
+
+
+def test_a_missing_line_that_cannot_be_placed_or_said_is_an_error():
+    original = page(81, line(word("С", 321), word("правом", 360)))
+    nowhere = {"page": 81, "line": "Ирмос: С правом", "missing": "Песма 9."}
+    with pytest.raises(OverrideError, match="occurs 0 times"):
+        apply_overrides(original, [nowhere])
+    for broken in (
+        {"page": 81, "line": "С правом", "missing": "  "},
+        {"page": 81, "line": "С правом", "missing": "Песма 9.", "rubric": "Песма"},
+        {"page": 81, "line": "С правом", "missing": "Песма 9.", "box": [463, 180]},
+    ):
+        with pytest.raises(OverrideError):
+            apply_overrides(original, [broken])
+
+
 def test_a_line_that_is_missing_or_twice_there_is_an_error():
     single = page(110, line(word("иста"), word("иста")))
     twice = page(110, line(word("иста"), word("иста")), line(word("иста"), word("иста")))

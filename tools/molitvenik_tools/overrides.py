@@ -8,11 +8,20 @@ add ``rubric`` (print the replaced words red or black; a string names the words
 of the replacement that are printed red, for a red word that stands before black
 ones) and ``left`` (the x of the replaced words in the half-resolution page, for
 a word lost at the start of a line).
+
+A correction with ``missing`` instead of ``find`` and ``replace`` is a printed
+line that the OCR did not output at all: it stands before the line the
+correction names, red when ``rubric`` is true. ``box`` says where the print
+shows it (left, top, width and height in half-resolution pixels).
 """
 
 from __future__ import annotations
 
 import copy
+
+CHAR_WIDTH = 17  # half-resolution pixels an ordinary character of the print is wide
+SPACE_WIDTH = 8  # … and the space after it
+DEFAULT_PITCH = 52  # … and the distance from one line to the next
 
 
 class OverrideError(ValueError):
@@ -117,6 +126,83 @@ def apply_spans(line: dict, spans: list[tuple[int, int, str, bool | str | None]]
     line["text"] = " ".join(w["text"] for w in line["words"])
 
 
+def missing_line(page: dict, before: dict, text: str, *, red: bool = False, box: list | None = None) -> dict:
+    """A line the OCR did not output, with the text `text`, as it stands before the line
+    `before`.
+
+    No reading gave the line boxes, so it has none of its own. ``box`` is where the print
+    shows it (left, top, width and height in half-resolution pixels). Without it, the line is
+    taken to stand one line pitch above `before`, centred in the text of the page, and to be
+    as wide as its characters. Only what the cleaner reads is set: where the line begins and
+    ends, how high it is, and the colour of its words; the words carry the flag ``inserted``.
+    """
+    lines = sorted(page["lines"], key=lambda line: line["cy"])
+    gaps = sorted(b["cy"] - a["cy"] for a, b in zip(lines, lines[1:], strict=False))
+    gaps = [gap for gap in gaps if 20 < gap < 80]
+    pitch = gaps[len(gaps) // 2] if gaps else DEFAULT_PITCH
+    if box is not None:
+        if not (isinstance(box, list) and len(box) == 4 and all(isinstance(v, int | float) for v in box)):
+            raise OverrideError(f"page {page['page']}: box must be left, top, width and height: {box!r}")
+        left, top, width, height = (int(value) for value in box)
+    else:
+        height = before["bottom"] - before["top"]
+        top = before["top"] - pitch
+        width = len(text) * CHAR_WIDTH
+        starts = [
+            line["words"][0]["left"] for line in page["lines"] if line["kind"] == "content" and line["words"]
+        ]
+        right = max(line["right"] for line in page["lines"] if line["kind"] == "content")
+        left = round(min(starts) + (right - min(starts) - width) / 2)
+    words, x = [], left
+    for token in text.split(" "):
+        span = len(token) * CHAR_WIDTH
+        words.append(
+            {
+                "text": token,
+                "left": x,
+                "top": top,
+                "width": span,
+                "height": height,
+                "conf": 0.0,
+                "red": 1.0 if red else 0.0,
+                "color": "red" if red else "black",
+                "flags": ["inserted"],
+            }
+        )
+        x += span + SPACE_WIDTH
+    return {
+        "kind": "content",
+        "cy": top + height / 2,
+        "top": top,
+        "bottom": top + height,
+        "left": left,
+        "right": left + width,
+        "text": text,
+        "words": words,
+    }
+
+
+def insert_line(corrected: dict, content: list[dict], override: dict) -> None:
+    """Put a line the OCR did not output (a correction with ``missing``) before the line it
+    names, in the corrected page and among its content lines."""
+    text = override.get("missing")
+    if not isinstance(text, str) or not text.strip():
+        raise OverrideError(f"page {corrected['page']}: 'missing' must be the text of a line: {override}")
+    if override.get("rubric") not in (True, False, None):
+        raise OverrideError(f"page {corrected['page']}: rubric of a missing line must be true or false")
+    matches = [line for line in content if line["text"] == override.get("line")]
+    if len(matches) != 1:
+        raise OverrideError(
+            f"page {corrected['page']}: line {override.get('line')!r} occurs {len(matches)} times, "
+            "expected exactly once"
+        )
+    new = missing_line(
+        corrected, matches[0], text.strip(), red=override.get("rubric") is True, box=override.get("box")
+    )
+    corrected["lines"].insert(corrected["lines"].index(matches[0]), new)
+    content.insert(content.index(matches[0]), new)
+
+
 def apply_overrides(page: dict, overrides: list[dict]) -> dict:
     """Return a corrected copy of an OCR page (contract C2), leaving the original as it is."""
     corrected = copy.deepcopy(page)
@@ -128,6 +214,9 @@ def apply_overrides(page: dict, overrides: list[dict]) -> dict:
             raise OverrideError(
                 f"page {page['page']}: a correction is marked for page {number}: {override.get('find')!r}"
             )
+        if "missing" in override:
+            insert_line(corrected, content, override)
+            continue
         by_line.setdefault(override.get("line"), []).append(override)
 
     for line_text, group in by_line.items():

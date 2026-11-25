@@ -13,7 +13,7 @@ from molitvenik_tools.clean import (
     page_margins,
     run,
 )
-from molitvenik_tools.overrides import OverrideError
+from molitvenik_tools.overrides import OverrideError, apply_overrides
 
 MARGIN = 135
 INDENT = MARGIN + 90
@@ -356,6 +356,44 @@ def test_an_instruction_printed_in_red_over_several_lines_is_one_rubric_block():
 def test_an_indented_red_line_begins_a_new_rubric_block():
     rubrics = page(99, line(200, *red(["Слава:"]), indent=True), line(254, *red(["И", "сада:"]), indent=True))
     assert own_texts(clean_book([*reference_pages(), rubrics], NO_FOOTNOTES)) == ["Слава:", "И сада:"]
+
+
+def test_a_printed_line_inserted_by_a_correction_takes_its_place_in_the_text():
+    """„Песма 9." is printed in red on a line of its own above the irmos of the ninth ode.
+    The OCR gave no line; the correction puts it where the print shows it."""
+    body = page(
+        81,
+        line(142, "векове!", "Амин."),
+        line(280, ("Ирмос:", "red"), "С", "правом", "те", indent=True, right=RIGHT),
+        line(334, "признајемо", "за", "Богородицу,", right=RIGHT),
+    )
+    fixed = apply_overrides(
+        body,
+        [
+            {
+                "page": 81,
+                "line": "Ирмос: С правом те",
+                "missing": "Песма 9.",
+                "rubric": True,
+                "box": [435, 180, 122, 32],
+            }
+        ],
+    )
+    assert [line_["text"] for line_ in fixed["lines"]] == [
+        "векове! Амин.",
+        "Песма 9.",
+        "Ирмос: С правом те",
+        "признајемо за Богородицу,",
+    ]
+    book = clean_book([*reference_pages(), fixed], NO_FOOTNOTES)
+    own = [block for block in book["blocks"] if block["page_start"] == 81]
+    # „векове! Амин." goes on in the paragraph of the page before; the rest is the heading and the irmos
+    assert [(block["kind"], block["page_start"]) for block in own] == [("rubric", 81), ("paragraph", 81)]
+    assert own[0]["text"] == "Песма 9."
+    assert own[1]["runs"] == [
+        {"text": "Ирмос:", "rubric": True},
+        {"text": "С правом те признајемо за Богородицу,", "rubric": False},
+    ]
 
 
 def test_a_heading_printed_in_red_over_two_centred_lines_is_one_rubric_block():
