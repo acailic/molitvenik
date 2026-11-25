@@ -690,13 +690,6 @@
   "note": "the day prayers of the seventh prayer"
  },
  {
-  "page": 94,
-  "line": "ме од сваког незања, и забо-",
-  "find": "незања",
-  "replace": "незнања",
-  "note": "letter н missing in A"
- },
- {
   "page": 95,
   "line": "исповедање ~ грехова — мојих!",
   "find": "—",
