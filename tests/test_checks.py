@@ -244,6 +244,19 @@ def test_a_prayer_printed_line_by_line_is_no_problem():
     assert run_checks(prayers, book) == []
 
 
+def test_a_prayer_whose_first_block_begins_in_lowercase_is_a_problem():
+    """Lowercase at the very start of a prayer means its opening went to the prayer before."""
+    prayers, book = clean()
+    rubric = prayers["units"][0]["blocks"][0]
+    assert rubric["kind"] == "rubric"
+    prayers["units"][0]["blocks"].pop(0)
+    book["blocks"].remove(next(block for block in book["blocks"] if block.get("text") == rubric["text"]))
+    first = prayers["units"][0]["blocks"][0]
+    first["runs"][0]["text"] = first["runs"][0]["text"][0].lower() + first["runs"][0]["text"][1:]
+
+    assert run_checks(prayers, book) == [f"{UID} (block 1): prayer text begins in lowercase in 'господе…'"]
+
+
 def test_a_prayer_may_begin_with_a_red_instruction_in_lowercase():
     prayers, book = clean()
     prayer = next(block for block in prayers["units"][0]["blocks"] if block["kind"] == "paragraph")
