@@ -50,6 +50,7 @@ MAX_HINTS = 45  # listed per page
 MAX_NOTE = 200
 ZOOM = 0.72  # strips are cut from the full-resolution scan and shown at this zoom
 MAX_SHEET_HEIGHT = 1800  # taller images are shrunk by the reviewers' viewer until they blur
+OTHER = " ‖ "  # between the lines of the other reading that are named at one line of ours
 PAD_X = 20  # page pixels of margin on each side of the text column
 LABEL_W, LABEL_SIZE, GAP = 64, 40, 14
 TINT = (255, 222, 90, 70)  # yellow, a quarter opaque
@@ -360,20 +361,30 @@ def page_furniture(lines: list[str], page: dict) -> set[int]:
     title (which the OCR sets apart as a header), with or without stray marks, and its page
     number, also when the number was read into a line of marks and stray letters (the Archive's
     „22 сы пп аат"). A line with a real word besides the number is not page furniture: it may
-    be „Кондак 1"."""
+    be „Кондак 1".
+
+    The last line of the other reading is judged by what it holds rather than by the number:
+    when it carries a number and none of its words stands in our lines, it is the page number
+    among marks, though the number was misread („мн 184" for 84) or glued to more than two
+    words."""
     titles = {line_shapes(line["text"])[1] for line in page["lines"] if line["kind"] == "header"}
     numbers = {
         norm(token) for line in page["lines"] if line["kind"] == "footer" for token in line["text"].split()
     }
     numbers.add(str(page.get("book_page", page["page"] + 3)))  # the number the page carries in print
     numbers.discard("")
+    our_words = {norm(token) for _, line in content_lines(page) for token in line["text"].split()}
     furniture = set()
     for index, text in enumerate(lines):
         joined, letters = line_shapes(text)
-        words = [token for token in text.split() if len(LETTER.findall(norm(token))) >= 3]
+        tokens = text.split()
+        words = [token for token in tokens if len(LETTER.findall(norm(token))) >= 3]
+        numbered = any(norm(token).isdigit() for token in tokens)
         if not joined or joined.isdigit() or letters in titles:
             furniture.add(index)
-        elif any(norm(token) in numbers for token in text.split()) and len(words) < 2:
+        elif numbered and len(words) < 2 and any(norm(token) in numbers for token in tokens):
+            furniture.add(index)
+        elif index == len(lines) - 1 and numbered and not any(norm(token) in our_words for token in words):
             furniture.add(index)
     return furniture
 
@@ -411,6 +422,31 @@ def beside(items: list[Word], start: int, end: int) -> list[Word]:
     return items[start:end] or items[max(start - 1, 0) : max(start - 1, 0) + 1]
 
 
+PAIR_SHARE = 0.5  # how much of their tokens two lines must share to be the same printed line
+
+
+def pair_lines(ours: list[str], theirs: list[str]) -> dict[int, int]:
+    """Which line of `theirs` is which line of `ours` (offsets into both), inside a block that
+    does not line up: the pair that shares most tokens is taken first, then the next, until no
+    pair shares at least PAIR_SHARE of them. A line of `theirs` that is left stands in no line
+    of ours."""
+    shares = sorted(
+        (
+            (SequenceMatcher(None, theirs[t].split(), ours[o].split(), autojunk=False).ratio(), t, o)
+            for t in range(len(theirs))
+            for o in range(len(ours))
+        ),
+        reverse=True,
+    )
+    pairs: dict[int, int] = {}
+    for share, t, o in shares:
+        if share < PAIR_SHARE:
+            break
+        if t not in pairs and o not in pairs.values():
+            pairs[t] = o
+    return pairs
+
+
 def diff_against(page: dict, lines: list[str]) -> list[dict]:
     """The OCR lines of `page` on which another reading of the page (`lines`) disagrees with
     ours, in line order. An entry names the line (`line_index` is its index among the lines of
@@ -418,9 +454,11 @@ def diff_against(page: dict, lines: list[str]) -> list[dict]:
     differ (`diffs`: pairs of [ours, theirs]).
 
     A line that only the other reading has is reported against our line before it (or our
-    first line) with `only_other` true and nothing on our side: a printed line that our OCR
-    does not have at all. The running title and the page number of the other reading do not
-    count."""
+    first line) with nothing on our side and named under `extra`: a printed line that our OCR
+    does not have at all. With `only_other` true that is all the other reading says at our
+    line. That holds inside a block of lines that does not line up as well: the lines are
+    paired first, and a line of the other reading that pairs with none of ours is such a line.
+    The running title and the page number of the other reading do not count."""
     content = content_lines(page)
     ours = [[word["text"] for word in line["words"]] for _, line in content]
     furniture = page_furniture(lines, page)
@@ -430,40 +468,82 @@ def diff_against(page: dict, lines: list[str]) -> list[dict]:
     their_text = [" ".join(normalised(tokens)) for tokens in theirs]
     found: dict[int, dict] = {}
 
-    def note(index: int, other: str, diff: dict, *, only_other: bool = False) -> None:
-        entry = found.setdefault(index, {"other": other, "diffs": []})
-        entry["diffs"].append(diff)
-        if only_other:
-            entry["only_other"] = True
+    def note(index: int, shown: list[tuple[int, str]], diff: dict, *, alone: bool = False) -> None:
+        """What the other reading says at one of our lines: its lines, each with its number
+        among its lines so that several are shown in reading order, and one disagreement;
+        ``alone`` when that disagreement is a line of the other reading that stands in none of
+        ours."""
+        entry = found.setdefault(index, {"read": [], "diffs": []})
+        entry["read"] = sorted({*entry["read"], *shown})
+        entry["diffs"].append((shown[0][0], diff))
+        entry["alone"] = entry.get("alone", 0) + alone
+        if alone:
+            entry.setdefault("extra", []).append(shown[0][0])
+
+    def unpaired(note_index: int, number: int) -> None:
+        extra = [Word(number, text) for text in kept(theirs[number])]
+        if extra:
+            note(
+                note_index,
+                [(number, their_lines[number])],
+                {"ours": [], "theirs": [w.text for w in extra]},
+                alone=True,
+            )
 
     # The lines are put side by side first. The lines of a block that does not line up are
     # then compared word by word, so that different line breaks do not count.
     blocks = SequenceMatcher(None, our_text, their_text, autojunk=False).get_opcodes()
     for _, i1, i2, j1, j2 in blocks:
         if i1 == i2:
-            if j2 > j1:
-                extra = [Word(j, text) for j in range(j1, j2) for text in kept(theirs[j])]
-                other = " ".join(their_lines[number] for number in dict.fromkeys(w.line for w in extra))
-                if extra:
-                    note(
-                        max(0, i1 - 1),
-                        other,
-                        {"ours": [], "theirs": [w.text for w in extra]},
-                        only_other=True,
-                    )
+            for number in range(j1, j2):
+                unpaired(max(0, i1 - 1), number)
             continue
+        # Where the other reading has more lines than ours in the block, a line of it that
+        # pairs with none of ours is a line our OCR does not have: it stands between two of our
+        # lines and is named with the first of them. Without a surplus the lines are the same
+        # lines read another way, and only runs of one or two tokens count, as before.
+        if j2 - j1 > i2 - i1:
+            pairs = pair_lines(our_text[i1:i2], their_text[j1:j2])
+            for t in range(j2 - j1):
+                if t in pairs:
+                    continue
+                after = [o for later, o in pairs.items() if later > t]
+                before = [o for later, o in pairs.items() if later < t]
+                if after:
+                    unpaired(max(0, i1 + min(after) - 1), j1 + t)
+                else:
+                    unpaired(i1 + max(before) if before else max(0, i1 - 1), j1 + t)
+            paired = [j for j in range(j1, j2) if j - j1 in pairs]
+        else:
+            paired = list(range(j1, j2))
         a = [Word(k, text) for k in range(i1, i2) for text in kept(ours[k])]
-        b = [Word(j, text) for j in range(j1, j2) for text in kept(theirs[j])]
+        b = [Word(j, text) for j in paired for text in kept(theirs[j])]
         for p1, p2, q1, q2 in disagreements(a, b):
             ours_here, theirs_here = beside(a, p1, p2), beside(b, q1, q2)
+            if not theirs_here:
+                continue
             diff = {"ours": [w.text for w in a[p1:p2]], "theirs": [w.text for w in b[q1:q2]]}
-            other = " ".join(their_lines[j] for j in dict.fromkeys(w.line for w in theirs_here))
+            numbers = list(dict.fromkeys(w.line for w in theirs_here))
             for index in dict.fromkeys(w.line for w in ours_here):
-                note(index, other, diff)
-    return [
-        {"page": page["page"], "line_index": content[k][0], "line": content[k][1]["text"], **found[k]}
-        for k in sorted(found)
-    ]
+                note(index, [(numbers[0], " ".join(their_lines[j] for j in numbers))], diff)
+    entries = []
+    for k in sorted(found):
+        diffs = [diff for _, diff in sorted(found[k]["diffs"], key=lambda pair: pair[0])]
+        entry = {
+            "page": page["page"],
+            "line_index": content[k][0],
+            "line": content[k][1]["text"],
+            "other": OTHER.join(text for _, text in found[k]["read"]),
+            "diffs": diffs,
+        }
+        # The lines of the other reading that stand in none of ours are named under `extra`;
+        # when they are all it says at our line, it has that line alone.
+        if found[k].get("extra"):
+            entry["extra"] = [their_lines[number] for number in sorted(set(found[k]["extra"]))]
+            if found[k]["alone"] == len(diffs):
+                entry["only_other"] = True
+        entries.append(entry)
+    return entries
 
 
 def marked_lines(page: dict, second: list[str], hints: set[int]) -> list[int]:

@@ -529,12 +529,76 @@ def test_a_line_that_only_the_other_reading_has_is_reported_against_our_line_bef
             "line": "исцели господе ране ду-",
             "other": "о милосрђу божјем",
             "diffs": [{"ours": [], "theirs": ["о", "милосрђу", "божјем"]}],
+            "extra": ["о милосрђу божјем"],
             "only_other": True,
         }
     ]
     at_the_end = ["исцели господе ране ду-", "ше моје и освети ме целог", "амин."]
     assert [entry["line_index"] for entry in review.diff_against(page, at_the_end)] == [1]
     assert review.marked_lines(page, at_the_end, set()) == [1]
+
+
+def test_a_line_that_only_the_other_reading_has_is_found_beside_a_line_that_differs():
+    """The lost line and a misread word on its neighbour land in one block of lines; the lost
+    line must not drown in the word-by-word comparison."""
+    page = make_page(["исцели господе ране ду-", "ше моје и освети ме целог"])
+    second = ["исцели господе ране ду-", "о милосрђу божјем", "ше моје и освети те целог"]
+
+    assert review.diff_against(page, second) == [
+        {
+            "page": 110,
+            "line_index": 0,
+            "line": "исцели господе ране ду-",
+            "other": "о милосрђу божјем",
+            "diffs": [{"ours": [], "theirs": ["о", "милосрђу", "божјем"]}],
+            "extra": ["о милосрђу божјем"],
+            "only_other": True,
+        },
+        {
+            "page": 110,
+            "line_index": 1,
+            "line": "ше моје и освети ме целог",
+            "other": "ше моје и освети те целог",
+            "diffs": [{"ours": ["ме"], "theirs": ["те"]}],
+        },
+    ]
+    # after the line that differs: both of the other reading's lines are named, in reading order
+    second = ["исцели господе ране ду-", "ше моје и освети те целог", "о милосрђу божјем"]
+    (entry,) = review.diff_against(page, second)
+    assert entry["line_index"] == 1
+    assert (
+        "extra" not in review.diff_against(page, ["исцели господе ране ду-", "ше моје и освети те целог"])[0]
+    )
+    assert entry["other"] == review.OTHER.join(["ше моје и освети те целог", "о милосрђу божјем"])
+    assert entry["diffs"] == [
+        {"ours": ["ме"], "theirs": ["те"]},
+        {"ours": [], "theirs": ["о", "милосрђу", "божјем"]},
+    ]
+    assert entry["extra"] == ["о милосрђу божјем"]
+    assert "only_other" not in entry  # the other reading has a word of ours here as well
+    assert review.marked_lines(page, second, set()) == [1]
+
+
+@pytest.mark.parametrize(
+    "book_page, last",
+    [
+        (20, "ааа 20 (етен"),
+        (55, "Е 30 —————"),
+        (84, "мн 184"),
+        (86, "а ~ 36"),
+        (158, "Е ЧЕЧЕ ЧЕ Е Бае. ИС. НЕН 158 ааа аан а о 8."),
+    ],
+)
+def test_the_page_number_misread_or_glued_to_many_words_is_not_an_extra_line(book_page, last):
+    """What the Archive's OCR made of the page number on five pages of this book."""
+    page = make_page(["исцели господе ране ду-", "Кондак 1"])
+    page["book_page"] = book_page
+    second = ["исцели господе ране ду-", "Кондак 1", last]
+
+    assert review.diff_against(page, second) == []
+    assert review.marked_lines(page, second, set()) == []
+    # a last line that carries a number and a word of our text is a line, not the page number
+    assert review.marked_lines(page, second[:-1] + ["Кондак 11"], set()) == [1]
 
 
 def test_a_number_that_differs_is_a_disagreement():
