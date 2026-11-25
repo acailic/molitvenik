@@ -530,10 +530,10 @@
  {
   "page": 83,
   "line": "Свети Боже; и по Оче наш",
-  "find": " и ",
-  "replace": " и ",
+  "find": "и по",
+  "replace": "и по",
   "rubric": true,
-  "note": "corrections page: the word и in „Свети Боже; и по Оче наш:« is a rubric"
+  "note": "corrections page: „и по“ in „Свети Боже; и по Оче наш:“ (line 7 from the top of page 86) is printed black and should be red; until 2026-11-25 only „и“ was made red"
  },
  {
   "page": 83,
