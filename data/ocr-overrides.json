@@ -1,12 +1,5 @@
 [
  {
-  "page": 8,
-  "line": "грешнога.",
-  "find": "грешнога.",
-  "replace": "грешннога.",
-  "note": "print has double н"
- },
- {
   "page": 9,
   "line": "Затим Слава Теби Боже",
   "find": "Затим",
@@ -142,13 +135,6 @@
  },
  {
   "page": 25,
-  "line": "ни ме вишим од овога света.",
-  "find": "вишим",
-  "replace": "вишиим",
-  "note": "blind transcription of the sample, settled on the scan"
- },
- {
-  "page": 25,
   "line": "остарелог кроз — неосетљива",
   "find": "—",
   "replace": "",
@@ -160,20 +146,6 @@
   "find": "Љзаволех",
   "replace": "заволех",
   "note": "coordinator, sheet 6 strip 02"
- },
- {
-  "page": 28,
-  "line": "остави ме грешнога, нити од-",
-  "find": "грешнога,",
-  "replace": "грешннога,",
-  "note": "the print has three н, the form it uses throughout (pages 8, 14, 30); full review, sheet 67"
- },
- {
-  "page": 30,
-  "line": "ме грешнога. Амин.",
-  "find": "грешнога.",
-  "replace": "грешннога.",
-  "note": "the print has three н, as on pages 8 and 14; full review, sheet 74"
  },
  {
   "page": 30,
@@ -211,34 +183,6 @@
   "note": "coordinator, sheet 8 strip 04"
  },
  {
-  "page": 33,
-  "line": "се предвечни, грешника спасе-",
-  "find": "грешника",
-  "replace": "грешнника",
-  "note": "the print has нн, as on pages 35, 40 and 50; every word of this shape was looked at on the scan"
- },
- {
-  "page": 35,
-  "line": "грешнога; Исусе, услиши ме",
-  "find": "грешнога;",
-  "replace": "грешнага;",
-  "note": "the print has а (coordinator's check of the measurement)"
- },
- {
-  "page": 35,
-  "line": "нике. Не презри сада ни мене",
-  "find": "нике. Не",
-  "replace": "ннике. Не",
-  "note": "„неверннике«: the print has нн; full review, sheet 85"
- },
- {
-  "page": 35,
-  "line": "ринике и грешнике и невер-",
-  "find": "ринике и грешнике",
-  "replace": "риннике и грешннике",
-  "note": "the print has нн in both words; full review, sheet 85, confirmed at high magnification"
- },
- {
   "page": 36,
   "line": "створитељу; ~ Исусе, – земаљ-",
   "find": "–",
@@ -272,13 +216,6 @@
   "find": "смрти мојој,",
   "replace": "смрти мојој;",
   "note": "coordinator, sheet 12 strip 03"
- },
- {
-  "page": 40,
-  "line": "купитељу грешника, очисти",
-  "find": "грешника",
-  "replace": "грешнника",
-  "note": "the print has нн; coordinator's reading of sheet 100"
  },
  {
   "page": 42,
@@ -325,13 +262,6 @@
   "note": "coordinator, sheet 15 strip 04"
  },
  {
-  "page": 45,
-  "line": "брољубиву душу ~ цариника",
-  "find": "цариника",
-  "replace": "царинника",
-  "note": "blind transcription of the sample, settled on the scan"
- },
- {
   "page": 46,
   "line": "своју душу. Тако просвети И",
   "find": "И",
@@ -354,13 +284,6 @@
  },
  {
   "page": 49,
-  "line": "О, преслатки и свежа-",
-  "find": "свежа-",
-  "replace": "свеха-",
-  "note": "the print has х and no hyphen inside the word (coordinator's check of the measurement)"
- },
- {
-  "page": 49,
   "line": "говораше — клучићу – овако:",
   "find": "—",
   "replace": "",
@@ -372,13 +295,6 @@
   "find": "–",
   "replace": "",
   "note": "dash phantom on the scan (sheet s-03)"
- },
- {
-  "page": 50,
-  "line": "се предвечни, грешника спа-",
-  "find": "грешника",
-  "replace": "грешнника",
-  "note": "the print has нн; every word of this shape was looked at on the scan"
  },
  {
   "page": 52,
@@ -851,13 +767,6 @@
   "note": "question mark in print"
  },
  {
-  "page": 101,
-  "line": "спаси ме грешнога!",
-  "find": "грешнога",
-  "replace": "грешннога",
-  "note": "the print has нн after ш, as on pages 8, 28 and 30"
- },
- {
   "page": 103,
   "line": "Онда целивај „крст свој, и прекрсти",
   "find": "„крст",
@@ -1261,24 +1170,10 @@
  },
  {
   "page": 130,
-  "line": "грешника, него да се обрати",
-  "find": "грешника",
-  "replace": "грешнника",
-  "note": "the print has нн"
- },
- {
-  "page": 130,
   "line": "као цариника, и као блудног'",
   "find": "блудног'",
   "replace": "блудног",
   "note": "stray apostrophe; only a faint show-through mark after the word"
- },
- {
-  "page": 131,
-  "line": "него грешнике на покајање.",
-  "find": "грешнике",
-  "replace": "грешннике",
-  "note": "the print has нн"
  },
  {
   "page": 134,
@@ -1387,10 +1282,10 @@
  },
  {
   "page": 147,
-  "line": "бацио цариника који се по-",
-  "find": "цариника",
-  "replace": "царинника",
-  "note": "the print has нн, as on page 45; full review, sheet 421"
+  "line": "им створио, и ући ћеш са",
+  "find": "им",
+  "replace": "једини",
+  "note": "the first word of the page, in small capitals, is „једини« („врата која си Ти једини створио«); the OCR read „им«. Found by the blind transcription"
  },
  {
   "page": 147,
@@ -1442,13 +1337,6 @@
   "note": "question mark in the print"
  },
  {
-  "page": 155,
-  "line": "Боже, мој, што ме грешника",
-  "find": "грешника",
-  "replace": "грешнника",
-  "note": "the print has нн"
- },
- {
   "page": 157,
   "line": "и бескрајна сладост – оних",
   "find": "–",
@@ -1475,6 +1363,13 @@
   "find": "светињу о пречистих",
   "replace": "светињу пречистих",
   "note": "stray о; the print has nothing between the words"
+ },
+ {
+  "page": 162,
+  "line": "МИЛуј, реши: Оче благослови! Ако",
+  "find": "реши:",
+  "replace": "реци:",
+  "note": "the red word is „реци:« (say); blind transcription of the page, settled on the scan at magnification"
  },
  {
   "page": 162,
@@ -1583,13 +1478,6 @@
  },
  {
   "page": 166,
-  "line": "а грешнике милујеш и све",
-  "find": "грешнике",
-  "replace": "грешннике",
-  "note": "the print has нн"
- },
- {
-  "page": 166,
   "line": "заповестима — Твојим, душе",
   "find": "—",
   "replace": "",
@@ -1680,13 +1568,6 @@
   "find": "ч0-",
   "replace": "чо-",
   "note": "о read as 0"
- },
- {
-  "page": 173,
-  "line": "грешника који се каје, учини",
-  "find": "грешника",
-  "replace": "грешнника",
-  "note": "the print has нн"
  },
  {
   "page": 175,
