@@ -62,7 +62,7 @@ The corrections page is applied to the text:
 
 * Book page 25 (in „Молитва пета, светога Василија Великог"): delete the struck-through
   repeated passage — the last word of one line, the whole next line and the first word of
-  the following line — so that the sentence reads „…они који празнују и несказана сладост
+  the following line — so that the sentence reads „…они који празнују и неисказана сладост
   оних који гледају неизрециву лепоту лица Твога." A blue pen mark in the scanned copy
   covers the deleted words; the mark itself is not part of the printed text.
 * Book page 86, line 7 of the text block: the word „и" in „Свети Боже; **и** по Оче наш:"
