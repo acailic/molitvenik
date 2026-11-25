@@ -163,13 +163,6 @@
  },
  {
   "page": 32,
-  "line": "Сила, отвори мој збуњени ум",
-  "find": "збуњени",
-  "replace": "збунђени",
-  "note": "the print has ђ, with its descender; full review, sheet 76"
- },
- {
-  "page": 32,
   "line": "сти! ~ Исусе – свежалостиви,",
   "find": "–",
   "replace": "",
