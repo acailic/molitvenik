@@ -91,11 +91,12 @@ function passageAround(unit, key, opening) {
 
     const start = Math.max(0, first - 50);
     const before = chars.slice(start, first).join("");
-    // The opening word is dropped only where the cut left it incomplete.
+    // The opening word is dropped only where the cut left it incomplete; the ellipsis says
+    // that something was cut, wherever the cut fell.
     const cutLead = start > 0 && chars[start - 1] !== " " ? before.indexOf(" ") + 1 : 0;
     const after = chars.slice(first, first + 120).join("");
     const cutTail = after.indexOf(" ", 100);
-    const lead = cutLead ? "…" : "";
+    const lead = start > 0 ? "…" : "";
     const tail = cutTail === -1 ? "" : "…";
     return `${lead}${before.slice(cutLead)}${cutTail === -1 ? after : after.slice(0, cutTail)}${tail}`;
   }

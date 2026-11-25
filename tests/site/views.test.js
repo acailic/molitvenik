@@ -214,9 +214,10 @@ test("the home lists the sections with how many prayers and which pages", () => 
 test("a search result marks the found words in the title, in the author and in the passage", () => {
   const html = view.renderList(searched("pomiluj"));
   assert.ok(html.includes('<a class="hit-title" href="#/molitva/jutarnje__pocetak">Почетак јутарњих молитава</a>'));
-  // fifty characters before the word, at a word end; the rubric that follows is part of the passage
+  // fifty characters before the word the cut falls on a space: the first word stays whole, and
+  // the ellipsis says that something was cut; the rubric that follows is part of the passage
   assert.ok(html.includes(
-    '<p class="hit-text">ради молитава пречисте Твоје Матере и свих светих <mark>помилуј</mark> нас. Амин. Затим Слава Теби Боже наш, слава Теби.</p>',
+    '<p class="hit-text">…ради молитава пречисте Твоје Матере и свих светих <mark>помилуј</mark> нас. Амин. Затим Слава Теби Боже наш, слава Теби.</p>',
   ));
   // the word stands near the opening of „Свети Боже": nothing is cut before it
   assert.ok(html.includes(
@@ -248,19 +249,18 @@ test("a search result marks the found words in the title, in the author and in t
 test("the passage around a found word starts and ends at word ends", () => {
   const found = passages(view.renderList(searched("istine")));
   assert.equal(found.length, 2);
-  const text = unitText(unit("pred-pricesce__primer-duga"));
+  const words = unitText(unit("pred-pricesce__primer-duga")).split(" ");
   for (const passage of found) {
     assert.ok(passage.includes("Душе истине, који си свуда и све испуњаваш"));
-    // every word of the passage is a word of the prayer
-    for (const word of passage.replaceAll("…", " ").split(" ").filter(Boolean)) assert.ok(text.includes(word), word);
-    // the word before the cut is whole: in the prayer a space follows it
-    assert.ok(text.includes(`${passage.slice(0, -1).split(" ").pop()} `));
+    // every word of the passage is a whole word of the prayer: neither end cuts into a word
+    for (const word of passage.replaceAll("…", " ").split(" ").filter(Boolean)) assert.ok(words.includes(word), word);
     assert.ok(passage.endsWith("…"));
     assert.ok(passage.length > 100 && passage.length < 180, passage);
   }
   // the word stands forty characters into the short prayer: nothing is cut before it
   assert.ok(found[0].startsWith("Царе небески, Утешитељу, Душе истине"), found[0]);
-  // deep in the long prayer: some fifty characters before it
+  assert.ok(!found[0].includes("…Душе"), "no ellipsis where nothing was cut");
+  // deep in the long prayer: some fifty characters before it, and an ellipsis where the cut fell
   assert.ok(found[1].startsWith("…и пијем Твоју Крв. Царе небески, Утешитељу, Душе истине"), found[1]);
 });
 
