@@ -178,6 +178,8 @@ def test_a_correction_may_insert_a_printed_line_that_the_ocr_did_not_output():
     the line, so it has no box and the correction says where the print shows it."""
     original = page(81, line(word("С", 321), word("правом", 360), word("те", 560), word("приз-", 640)))
     correction = {"page": 81, "line": "С правом те приз-", "missing": "Песма 9.", "rubric": True}
+    spaces = apply_overrides(original, [{**correction, "missing": "Песма  \t9."}])["lines"][0]
+    assert spaces["text"] == "Песма 9." and [w["text"] for w in spaces["words"]] == ["Песма", "9."]
     fixed = apply_overrides(
         original,
         [
@@ -197,13 +199,17 @@ def test_a_correction_may_insert_a_printed_line_that_the_ocr_did_not_output():
     assert [w["color"] for w in irmos["words"]] == ["red", "black", "black", "black", "black"]
     assert texts(original) == ["С правом те приз-"]  # the original page is left as it was
 
-    # without a box the line stands one pitch above and in the middle of the text of the page
+    # without a box the line stands one pitch above the named line; a red heading in the
+    # middle of the text of the page (so the cleaner makes a rubric of it), a black line of the
+    # text at the left edge (so that it is not taken for the start of a paragraph)
     plain = apply_overrides(original, [{key: value for key, value in correction.items() if key != "rubric"}])[
         "lines"
     ][0]
     assert (plain["top"], plain["bottom"]) == (48, 88)
-    assert plain["left"] == 321 + (700 - 321 - 8 * 17) // 2
+    assert plain["left"] == 321
     assert [w["color"] for w in plain["words"]] == ["black", "black"]
+    centred = apply_overrides(original, [correction])["lines"][0]
+    assert centred["left"] == 442 and centred["right"] == 578
 
 
 def test_a_missing_line_that_cannot_be_placed_or_said_is_an_error():

@@ -356,7 +356,20 @@ def kept(tokens: list[str]) -> list[str]:
     return [text for text in tokens if norm(text)]
 
 
-def page_furniture(lines: list[str], page: dict) -> set[int]:
+def book_vocabulary(pages: list[dict]) -> set[str]:
+    """Every word of at least three letters that stands in the content lines of `pages`,
+    normalised: it tells a word of the book from the marks another reading makes of a page
+    number."""
+    return {
+        norm(token)
+        for page in pages
+        for _, line in content_lines(page)
+        for token in line["text"].split()
+        if len(LETTER.findall(norm(token))) >= 3
+    }
+
+
+def page_furniture(lines: list[str], page: dict, vocabulary: set[str] | None = None) -> set[int]:
     """The indexes of the lines of another reading that say nothing about our text: its running
     title (which the OCR sets apart as a header), with or without stray marks, and its page
     number, also when the number was read into a line of marks and stray letters (the Archive's
@@ -364,9 +377,12 @@ def page_furniture(lines: list[str], page: dict) -> set[int]:
     be „Кондак 1".
 
     The last line of the other reading is judged by what it holds rather than by the number:
-    when it carries a number and none of its words stands in our lines, it is the page number
-    among marks, though the number was misread („мн 184" for 84) or glued to more than two
-    words."""
+    when it carries a number and none of its words stands in our lines, nor in `vocabulary`
+    (the words of the whole book, see `book_vocabulary`), it is the page number among marks,
+    though the number was misread („мн 184" for 84) or glued to more than two words. A line
+    of ours that was lost altogether and carries a number („Кондак 11") keeps its words, and
+    so is not taken for the page number. Without a vocabulary only a line of digits and marks
+    is taken for the page number."""
     titles = {line_shapes(line["text"])[1] for line in page["lines"] if line["kind"] == "header"}
     numbers = {
         norm(token) for line in page["lines"] if line["kind"] == "footer" for token in line["text"].split()
@@ -384,7 +400,15 @@ def page_furniture(lines: list[str], page: dict) -> set[int]:
             furniture.add(index)
         elif numbered and len(words) < 2 and any(norm(token) in numbers for token in tokens):
             furniture.add(index)
-        elif index == len(lines) - 1 and numbered and not any(norm(token) in our_words for token in words):
+        elif (
+            index == len(lines) - 1
+            and numbered
+            and not any(norm(token) in our_words for token in words)
+            and (
+                not words  # digits and marks only
+                or (vocabulary is not None and not any(norm(token) in vocabulary for token in words))
+            )
+        ):
             furniture.add(index)
     return furniture
 
@@ -447,7 +471,7 @@ def pair_lines(ours: list[str], theirs: list[str]) -> dict[int, int]:
     return pairs
 
 
-def diff_against(page: dict, lines: list[str]) -> list[dict]:
+def diff_against(page: dict, lines: list[str], vocabulary: set[str] | None = None) -> list[dict]:
     """The OCR lines of `page` on which another reading of the page (`lines`) disagrees with
     ours, in line order. An entry names the line (`line_index` is its index among the lines of
     the page, `line` its text), gives the other reading of it (`other`) and the tokens that
@@ -461,7 +485,7 @@ def diff_against(page: dict, lines: list[str]) -> list[dict]:
     The running title and the page number of the other reading do not count."""
     content = content_lines(page)
     ours = [[word["text"] for word in line["words"]] for _, line in content]
-    furniture = page_furniture(lines, page)
+    furniture = page_furniture(lines, page, vocabulary)
     their_lines = [line for index, line in enumerate(lines) if index not in furniture]
     theirs = [line.split() for line in their_lines]
     our_text = [" ".join(normalised(tokens)) for tokens in ours]
@@ -473,8 +497,9 @@ def diff_against(page: dict, lines: list[str]) -> list[dict]:
         among its lines so that several are shown in reading order, and one disagreement;
         ``alone`` when that disagreement is a line of the other reading that stands in none of
         ours."""
-        entry = found.setdefault(index, {"read": [], "diffs": []})
-        entry["read"] = sorted({*entry["read"], *shown})
+        entry = found.setdefault(index, {"read": {}, "diffs": []})
+        for number, line in shown:
+            entry["read"][number] = line
         entry["diffs"].append((shown[0][0], diff))
         entry["alone"] = entry.get("alone", 0) + alone
         if alone:
@@ -504,16 +529,18 @@ def diff_against(page: dict, lines: list[str]) -> list[dict]:
         # lines read another way, and only runs of one or two tokens count, as before.
         if j2 - j1 > i2 - i1:
             pairs = pair_lines(our_text[i1:i2], their_text[j1:j2])
-            for t in range(j2 - j1):
-                if t in pairs:
-                    continue
+            # A line of theirs whose every word is a word of ours in this block is one of our
+            # lines broken another way, not a line we lack.
+            ours_here = Counter(token for k in range(i1, i2) for token in kept(ours[k]))
+            lost = [t for t in range(j2 - j1) if t not in pairs and Counter(kept(theirs[j1 + t])) - ours_here]
+            for t in lost:
                 after = [o for later, o in pairs.items() if later > t]
                 before = [o for later, o in pairs.items() if later < t]
                 if after:
                     unpaired(max(0, i1 + min(after) - 1), j1 + t)
                 else:
                     unpaired(i1 + max(before) if before else max(0, i1 - 1), j1 + t)
-            paired = [j for j in range(j1, j2) if j - j1 in pairs]
+            paired = [j for j in range(j1, j2) if j - j1 not in lost]
         else:
             paired = list(range(j1, j2))
         a = [Word(k, text) for k in range(i1, i2) for text in kept(ours[k])]
@@ -533,7 +560,7 @@ def diff_against(page: dict, lines: list[str]) -> list[dict]:
             "page": page["page"],
             "line_index": content[k][0],
             "line": content[k][1]["text"],
-            "other": OTHER.join(text for _, text in found[k]["read"]),
+            "other": OTHER.join(text for _, text in sorted(found[k]["read"].items())),
             "diffs": diffs,
         }
         # The lines of the other reading that stand in none of ours are named under `extra`;
@@ -546,11 +573,13 @@ def diff_against(page: dict, lines: list[str]) -> list[dict]:
     return entries
 
 
-def marked_lines(page: dict, second: list[str], hints: set[int]) -> list[int]:
+def marked_lines(
+    page: dict, second: list[str], hints: set[int], vocabulary: set[str] | None = None
+) -> list[int]:
     """The content lines of `page` that a reviewer has to look at, as indexes into the page's
     lines: those in `hints` (a line carries a hint when one of its words is suspected) and
     those on which `second`, the other reading of the page, disagrees."""
-    differing = {entry["line_index"] for entry in diff_against(page, second)}
+    differing = {entry["line_index"] for entry in diff_against(page, second, vocabulary)}
     return sorted(set(hints) | differing)
 
 
@@ -565,13 +594,16 @@ def write_marked(
     suspects = suspected_words(pages, dictionary_unknown(pages, hunspell, unknown), allowlist)
     for hint in suspects:
         hinted[hint.page].add(hint.line)
+    vocabulary = book_vocabulary(pages)
     marked, no_second = {}, []
     for page in pages:
         second = second_reading(root, page["page"])
         if second is None:
             no_second.append(page["page"])
             second = []
-        marked[f"{page['page']:03d}"] = marked_lines(page, second, hinted.get(page["page"], set()))
+        marked[f"{page['page']:03d}"] = marked_lines(
+            page, second, hinted.get(page["page"], set()), vocabulary
+        )
     write_json(root / "build" / "review" / "marked.json", marked)
     lines = sum(len(content_lines(page)) for page in pages)
     print(f"pages={len(pages)} content_lines={lines} marked={sum(len(v) for v in marked.values())}")
@@ -759,7 +791,7 @@ def write_strips(root, pages: list[int]) -> list[Path]:
             print(f"p-{number:03d}: no marked lines")
             continue
         page = read_page(root, number)
-        diffs = diff_against(page, second_reading(root, number) or [])
+        diffs = diff_against(page, second_reading(root, number) or [], book_vocabulary([page]))
         sheets, text = strips_sheets(page, indexes, diffs, open_scan(root, number, page))
         directory.mkdir(parents=True, exist_ok=True)
         for pattern in (f"p-{number:03d}.png", f"p-{number:03d}-*.png"):
@@ -790,7 +822,10 @@ def write_diff(root, transcriptions_dir: Path) -> list[dict]:
     root, transcriptions_dir = Path(root), Path(transcriptions_dir)
     marked_path = root / "build" / "review" / "marked.json"
     marked = load_json(marked_path) if marked_path.exists() else None
-    entries, files = [], sorted(transcriptions_dir.glob("*.json"))
+    files = sorted(transcriptions_dir.glob("*.json"))
+    has_pages = any((root / "build" / "ocr").glob("p-*.json"))
+    vocabulary = book_vocabulary(load_pages(root)) if has_pages else set()
+    entries = []
     lines = 0
     for path in files:
         data = load_json(path)
@@ -799,7 +834,7 @@ def write_diff(root, transcriptions_dir: Path) -> list[dict]:
             raise ReviewError(f"{path.name}: no page number in the file or its name")
         page = read_page(root, number)
         lines += len(content_lines(page))
-        for entry in diff_against(page, data.get("lines", [])):
+        for entry in diff_against(page, data.get("lines", []), vocabulary):
             entry["marked_before"] = (
                 entry["line_index"] in marked.get(f"{number:03d}", []) if marked is not None else None
             )

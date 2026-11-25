@@ -594,11 +594,39 @@ def test_the_page_number_misread_or_glued_to_many_words_is_not_an_extra_line(boo
     page = make_page(["исцели господе ране ду-", "Кондак 1"])
     page["book_page"] = book_page
     second = ["исцели господе ране ду-", "Кондак 1", last]
+    vocabulary = review.book_vocabulary([page])
 
-    assert review.diff_against(page, second) == []
-    assert review.marked_lines(page, second, set()) == []
+    assert review.diff_against(page, second, vocabulary) == []
+    assert review.marked_lines(page, second, set(), vocabulary) == []
     # a last line that carries a number and a word of our text is a line, not the page number
-    assert review.marked_lines(page, second[:-1] + ["Кондак 11"], set()) == [1]
+    assert review.marked_lines(page, second[:-1] + ["Кондак 11"], set(), vocabulary) == [1]
+
+
+def test_a_lost_last_line_that_carries_a_number_is_not_taken_for_the_page_number():
+    """„Кондак 11" at the end of the other reading is a line of the book that ours lacks; the
+    words of the book tell it from the marks another reading makes of the page number."""
+    page = make_page(["Теби војводо који се бориш"])
+    second = ["Теби војводо који се бориш", "Кондак 11"]
+    vocabulary = review.book_vocabulary([make_page(["Кондак 1", "Теби војводо"]), page])
+
+    assert review.marked_lines(page, second, set(), vocabulary) == [0]
+    (entry,) = review.diff_against(page, second, vocabulary)
+    assert entry["extra"] == ["Кондак 11"] and entry["only_other"] is True
+    # without the words of the book a line with words is kept as well
+    assert review.marked_lines(page, second, set()) == [0]
+    # digits and marks alone are the page number even without them
+    assert review.marked_lines(page, [*second[:-1], "мн 11"], set()) == []
+
+
+def test_a_line_of_ours_the_other_reading_breaks_in_two_is_not_a_line_we_lack():
+    page = make_page(["у току свете и велике четрдесетнице,", "говори овај тропар:"])
+    broken = (
+        ["у току свете и велике", "четрдесетнице,", "говори овај тропар:"],
+        ["у току свете", "и велике четрдесетнице,", "говори овај тропар:"],
+    )
+    for second in broken:
+        assert review.diff_against(page, second) == []
+        assert review.marked_lines(page, second, set()) == []
 
 
 def test_a_number_that_differs_is_a_disagreement():

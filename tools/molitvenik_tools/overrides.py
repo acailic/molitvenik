@@ -132,9 +132,11 @@ def missing_line(page: dict, before: dict, text: str, *, red: bool = False, box:
 
     No reading gave the line boxes, so it has none of its own. ``box`` is where the print
     shows it (left, top, width and height in half-resolution pixels). Without it, the line is
-    taken to stand one line pitch above `before`, centred in the text of the page, and to be
-    as wide as its characters. Only what the cleaner reads is set: where the line begins and
-    ends, how high it is, and the colour of its words; the words carry the flag ``inserted``.
+    taken to stand one line pitch above `before` and to be as wide as its characters: a red
+    line (a heading) in the middle of the text of the page, a black one (a line of the text)
+    at the left edge of the text, so that the cleaner does not take it for a new paragraph.
+    Only what the cleaner reads is set: where the line begins and ends, how high it is, and
+    the colour of its words; the words carry the flag ``inserted``.
     """
     lines = sorted(page["lines"], key=lambda line: line["cy"])
     gaps = sorted(b["cy"] - a["cy"] for a, b in zip(lines, lines[1:], strict=False))
@@ -152,7 +154,9 @@ def missing_line(page: dict, before: dict, text: str, *, red: bool = False, box:
             line["words"][0]["left"] for line in page["lines"] if line["kind"] == "content" and line["words"]
         ]
         right = max(line["right"] for line in page["lines"] if line["kind"] == "content")
-        left = round(min(starts) + (right - min(starts) - width) / 2)
+        left = min(starts)
+        if red:
+            left = round(left + (right - left - width) / 2)
     words, x = [], left
     for token in text.split(" "):
         span = len(token) * CHAR_WIDTH
@@ -188,6 +192,7 @@ def insert_line(corrected: dict, content: list[dict], override: dict) -> None:
     text = override.get("missing")
     if not isinstance(text, str) or not text.strip():
         raise OverrideError(f"page {corrected['page']}: 'missing' must be the text of a line: {override}")
+    text = " ".join(text.split())  # one space between the words, whatever was written
     if override.get("rubric") not in (True, False, None):
         raise OverrideError(f"page {corrected['page']}: rubric of a missing line must be true or false")
     matches = [line for line in content if line["text"] == override.get("line")]
